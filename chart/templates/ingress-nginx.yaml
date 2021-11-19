@@ -1,0 +1,33 @@
+{{- if and (.Values.ingressNginx) (.Values.ingressNginx.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    path: add-ons/ingress-nginx
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: ingress-nginx.controller.service.annotaions.service\.beta\.kubernetes\.io/aws-load-balancer-ssl-cert
+        value: {{ .Values.ingressNginx.sslCertArn }}
+      - name: ingress-nginx.controller.service.annotaions.external-dns\.alpha\.kubernetes\.io/hostname
+        value: {{ .Values.ingressNginx.clusterSubdomain }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}

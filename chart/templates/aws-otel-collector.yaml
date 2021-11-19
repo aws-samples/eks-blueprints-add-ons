@@ -1,0 +1,37 @@
+{{- if and (.Values.awsOtelCollector) (.Values.awsOtelCollector.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-otel-collector 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    path: add-ons/aws-otel-collector
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: aws-otel-collector.region
+        value: {{ .Values.region }}
+      - name: aws-otel-collector.otlpEndpoint
+        value: {{ .Values.awsOtelCollector.otlpEndpoint }}
+      - name: aws-otel-collector.resourceAttributes
+        value: {{ .Values.awsOtelCollector.resourceAttributes }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: aws-otel-eks
+  syncPolicy:
+    automated:
+      prune: true   
+    syncOptions:
+    - CreateNamespace=true 
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}

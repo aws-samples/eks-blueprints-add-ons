@@ -1,0 +1,3 @@
+region: "us-west-2"
+otlpEndpoint: "localhost:55680"
+resourceAttributes: "service.namespace=AWSObservability,service.name=ADOTEmitService"

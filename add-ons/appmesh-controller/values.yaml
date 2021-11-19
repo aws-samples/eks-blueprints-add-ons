@@ -1,0 +1,9 @@
+appmesh-controller:
+  serviceAccount: 
+    create: false 
+    name: "app-mesh-controller-sa"
+  tracing: 
+    enabled: false
+    provider: ""
+    address: ""
+    port: ""

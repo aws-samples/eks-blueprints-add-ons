@@ -1,0 +1,37 @@
+{{- if and (.Values.externalDns) (.Values.externalDns.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    path: add-ons/external-dns
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: external-dns.aws.region
+        value: {{ .Values.region }}
+      - name: external-dns.serviceAccount.name
+        value: {{ .Values.externalDns.serviceAccountName }}
+      - name: external-dns.zoneIdFilters[0]
+        value: {{ .Values.externalDns.zoneIdFilter}}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: external-dns
+  syncPolicy:
+    automated:
+      prune: true 
+    syncOptions:
+    - CreateNamespace=true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}

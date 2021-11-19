@@ -1,0 +1,35 @@
+{{- if and (.Values.awsLoadBalancerController) (.Values.awsLoadBalancerController.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-load-balancer-controller
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    path: add-ons/aws-load-balancer-controller
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: aws-load-balancer-controller.clusterName
+        value: {{ .Values.clusterName }}
+      - name: aws-load-balancer-controller.region
+        value: {{ .Values.region }}
+      - name: aws-load-balancer-controller.serviceAccount.name
+        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}

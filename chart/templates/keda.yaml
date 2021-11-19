@@ -1,0 +1,31 @@
+{{- if and (.Values.keda) (.Values.keda.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keda
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    path: add-ons/keda
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: keda.serviceAccount.name
+        value: {{ .Values.keda.serviceAccountName }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: keda-ns
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}
