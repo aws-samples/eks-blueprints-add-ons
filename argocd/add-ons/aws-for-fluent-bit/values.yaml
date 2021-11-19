@@ -1,0 +1,17 @@
+aws-for-fluent-bit:
+  serviceAccount: 
+    create: false
+    name: "aws-for-fluent-bit-sa"
+
+  cloudWatch:
+    region: ""
+    logGroupName: ""
+
+  firehose:
+    region: ""
+
+  kinesis:
+    region: ""
+
+  elasticsearch:
+    region: ""

@@ -1,0 +1,33 @@
+{{- if .Values.agones.enable -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-autoscaler 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kcoleman731/argo-add-ons
+    path: add-ons/cluster-autoscaler
+    targetRevision: HEAD
+    helm: 
+      parameters:			
+      - name: cluster-autoscaler.autoDiscovery.clusterName
+        value: {{ .Values.clusterName }}
+      - name: cluster-autoscaler.awsRegion
+        value: {{ .Values.region }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}

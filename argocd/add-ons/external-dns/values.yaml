@@ -1,0 +1,7 @@
+external-dns: 
+  serviceAccount:
+    create: false 
+    name: "external-dns-sa"
+  provider: 'aws'
+  zoneIdFilters: []
+      

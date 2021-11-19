@@ -1,0 +1,17 @@
+apiVersion: v2
+name: cluster-autoscaler
+description: A Helm chart for installing cluster-autoscaler
+type: application
+
+# The chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# Version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.0"
+
+dependencies:
+- name: cluster-autoscaler
+  version: 9.10.7
+  repository: https://kubernetes.github.io/autoscaler

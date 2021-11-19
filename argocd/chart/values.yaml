@@ -1,0 +1,66 @@
+# Global Values
+region: ""
+account: ""
+clusterName: ""
+
+# Agones Values
+agones: 
+  enable: false
+
+# App Mesh Values
+appMesh: 
+  enable: false 
+
+# Calico Values
+awsCalico:
+  enable: false
+
+# AWS CloudWatch Metrics Values
+awsCloudWatchMetrics:
+  enable: false
+
+# AWS for Fluent Bit Values
+awsForFluentBit:
+  enable: false
+  logGroupName: ""
+
+# AWS Load Balancer Controller Values
+awsLoadBalancerController:
+  enable: false
+
+# Cert Manager Values
+certManager:
+  enable: false
+ 
+# Cluster Autoscaler Values
+clusterAutoscaler:
+  enable: false
+
+# External DNS Values
+externalDns:
+  enable: false
+  zoneIdFilters: []
+
+# Gatekeeper Values
+gatekeeper: 
+  enable: true
+
+# Metrics Server Values
+metricsServer:
+  enable: false
+
+# Nginx Values
+ingressNginx:
+  enable: false
+
+# Prometheus Values
+prometheus:
+  enable: false
+  ingestRoleArn: ""
+  ampWorkspaceUrl: ""
+
+# Traefik Values
+traefik:
+  enable: false
+
+

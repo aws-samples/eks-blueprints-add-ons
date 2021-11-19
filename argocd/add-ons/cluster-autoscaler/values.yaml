@@ -1,0 +1,7 @@
+cluster-autoscaler:
+  replicaCount: 2
+  awsRegion: ""
+  autoDiscovery:
+    clusterName: ""
+  extraArgs:
+    aws-use-static-instance-list: true

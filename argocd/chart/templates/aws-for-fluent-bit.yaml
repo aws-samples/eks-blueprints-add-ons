@@ -1,0 +1,39 @@
+{{- if .Values.agones.enable -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-for-fluent-bit
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kcoleman731/argo-add-ons
+    path: add-ons/aws-for-fluent-bit
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: aws-for-fluent-bit.cloudWatch.region
+        value: {{ .Values.region }}
+      - name: aws-for-fluent-bit.cloudWatch.logGroupName
+        value: {{ .Values.awsForFluentBit.logGroupName }}
+      - name: aws-for-fluent-bit.firehose.region
+        value: {{ .Values.region }}
+      - name: aws-for-fluent-bit.kinesis.region
+        value: {{ .Values.region }}
+      - name: aws-for-fluent-bit.elasticsearch.region
+        value: {{ .Values.region }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}

@@ -1,0 +1,35 @@
+{{- if .Values.agones.enable -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kcoleman731/argo-add-ons
+    path: add-ons/prometheus
+    targetRevision: HEAD
+    helm:
+      parameters:
+      - name: prometheus.server.remoteWrite[0].sigV4.region
+        value: {{ .Values.region }}
+      - name: prometheus.server.remoteWrite[0].url
+        value: {{ .Values.prometheus.ampWorkspaceUrl }}
+      - name: prometheus.serviceAccounts.server.annotations.eks.amazonaws.com/role-arn
+        value: {{ .Values.prometheus.ingestRoleArn }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m 
+{{- end -}} 
