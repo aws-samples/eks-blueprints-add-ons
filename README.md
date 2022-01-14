@@ -30,13 +30,13 @@ spec:
     repoURL: https://github.com/aws-samples/ssp-eks-add-ons.git
     targetRevision: HEAD
     path: chart
-		helm: 
+    helm: 
       release: add-ons
       values: |
-				cluster-autoscaler:
-					enable: true
-				metrics-server:
-					enable: true
+        cluster-autoscaler:
+          enable: true
+        metrics-server:
+          enable: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
