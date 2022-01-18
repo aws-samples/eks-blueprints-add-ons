@@ -1,7 +1,14 @@
-cluster-autoscaler:
-  replicaCount: 2
-  awsRegion: ""
-  autoDiscovery:
-    clusterName: ""
-  extraArgs:
-    aws-use-static-instance-list: true
+extraArgs:
+  aws-use-static-instance-list: true
+
+rbac:
+  serviceAccount:
+    create: false
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 512Mi

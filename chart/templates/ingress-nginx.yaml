@@ -9,15 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    repoURL: {{ .Values.repo_url }}
     path: add-ons/ingress-nginx
     targetRevision: HEAD
-    helm: 
-      parameters:
-      - name: ingress-nginx.controller.service.annotaions.service\.beta\.kubernetes\.io/aws-load-balancer-ssl-cert
-        value: {{ .Values.ingressNginx.sslCertArn }}
-      - name: ingress-nginx.controller.service.annotaions.external-dns\.alpha\.kubernetes\.io/hostname
-        value: {{ .Values.ingressNginx.clusterSubdomain }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
