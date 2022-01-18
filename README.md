@@ -85,6 +85,7 @@ chart
 
 The `add-ons` directory contains a dedicated Helm chart that deploys each individual add-on. 
 
+```
 add-ons
 ├── agones
 │   └── Chart.yaml
@@ -99,6 +100,7 @@ add-ons
 │   └── Chart.yaml
 │   └── values.yaml
 │   └── ...
+```
 
 ## Contributing
 
