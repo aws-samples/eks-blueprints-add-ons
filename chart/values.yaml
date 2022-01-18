@@ -1,11 +1,12 @@
 # Global Values
+repo_url: "https://github.com/aws-samples/ssp-eks-add-ons.git"
 region: ""
 account: ""
 clusterName: ""
 
 # Agones Values
 agones: 
-  enable: false
+  enable: false 
 
 # App Mesh Values
 appMesh: 
@@ -22,10 +23,15 @@ awsCloudWatchMetrics:
 # AWS for Fluent Bit Values
 awsForFluentBit:
   enable: false
-  logGroupName: ""
+  logGroupName: 
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
+  enable: false
+  serviceAccountName:
+
+# AWS Otel Collector Values
+awsOtelCollector:
   enable: false
 
 # Cert Manager Values
@@ -35,6 +41,7 @@ certManager:
 # Cluster Autoscaler Values
 clusterAutoscaler:
   enable: false
+  serviceAccountName:
 
 # External DNS Values
 externalDns:
@@ -45,22 +52,50 @@ externalDns:
 gatekeeper: 
   enable: false
 
-# Metrics Server Values
-metricsServer:
-  enable: false
-
 # Nginx Values
 ingressNginx:
+  enable: false
+
+# Karpenter Values
+karpenter: 
+  enable: false
+  serviceAccountName: 
+  clusterName: 
+  clusterEndpoint:
+
+# Keda Values
+keda: 
+  enable: false
+  serviceAccountName:
+
+# Metrics Server Values
+metricsServer:
   enable: false
 
 # Prometheus Values
 prometheus:
   enable: false
-  ingestRoleArn: ""
-  ampWorkspaceUrl: ""
+  serviceAccountName:
+  roleArn: 
+  ampWorkspaceUrl:
+
+# Metrics Server Values
+sparkOperator:
+  enable: false
 
 # Traefik Values
 traefik:
   enable: false
 
+# VPA Values
+vpa: 
+  enable: false
+  serviceAccountName: 
 
+# Yunikorn Values
+yunikorn: 
+  enable: false
+  serviceAccountName: 
+  operatorPlugins: 
+  serviceType:
+  embedAdmissionController:

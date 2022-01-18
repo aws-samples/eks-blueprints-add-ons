@@ -9,13 +9,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    repoURL: {{ .Values.repo_url }}
     path: add-ons/aws-for-fluent-bit
     targetRevision: HEAD
     helm: 
       parameters:
       - name: aws-for-fluent-bit.cloudWatch.region
         value: {{ .Values.region }}
+      - name: aws-for-fluent-bit.serviceAccount.name
+        value: {{ .Values.awsForFluentBit.serviceAccountName }}
+      - name: aws-for-fluent-bit.cloudWatch.serviceAccount.name
+        value: {{ .Values.awsForFluentBit.serviceAccountName }}
       - name: aws-for-fluent-bit.cloudWatch.logGroupName
         value: {{ .Values.awsForFluentBit.logGroupName }}
       - name: aws-for-fluent-bit.firehose.region

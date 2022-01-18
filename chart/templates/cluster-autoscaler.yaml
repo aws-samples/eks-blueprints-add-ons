@@ -9,15 +9,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:kcoleman731/argo-add-ons.git
+    repoURL: {{ .Values.repo_url }}
     path: add-ons/cluster-autoscaler
     targetRevision: HEAD
     helm: 
       parameters:			
-      - name: cluster-autoscaler.autoDiscovery.clusterName
-        value: {{ .Values.clusterName }}
       - name: cluster-autoscaler.awsRegion
         value: {{ .Values.region }}
+      - name: cluster-autoscaler.rbac.serviceAccount.name
+        value: {{ .Values.clusterAutoscaler.serviceAccountName }}
+      - name: cluster-autoscaler.autoDiscovery.clusterName
+        value: {{ .Values.clusterAutoscaler.clusterName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
