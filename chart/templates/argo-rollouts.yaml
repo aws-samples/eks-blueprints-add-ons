@@ -1,0 +1,31 @@
+{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/askulkarni2/ssp-eks-add-ons
+    path: add-ons/argo-rollouts
+    targetRevision: feature/argo-rollout
+    helm:
+      parameters:
+      - name: argo-rollouts.serviceAccount.name
+        value: {{ .Values.argoRollouts.serviceAccountName }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

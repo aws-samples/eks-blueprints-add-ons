@@ -99,3 +99,8 @@ yunikorn:
   operatorPlugins: 
   serviceType:
   embedAdmissionController:
+
+# Argo Rollout Values
+argoRollouts:
+  enable: false
+  serviceAccountName:
