@@ -59,9 +59,11 @@ ingressNginx:
 # Karpenter Values
 karpenter: 
   enable: false
-  serviceAccountName: 
-  clusterName: 
-  clusterEndpoint:
+  serviceAccountName:
+  controllerClusterName:
+  controllerClusterEndpoint:
+  awsDefaultInstanceProfile:
+
 
 # Keda Values
 keda: 
