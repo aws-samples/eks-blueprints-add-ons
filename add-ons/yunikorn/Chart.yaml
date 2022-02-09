@@ -1,6 +1,6 @@
 apiVersion: v2
 name: vpa
-description: A Helm chart for Vertical Pod Autoscaler
+description: A Helm chart for YuniKorn
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
