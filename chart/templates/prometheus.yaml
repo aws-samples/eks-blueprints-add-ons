@@ -14,14 +14,20 @@ spec:
     targetRevision: HEAD
     helm:
       parameters:
+      {{ if .Values.prometheus.serviceAccountName }}
       - name: prometheus.serviceAccounts.server.name
         value: {{ .Values.prometheus.serviceAccountName }}
+      {{ end }}
+      {{ if .Values.prometheus.roleArn }}
+      - name: prometheus.serviceAccounts.server.annotations."eks\.amazonaws\.com/role-arn"
+        value: {{ .Values.prometheus.roleArn }}
+      {{ end }}
+      {{ if .Values.prometheus.ampWorkspaceUrl }}
       - name: prometheus.server.remoteWrite[0].url
         value: {{ .Values.prometheus.ampWorkspaceUrl }}
       - name: prometheus.server.remoteWrite[0].sigV4.region
         value: {{ .Values.region }}
-      - name: prometheus.serviceAccounts.server.annotations."eks\.amazonaws\.com/role-arn"
-        value: {{ .Values.prometheus.roleArn }}
+      {{ end }}
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus
