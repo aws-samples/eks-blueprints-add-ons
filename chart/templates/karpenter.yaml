@@ -1,0 +1,37 @@
+{{- if and (.Values.karpenter) (.Values.karpenter.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: karpenter
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repo_url }}
+    path: add-ons/karpenter
+    targetRevision: HEAD
+    helm:
+      parameters:
+        - name: karpetner.serviceAccount.name
+          value: {{ .Values.karpenter.serviceAccountName }}
+        - name: karpetner.controller.ClusterName
+          value: {{ .Values.karpenter.controllerClusterName }}
+        - name: karpetner.controller.ClusterEndpoint
+          value: {{ .Values.karpenter.controllerClusterEndpoint }}
+        - name: karpetner.aws.defaultInstanceProfile
+          value: {{ .Values.karpenter.awsDefaultInstanceProfile }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: karpenter
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+  {{- end -}}
