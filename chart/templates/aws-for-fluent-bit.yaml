@@ -30,7 +30,7 @@ spec:
         value: {{ .Values.region }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: logging
   syncPolicy:
     automated:
       prune: true    
