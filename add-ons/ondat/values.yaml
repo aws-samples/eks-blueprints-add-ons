@@ -1,0 +1,7 @@
+ondat-operator:
+  cluster:
+    kvBackend:
+      address: https://storageos-etcd-client.storageos-etcd:2379
+    admin:
+      username: storageos
+      password: storageos
