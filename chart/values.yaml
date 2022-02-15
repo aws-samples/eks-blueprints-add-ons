@@ -55,6 +55,7 @@ gatekeeper:
 # Nginx Values
 ingressNginx:
   enable: false
+  serviceAccountName:
 
 # Karpenter Values
 karpenter: 
