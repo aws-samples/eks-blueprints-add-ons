@@ -1,0 +1,3 @@
+kube-state-metrics:
+  serviceAccount:
+    create: false

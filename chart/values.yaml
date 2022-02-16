@@ -107,3 +107,8 @@ yunikorn:
 argoRollouts:
   enable: false
   serviceAccountName:
+
+# Kube-state-metrics Values
+kubeStateMetrics:
+  enable: false
+  serviceAccountName:
