@@ -1,0 +1,17 @@
+apiVersion: v2
+name: aws-efs-csi-driver
+description: A Helm chart for installing the AWS EFS CSI driver
+type: application
+
+# The chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# Version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.0"
+
+dependencies:
+- name: aws-efs-csi-driver
+  version: 2.2.3
+  repository: https://kubernetes-sigs.github.io/aws-efs-csi-driver/
