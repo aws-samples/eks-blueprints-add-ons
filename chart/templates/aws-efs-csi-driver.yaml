@@ -15,9 +15,9 @@ spec:
     helm: 
       parameters:
       - name: aws-efs-csi-driver.controller.serviceAccount.name
-        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+        value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
       - name: aws-efs-csi-driver.node.serviceAccount.name
-        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+        value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
