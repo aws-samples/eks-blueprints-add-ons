@@ -1,0 +1,33 @@
+{{- if and (.Values.awsEfsCsiDriver) (.Values.awsEfsCsiDriver.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-efs-csi-driver
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repo_url }}
+    path: add-ons/aws-efs-csi-driver
+    targetRevision: HEAD
+    helm: 
+      parameters:
+      - name: aws-efs-csi-driver.controller.serviceAccount.name
+        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+      - name: aws-efs-csi-driver.node.serviceAccount.name
+        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}
