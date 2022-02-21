@@ -2,10 +2,9 @@ karpenter:
   serviceAccount:
     create: false
     name: ""
-  controller:
-    clusterName: ""
-    clusterEndpoint: ""
-    nodeSelector:
-      kubernetes.io/os: linux
+  nodeSelector:
+    kubernetes.io/os: linux
+  clusterName: ""
+  clusterEndpoint: ""
   aws:
     defaultInstanceProfile: ""
