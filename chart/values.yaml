@@ -29,7 +29,6 @@ awsForFluentBit:
 awsLoadBalancerController:
   enable: false
   serviceAccountName:
-  createIngressClassResource:
 
 # AWS Otel Collector Values
 awsOtelCollector:

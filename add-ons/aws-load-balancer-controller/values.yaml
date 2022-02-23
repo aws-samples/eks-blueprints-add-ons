@@ -4,4 +4,3 @@ aws-load-balancer-controller:
   serviceAccount: 
     create: false 
     name: ""
-  createIngressClassResource: true
