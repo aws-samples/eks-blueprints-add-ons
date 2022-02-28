@@ -1,5 +1,5 @@
 # Global Values
-repo_url: "https://github.com/askulkarni2/ssp-eks-add-ons.git"
+repo_url: "https://github.com/aws-samples/ssp-eks-add-ons.git"
 region: ""
 account: ""
 clusterName: ""
@@ -105,5 +105,15 @@ yunikorn:
 
 # Argo Rollout Values
 argoRollouts:
+  enable: false
+  serviceAccountName:
+
+# Kube State Metrics Values
+kubeStateMetrics:
+  enable: false
+  serviceAccountName:
+
+# Kubernetes Dashboard Values
+kubeStateMetrics:
   enable: false
   serviceAccountName:
