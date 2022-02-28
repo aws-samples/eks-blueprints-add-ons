@@ -114,6 +114,6 @@ kubeStateMetrics:
   serviceAccountName:
 
 # Kubernetes Dashboard Values
-kubeStateMetrics:
+kubernetesDashboard:
   enable: false
   serviceAccountName:
