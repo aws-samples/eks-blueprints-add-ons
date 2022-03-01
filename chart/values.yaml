@@ -107,7 +107,12 @@ argoRollouts:
   enable: false
   serviceAccountName:
 
-# Kube-state-metrics Values
+# Kube State Metrics Values
 kubeStateMetrics:
+  enable: false
+  serviceAccountName:
+
+# Kubernetes Dashboard Values
+kubernetesDashboard:
   enable: false
   serviceAccountName:
