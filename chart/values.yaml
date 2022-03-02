@@ -20,6 +20,10 @@ awsCalico:
 awsCloudWatchMetrics:
   enable: false
 
+# AWS EFS CSI Driver Values
+awsEfsCsiDriver:
+  enable: false
+
 # AWS for Fluent Bit Values
 awsForFluentBit:
   enable: false
