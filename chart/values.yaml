@@ -60,6 +60,10 @@ gatekeeper:
 ingressNginx:
   enable: false
 
+# Istio Values
+istio:
+  enable: false
+
 # Karpenter Values
 karpenter: 
   enable: false
