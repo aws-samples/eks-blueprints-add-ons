@@ -60,10 +60,6 @@ gatekeeper:
 ingressNginx:
   enable: false
 
-# Istio Values
-istio:
-  enable: false
-
 # Karpenter Values
 karpenter: 
   enable: false
@@ -91,6 +87,10 @@ prometheus:
 
 # Metrics Server Values
 sparkOperator:
+  enable: false
+
+# Tetrate Istio Values
+tetrateIstio:
   enable: false
 
 # Traefik Values
