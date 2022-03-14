@@ -1,4 +1,4 @@
-{{- if and (.Values.externalDns) (.Values.externalDns.enable) -}}
+{{- if and (.Values.externalDns) (.Values.externalDns.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

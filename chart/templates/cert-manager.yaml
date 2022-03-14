@@ -1,4 +1,4 @@
-{{- if and (.Values.certManager) (.Values.certManager.enable) -}}
+{{- if and (.Values.certManager) (.Values.certManager.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

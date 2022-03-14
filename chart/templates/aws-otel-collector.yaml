@@ -1,4 +1,4 @@
-{{- if and (.Values.awsOtelCollector) (.Values.awsOtelCollector.enable) -}}
+{{- if and (.Values.awsOtelCollector) (.Values.awsOtelCollector.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

@@ -1,4 +1,4 @@
-{{- if and (.Values.agones) (.Values.agones.enable) -}}
+{{- if and (.Values.agones) (.Values.agones.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

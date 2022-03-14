@@ -1,4 +1,4 @@
-{{- if and (.Values.vpa) (.Values.vpa.enable) -}}
+{{- if and (.Values.vpa) (.Values.vpa.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

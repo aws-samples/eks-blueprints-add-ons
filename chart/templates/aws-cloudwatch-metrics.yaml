@@ -1,4 +1,4 @@
-{{- if and (.Values.awsCloudWatchMetrics) (.Values.awsCloudWatchMetrics.enable) -}}
+{{- if and (.Values.awsCloudWatchMetrics) (.Values.awsCloudWatchMetrics.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

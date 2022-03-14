@@ -1,4 +1,4 @@
-{{- if and (.Values.sparkOperator) (.Values.sparkOperator.enable) -}}
+{{- if and (.Values.sparkOperator) (.Values.sparkOperator.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
