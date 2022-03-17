@@ -32,7 +32,13 @@ awsForFluentBit:
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
   enable: false
-  serviceAccountName:
+  # Values inserted in #rawValues will be pass-throughed to the chart
+  rawValues: 
+    replicaCount: 1
+    resources:
+      limits:
+        cpu: 200m
+        memory: 128Mi
 
 # AWS Otel Collector Values
 awsOtelCollector:

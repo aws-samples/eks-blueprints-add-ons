@@ -9,17 +9,21 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
-    path: add-ons/aws-load-balancer-controller
-    targetRevision: HEAD
+    repoURL: https://aws.github.io/eks-charts
+    targetRevision: 1.4.1
+    chart: aws-load-balancer-controller
     helm: 
       parameters:
-      - name: aws-load-balancer-controller.clusterName
+      - name: clusterName
         value: {{ .Values.clusterName }}
-      - name: aws-load-balancer-controller.region
+      - name: region
         value: {{ .Values.region }}
-      - name: aws-load-balancer-controller.serviceAccount.name
+      - name: serviceAccount.name
         value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+  
+      values: |
+        {{- .Values.awsLoadBalancerController.rawValues | toYaml | trim | nindent 8 }}
+
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
