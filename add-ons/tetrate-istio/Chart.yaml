@@ -1,0 +1,26 @@
+apiVersion: v2
+name: istio
+description: A Helm chart for Tetrate Istio Distribution (TID)
+
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+type: application
+
+# The chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.0.1
+
+# Version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.12.2"
+
+dependencies:
+  - name: base
+    version: 1.12.2
+    repository: https://istio-release.storage.googleapis.com/charts
+  - name: cni
+    version: 1.12.2
+    repository: https://istio-release.storage.googleapis.com/charts
+  - name: istiod
+    version: 1.12.2
+    repository: https://istio-release.storage.googleapis.com/charts

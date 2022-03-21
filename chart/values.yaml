@@ -89,6 +89,10 @@ prometheus:
 sparkOperator:
   enable: false
 
+# Tetrate Istio Values
+tetrateIstio:
+  enable: false
+
 # Traefik Values
 traefik:
   enable: false
