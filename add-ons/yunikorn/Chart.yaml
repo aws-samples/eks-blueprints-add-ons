@@ -17,4 +17,4 @@ appVersion: "1.0"
 dependencies:
   - name: yunikorn
     version: 0.12.2
-    repository: https://apache.github.io/incubator-yunikorn-release
+    repository: https://apache.github.io/yunikorn-release
