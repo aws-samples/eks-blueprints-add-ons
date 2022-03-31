@@ -20,6 +20,10 @@ awsCalico:
 awsCloudWatchMetrics:
   enable: false
 
+# AWS EFS CSI Driver Values
+awsEfsCsiDriver:
+  enable: false
+
 # AWS for Fluent Bit Values
 awsForFluentBit:
   enable: false
@@ -98,6 +102,10 @@ prometheus:
 sparkOperator:
   enable: false
 
+# Tetrate Istio Values
+tetrateIstio:
+  enable: false
+
 # Traefik Values
 traefik:
   enable: false
@@ -117,5 +125,15 @@ yunikorn:
 
 # Argo Rollout Values
 argoRollouts:
+  enable: false
+  serviceAccountName:
+
+# Kube State Metrics Values
+kubeStateMetrics:
+  enable: false
+  serviceAccountName:
+
+# Kubernetes Dashboard Values
+kubernetesDashboard:
   enable: false
   serviceAccountName:

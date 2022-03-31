@@ -8,13 +8,13 @@ type: application
 
 # The chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.1.0
+version: 0.1.1
 
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: "1.0"
 
 dependencies:
-- name: prometheus
-  version: 14.6.0
-  repository: https://prometheus-community.github.io/helm-charts
+  - name: prometheus
+    version: 15.3.0
+    repository: https://prometheus-community.github.io/helm-charts

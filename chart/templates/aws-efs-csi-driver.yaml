@@ -1,8 +1,8 @@
-{{- if and (.Values.keda) (.Values.keda.enable) -}}
+{{- if and (.Values.awsEfsCsiDriver) (.Values.awsEfsCsiDriver.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keda
+  name: aws-efs-csi-driver
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io    
@@ -10,15 +10,17 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repo_url }}
-    path: add-ons/keda
+    path: add-ons/aws-efs-csi-driver
     targetRevision: HEAD
     helm: 
       parameters:
-      - name: keda.serviceAccount.name
-        value: {{ .Values.keda.serviceAccountName }}
+      - name: aws-efs-csi-driver.controller.serviceAccount.name
+        value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
+      - name: aws-efs-csi-driver.node.serviceAccount.name
+        value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: keda
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true    

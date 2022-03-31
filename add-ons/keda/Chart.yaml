@@ -5,7 +5,7 @@ type: application
 
 # The chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.1.0
+version: 0.1.1
 
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
@@ -13,5 +13,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: keda
-  version: 2.4.0
+  version: 2.6.2
   repository: https://kedacore.github.io/charts
