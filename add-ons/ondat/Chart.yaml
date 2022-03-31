@@ -12,9 +12,9 @@ version: 0.1.0
 
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: "1.0"
+appVersion: "2.6.0"
 
 dependencies:
 - name: ondat-operator
-  version: 0.5.3
+  version: 0.5.5
   repository: https://ondat.github.io/charts
