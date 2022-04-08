@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/prometheus
-    targetRevision: gitops-fixes
+    targetRevision: HEAD
     helm:
       parameters:
       {{ if .Values.prometheus.serviceAccountName }}

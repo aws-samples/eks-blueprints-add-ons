@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/aws-load-balancer-controller
-    targetRevision: gitops-fixes
+    targetRevision: HEAD
     helm: 
       parameters:
       - name: aws-load-balancer-controller.clusterName

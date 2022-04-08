@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/aws-samples/ssp-eks-add-ons
     path: add-ons/argo-rollouts
-    targetRevision: gitops-fixes
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-rollouts

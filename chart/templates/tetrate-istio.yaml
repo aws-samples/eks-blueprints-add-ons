@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/tetrate-istio
-    targetRevision: gitops-fixes
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system

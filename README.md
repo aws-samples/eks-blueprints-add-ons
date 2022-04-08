@@ -28,7 +28,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/aws-samples/ssp-eks-add-ons.git
-    targetRevision: gitops-fixes
+    targetRevision: HEAD
     path: chart
     helm: 
       release: add-ons

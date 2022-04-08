@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/aws-samples/ssp-eks-add-ons
     path: add-ons/kubernetes-dashboard
-    targetRevision: gitops-fixes
+    targetRevision: HEAD
     helm:
       parameters:
       - name: kubernetes-dashboard.serviceAccount.name
