@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/aws-for-fluent-bit
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm: 
       parameters:
       - name: aws-for-fluent-bit.cloudWatch.region

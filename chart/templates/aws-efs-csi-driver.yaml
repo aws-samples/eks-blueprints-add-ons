@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/aws-efs-csi-driver
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm: 
       parameters:
       - name: aws-efs-csi-driver.controller.serviceAccount.name

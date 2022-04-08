@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/metrics-server
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

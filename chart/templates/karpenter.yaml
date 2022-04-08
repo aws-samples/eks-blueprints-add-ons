@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/karpenter
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm:
       parameters:
         - name: karpetner.serviceAccount.name

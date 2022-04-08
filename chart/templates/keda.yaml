@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/keda
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm: 
       parameters:
       - name: keda.serviceAccount.name

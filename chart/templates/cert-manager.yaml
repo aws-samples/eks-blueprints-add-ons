@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/cert-manager
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm:
       parameters:
       - name: cert-manager.serviceAccount.name

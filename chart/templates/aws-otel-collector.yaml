@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/aws-otel-collector
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm: 
       parameters:
       - name: aws-otel-collector.region

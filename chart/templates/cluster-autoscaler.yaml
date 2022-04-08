@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/cluster-autoscaler
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
     helm: 
       parameters:
       - name: cluster-autoscaler.awsRegion

@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/agones
-    targetRevision: HEAD
+    targetRevision: gitops-fixes
   destination:
     server: https://kubernetes.default.svc
     namespace: agones-system
