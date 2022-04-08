@@ -1,14 +1,14 @@
-# SSP EKS Add-ons
+# EKS Blueprints Add-ons
 
-Welcome to the SSP EKS Add-ons repository.
+Welcome to the EKS Blueprints Add-ons repository.
 
 This repository contains GitOps configuration which follows the ArgoCD App of Apps pattern. It demonstrates how EKS customers can leverage ArgoCD to easily bootstrap an EKS cluster with a wide variety of Kubernetes add-ons.
 
 ## Usage 
 
-### With the EKS SSP Framework
+### With the EKS Blueprints Framework
 
-This repository can be used in concert with the [Amazon EKS SSP framework](https://github.com/aws-samples/aws-eks-accelerator-for-terraform). Please see the [ArgoCD add-on documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#app-of-apps) for details on how to easily bootstrap an EKS cluster with the add-on configuration contained in this repository.
+This repository can be used in concert with the [Amazon EKS Blueprints framework](https://github.com/aws-ia/terraform-aws-eks-blueprints). Please see the [ArgoCD add-on documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#app-of-apps) for details on how to easily bootstrap an EKS cluster with the add-on configuration contained in this repository.
 
 ### With an Existing Cluster
 
@@ -27,7 +27,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/aws-samples/ssp-eks-add-ons.git
+    repoURL: https://github.com/aws-samples/eks-blueprints-add-ons.git
     targetRevision: HEAD
     path: chart
     helm: 
