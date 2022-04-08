@@ -16,8 +16,8 @@ spec:
       parameters:
         - name: karpetner.serviceAccount.name
           value: {{ .Values.karpenter.serviceAccountName }}
-        - name: karpetner.controller.ClusterName
-          value: {{ .Values.karpenter.controllerClusterName }}
+        - name: karpetner.ClusterName
+          value: {{ .Values.clusterName }}
         - name: karpetner.controller.ClusterEndpoint
           value: {{ .Values.karpenter.controllerClusterEndpoint }}
         - name: karpetner.aws.defaultInstanceProfile

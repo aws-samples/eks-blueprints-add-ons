@@ -23,11 +23,12 @@ awsCloudWatchMetrics:
 # AWS EFS CSI Driver Values
 awsEfsCsiDriver:
   enable: false
+  serviceAccountName:
 
 # AWS for Fluent Bit Values
 awsForFluentBit:
   enable: false
-  logGroupName: 
+  logGroupName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
@@ -41,7 +42,8 @@ awsOtelCollector:
 # Cert Manager Values
 certManager:
   enable: false
- 
+  serviceAccountName:
+
 # Cluster Autoscaler Values
 clusterAutoscaler:
   enable: false
@@ -64,10 +66,8 @@ ingressNginx:
 karpenter: 
   enable: false
   serviceAccountName:
-  controllerClusterName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
-
 
 # Keda Values
 keda: 
@@ -100,20 +100,14 @@ traefik:
 # VPA Values
 vpa: 
   enable: false
-  serviceAccountName: 
 
 # Yunikorn Values
 yunikorn: 
   enable: false
-  serviceAccountName: 
-  operatorPlugins: 
-  serviceType:
-  embedAdmissionController:
 
 # Argo Rollout Values
 argoRollouts:
   enable: false
-  serviceAccountName:
 
 # Kube State Metrics Values
 kubeStateMetrics:
