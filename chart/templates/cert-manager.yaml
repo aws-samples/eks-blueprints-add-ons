@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/cert-manager
     targetRevision: HEAD
+    helm:
+      parameters:
+      - name: cert-manager.serviceAccount.name
+        value: {{ .Values.certManager.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

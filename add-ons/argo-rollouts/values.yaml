@@ -1,3 +1,0 @@
-argo-rollouts:
-  serviceAccount:
-    create: false
