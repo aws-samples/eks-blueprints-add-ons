@@ -1,4 +1,4 @@
-{{- if and (.Values.appMesh) (.Values.appMesh.enable) -}}
+{{- if and (.Values.appmeshController) (.Values.appmeshController.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -12,6 +12,13 @@ spec:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/appmesh-controller 
     targetRevision: HEAD
+    helm:
+      releaseName: ssp
+      parameters:
+      - name: appmesh-controller.serviceAccount.create
+        value: {{ .Values.appmeshController.serviceAccount.create | quote }}
+      - name: appmesh-controller.serviceAccount.name
+        value: {{ .Values.appmeshController.serviceAccount.name | quote }}
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system

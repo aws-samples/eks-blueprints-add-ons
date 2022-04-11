@@ -1,4 +1,4 @@
-{{- if and (.Values.yunikorn) (.Values.yunikorn.enable) -}}
+{{- if and (.Values.yunikorn) (.Values.yunikorn.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

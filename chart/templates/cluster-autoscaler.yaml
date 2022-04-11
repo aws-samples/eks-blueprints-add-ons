@@ -1,4 +1,4 @@
-{{- if and (.Values.clusterAutoscaler) (.Values.clusterAutoscaler.enable) -}}
+{{- if and (.Values.clusterAutoscaler) (.Values.clusterAutoscaler.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

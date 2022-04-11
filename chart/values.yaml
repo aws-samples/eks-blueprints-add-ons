@@ -6,88 +6,88 @@ clusterName: ""
 
 # Agones Values
 agones: 
-  enable: false 
+  enabled: false 
 
 # App Mesh Values
-appMesh: 
-  enable: false 
+appmeshController: 
+  enabled: false 
 
 # Calico Values
 awsCalico:
-  enable: false
+  enabled: false
 
 # AWS CloudWatch Metrics Values
 awsCloudWatchMetrics:
-  enable: false
+  enabled: false
 
 # AWS EFS CSI Driver Values
 awsEfsCsiDriver:
-  enable: false
+  enabled: false
   serviceAccountName:
 
 # AWS for Fluent Bit Values
 awsForFluentBit:
-  enable: false
+  enabled: false
   logGroupName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
-  enable: false
+  enabled: false
   serviceAccountName:
 
 # AWS Otel Collector Values
 awsOtelCollector:
-  enable: false
+  enabled: false
 
 # Cert Manager Values
 certManager:
-  enable: false
+  enabled: false
   serviceAccountName:
 
 # Cluster Autoscaler Values
 clusterAutoscaler:
-  enable: false
+  enabled: false
   serviceAccountName:
 
 # External DNS Values
 externalDns:
-  enable: false
+  enabled: false
   zoneIdFilters: []
 
 # Gatekeeper Values
 gatekeeper: 
-  enable: false
+  enabled: false
 
 # Nginx Values
 ingressNginx:
-  enable: false
+  enabled: false
 
 # Karpenter Values
 karpenter: 
-  enable: false
+  enabled: false
   serviceAccountName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
 
 # Keda Values
 keda: 
-  enable: false
+  enabled: false
   serviceAccountName:
 
 # Metrics Server Values
 metricsServer:
-  enable: false
+  enabled: false
 
 # Prometheus Values
 prometheus:
-  enable: false
+  enabled: false
   serviceAccountName:
   roleArn: 
   ampWorkspaceUrl:
 
 # Metrics Server Values
 sparkOperator:
-  enable: false
+  enabled: false
 
 # Tetrate Istio Values
 tetrateIstio:
@@ -95,26 +95,26 @@ tetrateIstio:
 
 # Traefik Values
 traefik:
-  enable: false
+  enabled: false
 
 # VPA Values
 vpa: 
-  enable: false
+  enabled: false
 
 # Yunikorn Values
 yunikorn: 
-  enable: false
+  enabled: false
 
 # Argo Rollout Values
 argoRollouts:
-  enable: false
+  enabled: false
 
 # Kube State Metrics Values
 kubeStateMetrics:
-  enable: false
+  enabled: false
   serviceAccountName:
 
 # Kubernetes Dashboard Values
 kubernetesDashboard:
-  enable: false
+  enabled: false
   serviceAccountName:

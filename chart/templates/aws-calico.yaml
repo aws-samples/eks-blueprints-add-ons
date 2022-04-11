@@ -1,4 +1,4 @@
-{{- if and (.Values.awsCalico) (.Values.awsCalico.enable) -}}
+{{- if and (.Values.awsCalico) (.Values.awsCalico.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

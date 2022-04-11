@@ -1,4 +1,4 @@
-{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

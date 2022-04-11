@@ -1,4 +1,4 @@
-{{- if and (.Values.kubeStateMetrics) (.Values.kubeStateMetrics.enable) -}}
+{{- if and (.Values.kubeStateMetrics) (.Values.kubeStateMetrics.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

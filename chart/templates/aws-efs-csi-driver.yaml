@@ -1,4 +1,4 @@
-{{- if and (.Values.awsEfsCsiDriver) (.Values.awsEfsCsiDriver.enable) -}}
+{{- if and (.Values.awsEfsCsiDriver) (.Values.awsEfsCsiDriver.enabled) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
