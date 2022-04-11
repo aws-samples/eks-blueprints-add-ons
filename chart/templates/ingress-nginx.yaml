@@ -14,7 +14,7 @@ spec:
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: nginx
   syncPolicy:
     automated:
       prune: true    

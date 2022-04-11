@@ -9,13 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/aws-samples/ssp-eks-add-ons
+    repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
     path: add-ons/argo-rollouts
     targetRevision: HEAD
-    helm:
-      parameters:
-      - name: argo-rollouts.serviceAccount.name
-        value: {{ .Values.argoRollouts.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-rollouts

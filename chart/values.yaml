@@ -1,5 +1,5 @@
 # Global Values
-repo_url: "https://github.com/aws-samples/ssp-eks-add-ons.git"
+repo_url: "https://github.com/aws-samples/eks-blueprints-add-ons.git"
 region: ""
 account: ""
 clusterName: ""
@@ -23,11 +23,12 @@ awsCloudWatchMetrics:
 # AWS EFS CSI Driver Values
 awsEfsCsiDriver:
   enabled: false
+  serviceAccountName:
 
 # AWS for Fluent Bit Values
 awsForFluentBit:
   enabled: false
-  logGroupName: 
+  logGroupName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
@@ -41,7 +42,8 @@ awsOtelCollector:
 # Cert Manager Values
 certManager:
   enabled: false
- 
+  serviceAccountName:
+
 # Cluster Autoscaler Values
 clusterAutoscaler:
   enabled: false
@@ -64,10 +66,8 @@ ingressNginx:
 karpenter: 
   enabled: false
   serviceAccountName:
-  controllerClusterName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
-
 
 # Keda Values
 keda: 
@@ -89,6 +89,10 @@ prometheus:
 sparkOperator:
   enabled: false
 
+# Tetrate Istio Values
+tetrateIstio:
+  enable: false
+
 # Traefik Values
 traefik:
   enabled: false
@@ -96,20 +100,14 @@ traefik:
 # VPA Values
 vpa: 
   enabled: false
-  serviceAccountName: 
 
 # Yunikorn Values
 yunikorn: 
   enabled: false
-  serviceAccountName: 
-  operatorPlugins: 
-  serviceType:
-  embedAdmissionController:
 
 # Argo Rollout Values
 argoRollouts:
   enabled: false
-  serviceAccountName:
 
 # Kube State Metrics Values
 kubeStateMetrics:

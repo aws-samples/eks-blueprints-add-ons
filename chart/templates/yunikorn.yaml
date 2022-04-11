@@ -12,13 +12,9 @@ spec:
     repoURL: {{ .Values.repo_url }}
     path: add-ons/yunikorn
     targetRevision: HEAD
-    helm:
-      parameters:
-      - name: yunikorn.global.serviceAccount
-        value: {{ .Values.yunikorn.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: yunikorn
   syncPolicy:
     automated:
       prune: true    
