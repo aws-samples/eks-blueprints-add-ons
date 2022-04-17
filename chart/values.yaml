@@ -78,6 +78,19 @@ keda:
 metricsServer:
   enable: false
 
+# Ondat Values
+ondat:
+  enable: false
+  serviceAccountName:
+  clusterSecretRefName:
+  clusterAdminUsername:
+  clusterAdminPassword:
+  clusterKvBackendAddress:
+  clusterKvBackendTLSSecretName:
+  clusterKvBackendTLSSecretNamespace:
+  clusterNodeSelectorTermKey:
+  clusterNodeSelectorTermValue:
+
 # Prometheus Values
 prometheus:
   enable: false

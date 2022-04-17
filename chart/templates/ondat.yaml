@@ -1,0 +1,63 @@
+{{- if and (.Values.ondat) (.Values.ondat.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ondat
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repo_url }}
+    path: add-ons/ondat
+    targetRevision: HEAD
+    helm:
+      parameters:
+        {{- if .Values.ondat.serviceAccountName }}
+        - name: ondat-operator.serviceAccount.name
+          value: {{ .Values.ondat.serviceAccountName }}
+        {{- end }}
+        {{- if .Values.ondat.clusterSecretRefName }}
+        - name: ondat-operator.cluster.secretRefName
+          value: {{ .Values.ondat.clusterSecretRefName }}
+        {{- end }}
+        {{- if .Values.ondat.clusterAdminUsername }}
+        - name: ondat-operator.cluster.admin.username
+          value: {{ .Values.ondat.clusterAdminUsername }}
+        {{- end }}
+        {{- if .Values.ondat.clusterAdminPassword }}
+        - name: ondat-operator.cluster.admin.password
+          value: {{ .Values.ondat.clusterAdminPassword }}
+        {{- end }}
+        {{- if .Values.ondat.clusterKvBackendAddress }}
+        - name: ondat-operator.cluster.kvBackend.address 
+          value: {{ .Values.ondat.clusterKvBackendAddress }}
+        {{- end }}
+        {{- if .Values.ondat.clusterNodeSelectorTermKey }}
+        - name: ondat-operator.cluster.nodeSelectorTerm.key
+          value: {{ .Values.ondat.clusterNodeSelectorTermKey }}
+        - name: ondat-operator.cluster.nodeSelectorTerm.value
+          value: {{ .Values.ondat.clusterNodeSelectorTermValue }}
+        {{- end }}
+        {{- if .Values.ondat.clusterKvBackendTLSSecretName }}
+        - name: ondat-operator.cluster.kvBackend.tlsSecretName
+          value: {{ .Values.ondat.clusterKvBackendTLSSecretName }}
+        {{- end }}
+        {{- if .Values.ondat.clusterKvBackendTLSSecretNamespace }}
+        - name: ondat-operator.cluster.kvBackend.tlsSecretNamespace
+          value: {{ .Values.ondat.clusterKvBackendTLSSecretNamespace }}
+        {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: storageos
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+{{- end -}}
