@@ -19,6 +19,7 @@ awsCalico:
 # AWS CloudWatch Metrics Values
 awsCloudWatchMetrics:
   enable: false
+  serviceAccountName:
 
 # AWS EFS CSI Driver Values
 awsEfsCsiDriver:
