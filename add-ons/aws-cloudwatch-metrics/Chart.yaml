@@ -13,5 +13,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: aws-cloudwatch-metrics
-  version: 0.0.5
+  version: 0.0.7
   repository: https://aws.github.io/eks-charts
