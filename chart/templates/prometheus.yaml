@@ -33,7 +33,9 @@ spec:
     namespace: prometheus
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.prometheus.createNamespace }}
     retry:
       limit: 1
       backoff:

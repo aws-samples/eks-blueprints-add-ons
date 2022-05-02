@@ -21,7 +21,9 @@ spec:
     namespace: keda
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.keda.createNamespace }}
     retry:
       limit: 1
       backoff:

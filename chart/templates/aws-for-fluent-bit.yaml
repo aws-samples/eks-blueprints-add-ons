@@ -33,7 +33,9 @@ spec:
     namespace: aws-for-fluent-bit
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.awsForFluentBit.createNamespace }}
     retry:
       limit: 1
       backoff:

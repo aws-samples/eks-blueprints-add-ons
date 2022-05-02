@@ -25,9 +25,9 @@ spec:
     namespace: external-dns
   syncPolicy:
     automated:
-      prune: true 
+      prune: true
     syncOptions:
-    - CreateNamespace=true    
+      - CreateNamespace={{ .Values.externalDns.createNamespace }}
     retry:
       limit: 1
       backoff:

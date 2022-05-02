@@ -28,6 +28,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.karpenter.createNamespace }}
     retry:
       limit: 1
       backoff:

@@ -21,7 +21,9 @@ spec:
     namespace: amazon-cloudwatch
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.awsCloudWatchMetrics.createNamespace }}
     retry:
       limit: 1
       backoff:

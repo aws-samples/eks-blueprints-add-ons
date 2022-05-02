@@ -54,6 +54,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.ondat.createNamespace }}
     retry:
       limit: 1
       backoff:

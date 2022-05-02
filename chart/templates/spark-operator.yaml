@@ -17,9 +17,9 @@ spec:
     namespace: spark-operator
   syncPolicy:
     automated:
-      prune: true   
+      prune: true
     syncOptions:
-    - CreateNamespace=true 
+      - CreateNamespace={{ .Values.sparkOperator.createNamespace }}
     retry:
       limit: 1
       backoff:
