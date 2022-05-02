@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
+    repoURL: {{ .Values.repo_url }}
     path: add-ons/argo-rollouts
     targetRevision: HEAD
   destination:
