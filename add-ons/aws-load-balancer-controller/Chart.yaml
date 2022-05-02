@@ -1,6 +1,6 @@
 apiVersion: v2
 name: aws-load-balancer-controller
-description: A Helm chart for installing AWS for Fluent Bit
+description: A Helm chart for installing AWS Load balacer controller
 type: application
 
 # The chart version. This version number should be incremented each time you make changes
