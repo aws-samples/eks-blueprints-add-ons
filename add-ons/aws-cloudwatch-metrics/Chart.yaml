@@ -1,6 +1,6 @@
 apiVersion: v2
 name: aws-cloudwatch-metrics
-description: A Helm chart for installing Calico
+description: A Helm chart for installing AWS CloudWatch metrics
 type: application
 
 # The chart version. This version number should be incremented each time you make changes
