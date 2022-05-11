@@ -19,7 +19,7 @@ spec:
         value: {{ .Values.prometheus.serviceAccountName }}
       {{ end }}
       {{ if .Values.prometheus.roleArn }}
-      - name: prometheus.serviceAccounts.server.annotations."eks\.amazonaws\.com/role-arn"
+      - name: prometheus.serviceAccounts.server.annotations.eks\.amazonaws\.com/role-arn
         value: {{ .Values.prometheus.roleArn }}
       {{ end }}
       {{ if .Values.prometheus.ampWorkspaceUrl }}
