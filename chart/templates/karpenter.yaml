@@ -14,13 +14,13 @@ spec:
     targetRevision: HEAD
     helm:
       parameters:
-        - name: karpetner.serviceAccount.name
+        - name: karpenter.serviceAccount.name
           value: {{ .Values.karpenter.serviceAccountName }}
-        - name: karpetner.ClusterName
+        - name: karpenter.clusterName
           value: {{ .Values.clusterName }}
-        - name: karpetner.controller.ClusterEndpoint
-          value: {{ .Values.karpenter.controllerClusterEndpoint }}
-        - name: karpetner.aws.defaultInstanceProfile
+        - name: karpenter.clusterEndpoint
+          value: {{ .Values.karpenter.clusterEndpoint }}
+        - name: karpenter.aws.defaultInstanceProfile
           value: {{ .Values.karpenter.awsDefaultInstanceProfile }}
   destination:
     server: https://kubernetes.default.svc
