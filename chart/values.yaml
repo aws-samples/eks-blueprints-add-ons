@@ -12,6 +12,10 @@ agones:
 appMesh: 
   enable: false 
 
+# Argo Rollout Values
+argoRollouts:
+  enable: false
+
 # Calico Values
 awsCalico:
   enable: false
@@ -50,6 +54,10 @@ clusterAutoscaler:
   enable: false
   serviceAccountName:
 
+# Container insights Values
+containerInsights:
+  enable: false
+
 # External DNS Values
 externalDns:
   enable: false
@@ -75,8 +83,22 @@ keda:
   enable: false
   serviceAccountName:
 
+# Kubernetes Dashboard Values
+kubernetesDashboard:
+  enable: false
+  serviceAccountName:
+
+# Kube State Metrics Values
+kubeStateMetrics:
+  enable: false
+  serviceAccountName:
+
 # Metrics Server Values
 metricsServer:
+  enable: false
+
+# Nginx Values
+nginx:
   enable: false
 
 # Ondat Values
@@ -119,16 +141,4 @@ vpa:
 yunikorn: 
   enable: false
 
-# Argo Rollout Values
-argoRollouts:
-  enable: false
 
-# Kube State Metrics Values
-kubeStateMetrics:
-  enable: false
-  serviceAccountName:
-
-# Kubernetes Dashboard Values
-kubernetesDashboard:
-  enable: false
-  serviceAccountName:
