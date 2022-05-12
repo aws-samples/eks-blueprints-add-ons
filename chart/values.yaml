@@ -53,6 +53,7 @@ clusterAutoscaler:
 # External DNS Values
 externalDns:
   enable: false
+  serviceAccountName:
   zoneIdFilters: []
 
 # Gatekeeper Values
