@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/prometheus
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm:
       parameters:
       {{ if .Values.prometheus.serviceAccountName }}

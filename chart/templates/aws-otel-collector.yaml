@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-otel-collector
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: aws-otel-collector.region

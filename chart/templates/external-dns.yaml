@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/external-dns
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: external-dns.aws.region
@@ -19,7 +19,7 @@ spec:
       - name: external-dns.serviceAccount.name
         value: {{ .Values.externalDns.serviceAccountName }}
       - name: external-dns.zoneIdFilters[0]
-        value: {{ .Values.externalDns.zoneIdFilter}}
+        value: {{ .Values.externalDns.zoneIdFilter }}
   destination:
     server: https://kubernetes.default.svc
     namespace: external-dns

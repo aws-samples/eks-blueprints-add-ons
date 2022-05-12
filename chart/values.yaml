@@ -1,5 +1,6 @@
 # Global Values
-repo_url: "https://github.com/aws-samples/eks-blueprints-add-ons.git"
+repoUrl: "https://github.com/aws-samples/eks-blueprints-add-ons.git"
+targetRevision: HEAD
 region: ""
 account: ""
 clusterName: ""
@@ -53,7 +54,8 @@ clusterAutoscaler:
 # External DNS Values
 externalDns:
   enable: false
-  zoneIdFilters: []
+  serviceAccountName:
+  zoneIdFilter:
 
 # Gatekeeper Values
 gatekeeper: 
