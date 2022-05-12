@@ -1,6 +1,6 @@
 # EKS Blueprints Add-ons
 
-Welcome to the EKS Blueprints Add-ons repository.
+Welcome to the EKS Blueprints Add-ons repository adjusted to work well with the CDK EKS Blueprints.
 
 This repository contains GitOps configuration which follows the ArgoCD App of Apps pattern. It demonstrates how EKS customers can leverage ArgoCD to easily bootstrap an EKS cluster with a wide variety of Kubernetes add-ons.
 
