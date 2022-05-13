@@ -3,4 +3,3 @@ karpenter:
     create: false
   nodeSelector:
     kubernetes.io/os: linux
-  aws:
