@@ -1,7 +1,7 @@
 nginx-ingress: 
   controller:
     service:
-      externalTrafficPolicy: "Local"
+      externalTrafficPolicy: Local
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
         service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: true
