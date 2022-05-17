@@ -16,6 +16,8 @@ spec:
       parameters:
       - name: aws-cloudwatch-metrics.clusterName
         value: {{ .Values.clusterName }}
+      - name: aws-cloudwatch-metrics.serviceAccount.name
+        value: {{ .Values.awsCloudWatchMetrics.serviceAccountName }}        
   destination:
     server: https://kubernetes.default.svc
     namespace: amazon-cloudwatch
