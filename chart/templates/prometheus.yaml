@@ -25,7 +25,7 @@ spec:
       {{ if .Values.prometheus.ampWorkspaceUrl }}
       - name: prometheus.server.remoteWrite[0].url
         value: {{ .Values.prometheus.ampWorkspaceUrl }}
-      - name: prometheus.server.remoteWrite[0].sigV4.region
+      - name: prometheus.server.remoteWrite[0].sigv4.region
         value: {{ .Values.region }}
       {{ end }}
   destination:
