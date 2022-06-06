@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/spark-operator
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
   destination:
     server: https://kubernetes.default.svc
     namespace: spark-operator

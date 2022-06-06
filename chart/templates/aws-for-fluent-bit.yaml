@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-for-fluent-bit
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: aws-for-fluent-bit.cloudWatch.region

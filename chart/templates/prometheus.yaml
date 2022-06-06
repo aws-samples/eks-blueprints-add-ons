@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/prometheus
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm:
       parameters:
       {{ if .Values.prometheus.serviceAccountName }}
@@ -19,13 +19,13 @@ spec:
         value: {{ .Values.prometheus.serviceAccountName }}
       {{ end }}
       {{ if .Values.prometheus.roleArn }}
-      - name: prometheus.serviceAccounts.server.annotations."eks\.amazonaws\.com/role-arn"
+      - name: prometheus.serviceAccounts.server.annotations.eks\.amazonaws\.com/role-arn
         value: {{ .Values.prometheus.roleArn }}
       {{ end }}
       {{ if .Values.prometheus.ampWorkspaceUrl }}
       - name: prometheus.server.remoteWrite[0].url
         value: {{ .Values.prometheus.ampWorkspaceUrl }}
-      - name: prometheus.server.remoteWrite[0].sigV4.region
+      - name: prometheus.server.remoteWrite[0].sigv4.region
         value: {{ .Values.region }}
       {{ end }}
   destination:

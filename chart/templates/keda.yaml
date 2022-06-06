@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/keda
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: keda.serviceAccount.name

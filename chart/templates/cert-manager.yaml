@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/cert-manager
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm:
       parameters:
       - name: cert-manager.serviceAccount.name

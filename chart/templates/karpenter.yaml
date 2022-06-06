@@ -9,18 +9,18 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/karpenter
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm:
       parameters:
-        - name: karpetner.serviceAccount.name
+        - name: karpenter.serviceAccount.name
           value: {{ .Values.karpenter.serviceAccountName }}
-        - name: karpetner.ClusterName
+        - name: karpenter.clusterName
           value: {{ .Values.clusterName }}
-        - name: karpetner.controller.ClusterEndpoint
+        - name: karpenter.clusterEndpoint
           value: {{ .Values.karpenter.controllerClusterEndpoint }}
-        - name: karpetner.aws.defaultInstanceProfile
+        - name: karpenter.aws.defaultInstanceProfile
           value: {{ .Values.karpenter.awsDefaultInstanceProfile }}
   destination:
     server: https://kubernetes.default.svc

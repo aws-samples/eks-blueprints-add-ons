@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
     path: add-ons/argo-rollouts
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-rollouts
