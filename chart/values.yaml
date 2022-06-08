@@ -57,6 +57,10 @@ externalDns:
   serviceAccountName:
   zoneIdFilter:
 
+# External Secrets Operator
+externalSecrets:
+  enable: false
+
 # Gatekeeper Values
 gatekeeper: 
   enable: false
