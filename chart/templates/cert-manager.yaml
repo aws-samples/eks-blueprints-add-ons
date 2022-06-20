@@ -21,7 +21,9 @@ spec:
     namespace: cert-manager
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.certManager.createNamespace }}
     retry:
       limit: 1
       backoff:

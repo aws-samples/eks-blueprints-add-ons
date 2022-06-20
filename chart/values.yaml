@@ -8,10 +8,12 @@ clusterName: ""
 # Agones Values
 agones: 
   enable: false 
+  createNamespace: true
 
 # App Mesh Values
 appMesh: 
   enable: false 
+  createNamespace: true
 
 # Calico Values
 awsCalico:
@@ -20,6 +22,7 @@ awsCalico:
 # AWS CloudWatch Metrics Values
 awsCloudWatchMetrics:
   enable: false
+  createNamespace: true
   serviceAccountName:
 
 # AWS EFS CSI Driver Values
@@ -30,20 +33,24 @@ awsEfsCsiDriver:
 # AWS for Fluent Bit Values
 awsForFluentBit:
   enable: false
+  createNamespace: true
   logGroupName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
   enable: false
+  createNamespace: true
   serviceAccountName:
 
 # AWS Otel Collector Values
 awsOtelCollector:
   enable: false
+  createNamespace: true
 
 # Cert Manager Values
 certManager:
   enable: false
+  createNamespace: true
   serviceAccountName:
 
 # Cluster Autoscaler Values
@@ -54,20 +61,24 @@ clusterAutoscaler:
 # External DNS Values
 externalDns:
   enable: false
+  createNamespace: true
   serviceAccountName:
   zoneIdFilter:
 
 # Gatekeeper Values
 gatekeeper: 
   enable: false
+  createNamespace: true
 
 # Nginx Values
 ingressNginx:
   enable: false
+  createNamespace: true
 
 # Karpenter Values
 karpenter: 
   enable: false
+  createNamespace: true
   serviceAccountName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
@@ -75,6 +86,7 @@ karpenter:
 # Keda Values
 keda: 
   enable: false
+  createNamespace: true
   serviceAccountName:
 
 # Metrics Server Values
@@ -84,6 +96,7 @@ metricsServer:
 # Ondat Values
 ondat:
   enable: false
+  createNamespace: true
   serviceAccountName:
   clusterSecretRefName:
   clusterAdminUsername:
@@ -97,6 +110,7 @@ ondat:
 # Prometheus Values
 prometheus:
   enable: false
+  createNamespace: true
   serviceAccountName:
   roleArn: 
   ampWorkspaceUrl:
@@ -104,30 +118,37 @@ prometheus:
 # Metrics Server Values
 sparkOperator:
   enable: false
+  createNamespace: true
 
 # Tetrate Istio Values
 tetrateIstio:
   enable: false
+  createNamespace: true
 
 # Traefik Values
 traefik:
   enable: false
+  createNamespace: true
 
 # VPA Values
 vpa: 
   enable: false
+  createNamespace: true
 
 # Yunikorn Values
 yunikorn: 
   enable: false
+  createNamespace: true
 
 # Argo Rollout Values
 argoRollouts:
   enable: false
+  createNamespace: true
 
 # Kube State Metrics Values
 kubeStateMetrics:
   enable: false
+  createNamespace: true
   serviceAccountName:
 
 # Kubernetes Dashboard Values

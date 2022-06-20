@@ -25,9 +25,9 @@ spec:
     namespace: aws-otel-eks
   syncPolicy:
     automated:
-      prune: true   
+      prune: true
     syncOptions:
-    - CreateNamespace=true 
+      - CreateNamespace={{ .Values.awsOtelCollector.createNamespace }}
     retry:
       limit: 1
       backoff:

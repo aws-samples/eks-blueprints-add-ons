@@ -25,7 +25,9 @@ spec:
     namespace: kube-system
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.awsLoadBalancerController.createNamespace }}
     retry:
       limit: 1
       backoff:

@@ -17,7 +17,9 @@ spec:
     namespace: yunikorn
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.yunikorn.createNamespace }}
     retry:
       limit: 1
       backoff:

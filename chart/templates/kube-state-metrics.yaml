@@ -22,6 +22,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.kubeStateMetrics.createNamespace }}
     retry:
       limit: 1
       backoff:
