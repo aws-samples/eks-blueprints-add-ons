@@ -16,5 +16,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: karpenter
-  version: 0.10.0
+  version: 0.11.0
   repository: https://charts.karpenter.sh
