@@ -84,6 +84,7 @@ metricsServer:
 # Ondat Values
 ondat:
   enable: false
+  etcdClusterCreate: false
   serviceAccountName:
   clusterSecretRefName:
   clusterAdminUsername:
@@ -93,6 +94,12 @@ ondat:
   clusterKvBackendTLSSecretNamespace:
   clusterNodeSelectorTermKey:
   clusterNodeSelectorTermValue:
+  etcdNodeSelectorTermKey:
+  etcdNodeSelectorTermValue:
+  etcdClusterReplicas:
+  etcdClusterStorageclass:
+  etcdClusterStorage:
+
 
 # Prometheus Values
 prometheus:

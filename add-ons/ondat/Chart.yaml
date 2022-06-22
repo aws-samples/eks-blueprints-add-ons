@@ -8,13 +8,13 @@ type: application
 
 # The chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.1.0
+version: 0.2.0
 
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: "2.6.0"
+appVersion: "2.7.0"
 
 dependencies:
-- name: ondat-operator
-  version: 0.5.5
+- name: ondat
+  version: 0.0.3
   repository: https://ondat.github.io/charts

@@ -1,7 +1,19 @@
-ondat-operator:
-  cluster:
-    kvBackend:
-      address: https://storageos-etcd-client.storageos-etcd:2379
-    admin:
-      username: storageos
-      password: storageos
+ondat:
+  ondat-operator:
+    cluster:
+      kvBackend:
+        address: https://storageos-etcd.storageos-etcd:2379
+      admin:
+        username: storageos
+        password: storageos
+      nodeSelectorTerm: 
+        key: "storageos-node"
+        value: "1"
+  etcd-cluster-operator:
+    cluster:
+      replicas: 5
+      storage: 12Gi
+      storageclass: gp3
+      nodeSelectorTerm:
+        key: "storageos-etcd"
+        value: "1"
