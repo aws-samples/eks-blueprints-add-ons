@@ -16,5 +16,5 @@ appVersion: "2.7.0"
 
 dependencies:
 - name: ondat
-  version: 0.0.3
+  version: 0.0.4
   repository: https://ondat.github.io/charts
