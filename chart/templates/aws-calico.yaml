@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-calico
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        aws-calico:
+        {{- toYaml .Values.awsCalico | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
