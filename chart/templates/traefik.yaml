@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/traefik
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        traefik:
+        {{- toYaml .Values.traefik | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: traefik
