@@ -13,6 +13,9 @@ spec:
     path: add-ons/prometheus
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        prometheus:
+        {{- toYaml .Values.prometheus | nindent 10 }}
       parameters:
       {{ if .Values.prometheus.serviceAccountName }}
       - name: prometheus.serviceAccounts.server.name
