@@ -13,6 +13,9 @@ spec:
     path: add-ons/external-dns
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        external-dns:
+        {{- toYaml .Values.externalDns | nindent 10 }}
       parameters:
       - name: external-dns.aws.region
         value: {{ .Values.region }}
