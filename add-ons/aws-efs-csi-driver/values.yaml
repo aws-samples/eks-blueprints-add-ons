@@ -1,7 +1,7 @@
 aws-efs-csi-driver:
   controller:
-    serviceAccount: 
-      create: false 
+    serviceAccount:
+      create: false
   node:
-    serviceAccount: 
-      create: false 
+    serviceAccount:
+      create: false

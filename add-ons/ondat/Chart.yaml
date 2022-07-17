@@ -1,6 +1,6 @@
 apiVersion: v2
 name: ondat
-description: A Helm chart for Ondat 
+description: A Helm chart for Ondat
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.

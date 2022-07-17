@@ -31,7 +31,7 @@ spec:
           value: {{ .Values.ondat.clusterAdminPassword }}
         {{- end }}
         {{- if .Values.ondat.clusterKvBackendAddress }}
-        - name: ondat.ondat-operator.cluster.kvBackend.address 
+        - name: ondat.ondat-operator.cluster.kvBackend.address
           value: {{ .Values.ondat.clusterKvBackendAddress }}
         {{- end }}
         {{- if .Values.ondat.clusterNodeSelectorTermKey }}
