@@ -13,6 +13,9 @@ spec:
     path: add-ons/ondat
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        ondat:
+        {{- toYaml .Values.ondat | nindent 10 }}
       parameters:
         {{- if .Values.ondat.serviceAccountName }}
         - name: ondat.ondat-operator.serviceAccount.name
