@@ -13,6 +13,9 @@ spec:
     path: add-ons/aws-cloudwatch-metrics
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        aws-cloudwatch-metrics:
+        {{- toYaml .Values.awsCloudWatchMetrics | nindent 10 }}
       parameters:
       - name: aws-cloudwatch-metrics.clusterName
         value: {{ .Values.clusterName }}
