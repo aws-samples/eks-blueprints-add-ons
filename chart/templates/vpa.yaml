@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/vpa
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        vpa:
+        {{- toYaml .Values.vpa | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: vpa
