@@ -13,6 +13,9 @@ spec:
     path: add-ons/aws-efs-csi-driver
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        aws-efs-csi-driver:
+        {{- toYaml .Values.awsEfsCsiDriver | nindent 10 }}
       parameters:
       - name: aws-efs-csi-driver.controller.serviceAccount.name
         value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
