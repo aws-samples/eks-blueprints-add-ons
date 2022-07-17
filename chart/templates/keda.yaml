@@ -13,6 +13,9 @@ spec:
     path: add-ons/keda
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        keda:
+        {{- toYaml .Values.keda | nindent 10 }}
       parameters:
       - name: keda.serviceAccount.name
         value: {{ .Values.keda.serviceAccountName }}
