@@ -13,6 +13,9 @@ spec:
     path: add-ons/aws-load-balancer-controller
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        aws-load-balancer-controller:
+        {{- toYaml .Values.awsLoadBalancerController | nindent 10 }}
       parameters:
       - name: aws-load-balancer-controller.clusterName
         value: {{ .Values.clusterName }}
