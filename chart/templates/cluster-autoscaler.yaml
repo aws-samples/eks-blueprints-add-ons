@@ -13,6 +13,9 @@ spec:
     path: add-ons/cluster-autoscaler
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        cluster-autoscaler:
+        {{- toYaml .Values.clusterAutoscaler | nindent 10 }}
       parameters:
       - name: cluster-autoscaler.awsRegion
         value: {{ .Values.region }}
