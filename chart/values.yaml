@@ -31,6 +31,7 @@ awsEfsCsiDriver:
 awsForFluentBit:
   enable: false
   logGroupName:
+  serviceAccountName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
@@ -40,6 +41,8 @@ awsLoadBalancerController:
 # AWS Otel Collector Values
 awsOtelCollector:
   enable: false
+  otlpEndpoint:
+  resourceAttributes:
 
 # Cert Manager Values
 certManager:
