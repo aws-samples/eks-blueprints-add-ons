@@ -2,10 +2,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: agones 
+  name: agones
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -17,13 +17,13 @@ spec:
     namespace: agones-system
   syncPolicy:
     automated:
-      prune: true   
+      prune: true
     syncOptions:
-    - CreateNamespace=true 
+    - CreateNamespace=true
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}
