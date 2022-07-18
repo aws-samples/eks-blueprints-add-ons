@@ -1,0 +1,2 @@
+kyverno: 
+  dnsPolicy: ClusterFirstWithHostNet
