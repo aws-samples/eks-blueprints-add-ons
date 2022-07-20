@@ -1,4 +1,4 @@
-{{- if and (.Values.appMesh) (.Values.appMesh.enable) -}}
+{{- if and (.Values.appmeshController) (.Values.appmeshController.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
