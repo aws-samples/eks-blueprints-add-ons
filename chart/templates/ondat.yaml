@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repo_url }}
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/ondat
     targetRevision: HEAD
     helm:
