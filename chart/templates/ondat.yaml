@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/ondat
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm:
       parameters:
         {{- if .Values.ondat.serviceAccountName }}

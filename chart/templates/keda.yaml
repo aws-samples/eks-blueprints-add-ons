@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/keda
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: keda.serviceAccount.name

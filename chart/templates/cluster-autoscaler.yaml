@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/cluster-autoscaler
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: cluster-autoscaler.awsRegion

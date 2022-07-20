@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/ingress-nginx
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx

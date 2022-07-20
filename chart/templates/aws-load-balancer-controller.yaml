@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-load-balancer-controller
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm: 
       parameters:
       - name: aws-load-balancer-controller.clusterName

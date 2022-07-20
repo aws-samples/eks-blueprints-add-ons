@@ -28,7 +28,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-add-ons.git
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     path: chart
     helm: 
       release: add-ons
