@@ -1,14 +1,15 @@
-extraArgs:
-  aws-use-static-instance-list: true
+cluster-autoscaler:
+  extraArgs:
+    aws-use-static-instance-list: true
 
-rbac:
-  serviceAccount:
-    create: false
+  rbac:
+    serviceAccount:
+      create: false
 
-resources:
-  limits:
-    cpu: 200m
-    memory: 512Mi
-  requests:
-    cpu: 200m
-    memory: 512Mi
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 512Mi
