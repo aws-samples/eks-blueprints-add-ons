@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: >-
-        { "appmesh-controller": {{ .Values.appmeshController }} }
+        { "appmesh-controller": {{ .Values.appmeshController | toJson }} }
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system
