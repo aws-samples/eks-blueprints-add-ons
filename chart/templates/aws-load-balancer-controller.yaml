@@ -5,14 +5,14 @@ metadata:
   name: aws-load-balancer-controller
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-load-balancer-controller
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
+    helm:
       parameters:
       - name: aws-load-balancer-controller.clusterName
         value: {{ .Values.clusterName }}
@@ -25,11 +25,11 @@ spec:
     namespace: kube-system
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

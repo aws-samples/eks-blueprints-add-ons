@@ -6,7 +6,7 @@ ondat:
       admin:
         username: storageos
         password: storageos
-      nodeSelectorTerm: 
+      nodeSelectorTerm:
         key: "storageos-node"
         value: "1"
   etcd-cluster-operator:
