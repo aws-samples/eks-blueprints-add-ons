@@ -10,7 +10,7 @@ agones:
   enable: false
 
 # App Mesh Values
-appMesh:
+appmeshController:
   enable: false
 
 # Argo Rollout Values

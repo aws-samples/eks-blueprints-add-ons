@@ -12,6 +12,8 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/appmesh-controller 
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      parameters: {{ .Values.appmeshController }}
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system
