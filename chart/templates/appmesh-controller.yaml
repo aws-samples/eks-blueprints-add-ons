@@ -13,11 +13,7 @@ spec:
     path: add-ons/appmesh-controller 
     targetRevision: {{ .Values.targetRevision }}
     helm:
-      parameters:
-      {{- range $k, $v := .Values.appmeshController }}
-        - name: {{ $k }}
-          value: {{ $v }}
-      {{- end }}
+      values: {{ .Values.appmeshController | toJson | quote }}
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system
