@@ -13,7 +13,8 @@ spec:
     path: add-ons/appmesh-controller 
     targetRevision: {{ .Values.targetRevision }}
     helm:
-      values: {{ .Values.appmeshController | toJson | quote }}
+      values: >-
+        { "appmesh-controller": {{ .Values.appmeshController | toJson | quote }} }
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system
