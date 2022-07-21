@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/ingress-nginx
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        ingress-nginx:
+        {{- toYaml .Values.ingressNginx | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx

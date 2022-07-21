@@ -12,6 +12,10 @@ spec:
     repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
     path: add-ons/argo-rollouts
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        argo-rollouts:
+        {{- toYaml .Values.argoRollouts | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-rollouts

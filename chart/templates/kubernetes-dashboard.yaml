@@ -13,6 +13,9 @@ spec:
     path: add-ons/kubernetes-dashboard
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        kubernetes-dashboard:
+        {{- toYaml .Values.kubernetesDashboard | nindent 10 }}
       parameters:
       - name: kubernetes-dashboard.serviceAccount.name
         value: {{ .Values.kubernetesDashboard.serviceAccountName }}

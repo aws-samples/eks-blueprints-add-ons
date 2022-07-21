@@ -13,6 +13,9 @@ spec:
     path: add-ons/cert-manager
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        cert-manager:
+        {{- toYaml .Values.certManager | nindent 10 }}
       parameters:
       - name: cert-manager.serviceAccount.name
         value: {{ .Values.certManager.serviceAccountName }}

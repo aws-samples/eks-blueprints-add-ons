@@ -13,6 +13,9 @@ spec:
     path: add-ons/aws-otel-collector
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        aws-otel-collector:
+        {{- toYaml .Values.awsOtelCollector | nindent 10 }}
       parameters:
       - name: aws-otel-collector.region
         value: {{ .Values.region }}

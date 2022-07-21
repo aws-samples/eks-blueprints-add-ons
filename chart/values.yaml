@@ -122,6 +122,10 @@ sparkOperator:
 # Tetrate Istio Values
 tetrateIstio:
   enable: false
+  base:
+  cni:
+  istiod:
+  global:
 
 # Traefik Values
 traefik:

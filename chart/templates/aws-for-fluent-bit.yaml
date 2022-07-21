@@ -13,6 +13,9 @@ spec:
     path: add-ons/aws-for-fluent-bit
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        aws-for-fluent-bit:
+        {{- toYaml .Values.awsForFluentBit | nindent 10 }}
       parameters:
       - name: aws-for-fluent-bit.cloudWatch.region
         value: {{ .Values.region }}

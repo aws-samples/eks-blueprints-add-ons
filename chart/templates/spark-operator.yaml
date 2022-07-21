@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/spark-operator
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        spark-operator:
+        {{- toYaml .Values.sparkOperator | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: spark-operator

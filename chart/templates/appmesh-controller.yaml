@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/appmesh-controller
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        appmesh-controller:
+        {{- toYaml .Values.appMesh | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system

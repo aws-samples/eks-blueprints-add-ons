@@ -12,6 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/metrics-server
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        metrics-server:
+        {{- toYaml .Values.metricsServer | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

@@ -12,6 +12,16 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/tetrate-istio
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        base:
+        {{- toYaml .Values.tetrateIstio.base | nindent 10 }}
+        cni:
+        {{- toYaml .Values.tetrateIstio.cni | nindent 10 }}
+        istiod:
+        {{- toYaml .Values.tetrateIstio.istiod | nindent 10 }}
+        global:
+        {{- toYaml .Values.tetrateIstio.global | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
