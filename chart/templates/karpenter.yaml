@@ -35,10 +35,10 @@ spec:
         factor: 2
         maxDuration: 1m
   ignoreDifferences:
-    - group: core
+    - group: "*"
       kind: Secret
       name: karpenter-cert
       namespace: karpenter
       jsonPointers:
         - /data
-  {{- end -}}
+{{- end -}}
