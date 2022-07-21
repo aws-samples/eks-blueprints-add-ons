@@ -15,7 +15,7 @@ spec:
     helm:
       values: |
         appmesh-controller:
-          {{ .Values.appmeshController | toYaml }}
+          {{- .Values.appmeshController | toYaml | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: appmesh-system
