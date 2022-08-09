@@ -152,3 +152,7 @@ kubeStateMetrics:
 kubernetesDashboard:
   enable: false
   serviceAccountName:
+
+# Kubeflow pipeline
+kubeflowPipeline:
+  enable: false
