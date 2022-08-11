@@ -16,13 +16,6 @@ spec:
       values: |
         aws-load-balancer-controller:
         {{- toYaml .Values.awsLoadBalancerController | nindent 10 }}
-      parameters:
-      - name: aws-load-balancer-controller.clusterName
-        value: {{ .Values.clusterName }}
-      - name: aws-load-balancer-controller.region
-        value: {{ .Values.region }}
-      - name: aws-load-balancer-controller.serviceAccount.name
-        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
