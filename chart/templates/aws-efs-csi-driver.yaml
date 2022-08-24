@@ -13,11 +13,9 @@ spec:
     path: add-ons/aws-efs-csi-driver
     targetRevision: {{ .Values.targetRevision }}
     helm: 
-      parameters:
-      - name: aws-efs-csi-driver.controller.serviceAccount.name
-        value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
-      - name: aws-efs-csi-driver.node.serviceAccount.name
-        value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
+      values: |
+        aws-efs-csi-driver:
+          {{- .Values.awsEfsCsiDriver | toYaml | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
