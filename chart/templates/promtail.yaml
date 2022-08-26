@@ -1,0 +1,31 @@
+{{- if and (.Values.promtail) (.Values.promtail.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: promtail
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/promtail
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        promtail:
+        {{- toYaml .Values.promtail | nindent 10 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: promtail
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

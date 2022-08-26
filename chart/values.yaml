@@ -152,3 +152,7 @@ kubeStateMetrics:
 kubernetesDashboard:
   enable: false
   serviceAccountName:
+
+# promtail Values
+promtail:
+  enable: false
