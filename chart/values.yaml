@@ -37,6 +37,8 @@ awsForFluentBit:
 awsLoadBalancerController:
   enable: false
   serviceAccountName:
+  podDisruptionBudget:
+    maxUnavailable: '1'
 
 # AWS Otel Collector Values
 awsOtelCollector:
