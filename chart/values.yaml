@@ -162,3 +162,7 @@ promtail:
 # kubecost Values
 kubecost:
   enable: false
+
+# Chaos Mesh Values
+chaosMesh:
+  enable: false
