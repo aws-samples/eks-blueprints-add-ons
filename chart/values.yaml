@@ -163,6 +163,10 @@ promtail:
 kubecost:
   enable: false
 
+# SMB CSI Driver Values
+smbCsiDriver:
+  enable: false
+    
 # Chaos Mesh Values
 chaosMesh:
   enable: false
