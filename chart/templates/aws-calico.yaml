@@ -2,26 +2,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-calico 
+  name: aws-calico
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-calico
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        aws-calico:
+        {{- toYaml .Values.awsCalico | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

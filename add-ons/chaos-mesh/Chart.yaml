@@ -1,0 +1,17 @@
+apiVersion: v2
+name: chaos-mesh
+description: A Helm chart for installing Chaos Mesh
+type: application
+
+# The chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# Version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.0"
+
+dependencies:
+- name: chaos-mesh
+  version: 2.3.1
+  repository: https://charts.chaos-mesh.org

@@ -13,6 +13,9 @@ spec:
     path: add-ons/kube-state-metrics
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        kube-state-metrics:
+        {{- toYaml .Values.kubeStateMetrics | nindent 10 }}
       parameters:
       - name: kube-state-metrics.serviceAccount.name
         value: {{ .Values.kubeStateMetrics.serviceAccountName }}

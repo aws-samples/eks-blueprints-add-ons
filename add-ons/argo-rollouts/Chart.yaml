@@ -16,5 +16,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: argo-rollouts
-  version: 2.9.1
+  version: 2.16.0
   repository: https://argoproj.github.io/argo-helm

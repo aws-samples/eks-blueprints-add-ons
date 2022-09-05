@@ -5,31 +5,27 @@ metadata:
   name: aws-load-balancer-controller
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-load-balancer-controller
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
-      parameters:
-      - name: aws-load-balancer-controller.clusterName
-        value: {{ .Values.clusterName }}
-      - name: aws-load-balancer-controller.region
-        value: {{ .Values.region }}
-      - name: aws-load-balancer-controller.serviceAccount.name
-        value: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+    helm:
+      values: |
+        aws-load-balancer-controller:
+        {{- toYaml .Values.awsLoadBalancerController | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

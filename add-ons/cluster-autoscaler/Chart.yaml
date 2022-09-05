@@ -13,5 +13,5 @@ appVersion: "1.0"
 
 dependencies:
   - name: cluster-autoscaler
-    version: 9.15.0
+    version: 9.19.2
     repository: https://kubernetes.github.io/autoscaler

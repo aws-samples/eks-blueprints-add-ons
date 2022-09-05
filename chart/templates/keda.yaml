@@ -5,14 +5,17 @@ metadata:
   name: keda
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/keda
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
+    helm:
+      values: |
+        keda:
+        {{- toYaml .Values.keda | nindent 10 }}
       parameters:
       - name: keda.serviceAccount.name
         value: {{ .Values.keda.serviceAccountName }}
@@ -21,11 +24,11 @@ spec:
     namespace: keda
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}
