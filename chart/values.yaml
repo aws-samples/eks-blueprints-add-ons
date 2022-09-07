@@ -1,9 +1,9 @@
 # Global Values
-repoUrl: "https://github.com/aws-samples/eks-blueprints-add-ons.git"
+repoUrl: 'https://github.com/aws-samples/eks-blueprints-add-ons.git'
 targetRevision: HEAD
-region: ""
-account: ""
-clusterName: ""
+region: ''
+account: ''
+clusterName: ''
 
 # Agones Values
 agones:
@@ -37,6 +37,8 @@ awsForFluentBit:
 awsLoadBalancerController:
   enable: false
   serviceAccountName:
+  serviceAccount:
+    create: false
   podDisruptionBudget:
     maxUnavailable: 1
   clusterName:
@@ -110,7 +112,6 @@ ondat:
   etcdClusterStorageclass:
   etcdClusterStorage:
 
-
 # Prometheus Values
 prometheus:
   enable: false
@@ -167,7 +168,7 @@ kubecost:
 # SMB CSI Driver Values
 smbCsiDriver:
   enable: false
-    
+
 # Chaos Mesh Values
 chaosMesh:
   enable: false
