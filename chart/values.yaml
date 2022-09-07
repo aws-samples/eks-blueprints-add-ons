@@ -38,7 +38,8 @@ awsLoadBalancerController:
   enable: false
   serviceAccountName:
   podDisruptionBudget:
-    maxUnavailable: '1'
+    maxUnavailable: 1
+  clusterName:
 
 # AWS Otel Collector Values
 awsOtelCollector:
