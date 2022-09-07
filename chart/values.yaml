@@ -36,9 +36,9 @@ awsForFluentBit:
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
   enable: false
-  serviceAccountName:
-  # serviceAccount:
-  #   create: false
+  serviceAccount:
+    create: false
+    name:
   podDisruptionBudget:
     maxUnavailable: 1
   clusterName:
