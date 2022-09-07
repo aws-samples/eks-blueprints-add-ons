@@ -15,6 +15,10 @@ spec:
     helm:
       values: |
         aws-load-balancer-controller:
+          clusterName: {{ .Values.clusterName }}
+          serviceAccount:
+            name: {{ .Values.awsLoadBalancerController.serviceAccountName }}
+            create: false
         {{- toYaml .Values.awsLoadBalancerController | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
