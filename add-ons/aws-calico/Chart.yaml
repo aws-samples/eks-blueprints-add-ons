@@ -12,6 +12,6 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-- name: aws-calico
-  version: 0.3.7
-  repository: https://aws.github.io/eks-charts
+- name: tigera-operator
+  version: v3.24.1
+  repository: https://docs.projectcalico.org/charts
