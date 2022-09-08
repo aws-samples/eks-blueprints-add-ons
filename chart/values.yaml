@@ -14,7 +14,7 @@ appMesh:
   enable: false
 
 # Calico Values
-awsCalico:
+calico:
   enable: false
 
 # AWS CloudWatch Metrics Values

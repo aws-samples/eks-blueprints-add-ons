@@ -1,4 +1,4 @@
-{{- if and (.Values.awsCalico) (.Values.awsCalico.enable) -}}
+{{- if and (.Values.calico) (.Values.calico.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -15,7 +15,7 @@ spec:
     helm:
       values: |
         aws-calico:
-        {{- toYaml .Values.awsCalico | nindent 10 }}
+        {{- toYaml .Values.calico | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
