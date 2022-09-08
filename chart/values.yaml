@@ -69,6 +69,7 @@ externalSecrets:
 # Gatekeeper Values
 gatekeeper:
   enable: false
+  clusterName:
 
 # Nginx Values
 ingressNginx:
