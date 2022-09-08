@@ -5,6 +5,8 @@ region: ''
 account: ''
 clusterName: ''
 
+enableArgocdFinalizers: true
+
 # Agones Values
 agones:
   enable: false

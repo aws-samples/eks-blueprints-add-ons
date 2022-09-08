@@ -4,8 +4,10 @@ kind: Application
 metadata:
   name: metrics-server
   namespace: argocd
+  {{ if .Values.enableArgocdFinalizers }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
+  {{ end }}
 spec:
   project: default
   source:
