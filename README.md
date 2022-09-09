@@ -95,7 +95,6 @@ add-ons
 │   └── values.yaml
 ├── calico.yaml
 │   └── Chart.yaml
-│   └── values.yaml
 ├── aws-cloudwatch-metrics.yaml
 │   └── Chart.yaml
 │   └── values.yaml
