@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-calico
+  name: calico
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,11 +10,11 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/aws-calico
+    path: add-ons/calico
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        aws-calico:
+        calico:
         {{- toYaml .Values.calico | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
