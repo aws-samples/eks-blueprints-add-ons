@@ -1,3 +1,0 @@
-aws-calico:
-  nodeSelector:
-    kubernetes.io/os: linux

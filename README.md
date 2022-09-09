@@ -70,7 +70,7 @@ chart
 ├── templates
 │   └── agones.yaml
 │   └── appmesh-controller.yaml
-│   └── aws-calico.yaml
+│   └── calico.yaml
 │   └── aws-cloudwatch-metrics-calico.yaml
 │   └── aws-for-fluent-bit.yaml
 │   └── aws-load-balancer-controller.yaml
@@ -93,9 +93,8 @@ add-ons
 ├── appmesh-controller
 │   └── Chart.yaml
 │   └── values.yaml
-├── aws-calico.yaml
+├── calico.yaml
 │   └── Chart.yaml
-│   └── values.yaml
 ├── aws-cloudwatch-metrics.yaml
 │   └── Chart.yaml
 │   └── values.yaml
