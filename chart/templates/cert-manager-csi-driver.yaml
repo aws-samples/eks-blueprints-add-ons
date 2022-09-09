@@ -1,0 +1,31 @@
+{{- if and (.Values.certManagerCsiDriver) (.Values.certManagerCsiDriver.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-csi-driver
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/cert-manager
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        cert-manager-csi-driver:
+        {{- toYaml .Values.certManagerCsiDriver | nindent 10 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}
