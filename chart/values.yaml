@@ -51,6 +51,10 @@ certManager:
   enable: false
   serviceAccountName:
 
+# Cert Manager CSI Driver Values
+certManagerCsiDriver:
+  enable: false
+
 # Cluster Autoscaler Values
 clusterAutoscaler:
   enable: false
