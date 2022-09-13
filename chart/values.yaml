@@ -182,3 +182,7 @@ cilium:
 # Reloader Values
 reloader:
   enable: false
+
+# Kube Prometheus Stack
+kubePrometheusStack:
+  enable: false
