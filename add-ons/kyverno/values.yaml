@@ -2,7 +2,7 @@ kyverno:
   dnsPolicy: ClusterFirstWithHostNet
 
 policies:
-  enabled: false
+  enable: false
 
 reporter:
-  enabled: false
+  enable: false

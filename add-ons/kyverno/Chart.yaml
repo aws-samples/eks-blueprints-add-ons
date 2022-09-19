@@ -19,10 +19,10 @@ dependencies:
   version: "v2.5.3"
   repository: "https://kyverno.github.io/kyverno"
 - name: policies
-  condition: policies.enabled
+  condition: policies.enable
   version: "v2.5.5"
   repository: "https://kyverno.github.io/kyverno/"
 - name: reporter
-  condition: reporter.enabled
+  condition: reporter.enable
   version: "2.12.1"
   repository: "https://kyverno.github.io/policy-reporter"
