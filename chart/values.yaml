@@ -185,7 +185,7 @@ reloader:
 
 # Kyverno Values
 kyverno:
-  enable: true
+  enable: false
 
 policies:
   enable: false
