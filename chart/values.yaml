@@ -182,3 +182,13 @@ cilium:
 # Reloader Values
 reloader:
   enable: false
+
+# Kyverno Values
+kyverno:
+  enable: true
+
+policies:
+  enable: false
+
+reporter:
+  enable: false

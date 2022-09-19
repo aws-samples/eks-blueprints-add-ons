@@ -1,2 +1,8 @@
 kyverno: 
   dnsPolicy: ClusterFirstWithHostNet
+
+policies:
+  enabled: false
+
+reporter:
+  enabled: false
