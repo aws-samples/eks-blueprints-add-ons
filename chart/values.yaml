@@ -1,20 +1,20 @@
 # Global Values
-repoUrl: "https://github.com/aws-samples/eks-blueprints-add-ons.git"
+repoUrl: 'https://github.com/aws-samples/eks-blueprints-add-ons.git'
 targetRevision: HEAD
-region: ""
-account: ""
-clusterName: ""
+region: ''
+account: ''
+clusterName: ''
 
 # Agones Values
-agones: 
-  enable: false 
+agones:
+  enable: false
 
 # App Mesh Values
-appMesh: 
-  enable: false 
+appMesh:
+  enable: false
 
 # Calico Values
-awsCalico:
+calico:
   enable: false
 
 # AWS CloudWatch Metrics Values
@@ -31,20 +31,29 @@ awsEfsCsiDriver:
 awsForFluentBit:
   enable: false
   logGroupName:
+  serviceAccountName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
   enable: false
   serviceAccountName:
+  podDisruptionBudget:
+    maxUnavailable: 1
 
 # AWS Otel Collector Values
 awsOtelCollector:
   enable: false
+  otlpEndpoint:
+  resourceAttributes:
 
 # Cert Manager Values
 certManager:
   enable: false
   serviceAccountName:
+
+# Cert Manager CSI Driver Values
+certManagerCsiDriver:
+  enable: false
 
 # Cluster Autoscaler Values
 clusterAutoscaler:
@@ -57,23 +66,28 @@ externalDns:
   serviceAccountName:
   zoneIdFilter:
 
-# Gatekeeper Values
-gatekeeper: 
+# External Secrets Operator
+externalSecrets:
   enable: false
+
+# Gatekeeper Values
+gatekeeper:
+  enable: false
+  clusterName:
 
 # Nginx Values
 ingressNginx:
   enable: false
 
 # Karpenter Values
-karpenter: 
+karpenter:
   enable: false
   serviceAccountName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
 
 # Keda Values
-keda: 
+keda:
   enable: false
   serviceAccountName:
 
@@ -84,6 +98,7 @@ metricsServer:
 # Ondat Values
 ondat:
   enable: false
+  etcdClusterCreate: false
   serviceAccountName:
   clusterSecretRefName:
   clusterAdminUsername:
@@ -93,12 +108,17 @@ ondat:
   clusterKvBackendTLSSecretNamespace:
   clusterNodeSelectorTermKey:
   clusterNodeSelectorTermValue:
+  etcdNodeSelectorTermKey:
+  etcdNodeSelectorTermValue:
+  etcdClusterReplicas:
+  etcdClusterStorageclass:
+  etcdClusterStorage:
 
 # Prometheus Values
 prometheus:
   enable: false
   serviceAccountName:
-  roleArn: 
+  roleArn:
   ampWorkspaceUrl:
 
 # Metrics Server Values
@@ -108,17 +128,21 @@ sparkOperator:
 # Tetrate Istio Values
 tetrateIstio:
   enable: false
+  base:
+  cni:
+  istiod:
+  global:
 
 # Traefik Values
 traefik:
   enable: false
 
 # VPA Values
-vpa: 
+vpa:
   enable: false
 
 # Yunikorn Values
-yunikorn: 
+yunikorn:
   enable: false
 
 # Argo Rollout Values
@@ -134,3 +158,27 @@ kubeStateMetrics:
 kubernetesDashboard:
   enable: false
   serviceAccountName:
+
+# promtail Values
+promtail:
+  enable: false
+
+# kubecost Values
+kubecost:
+  enable: false
+
+# SMB CSI Driver Values
+smbCsiDriver:
+  enable: false
+
+# Chaos Mesh Values
+chaosMesh:
+  enable: false
+
+# Cilium Mesh Values
+cilium:
+  enable: false
+
+# Reloader Values
+reloader:
+  enable: false

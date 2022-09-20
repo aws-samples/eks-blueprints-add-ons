@@ -1,3 +1,3 @@
 aws-load-balancer-controller:
-  serviceAccount: 
-    create: false 
+  serviceAccount:
+    create: false

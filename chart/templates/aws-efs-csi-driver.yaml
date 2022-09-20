@@ -5,14 +5,17 @@ metadata:
   name: aws-efs-csi-driver
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-efs-csi-driver
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
+    helm:
+      values: |
+        aws-efs-csi-driver:
+        {{- toYaml .Values.awsEfsCsiDriver | nindent 10 }}
       parameters:
       - name: aws-efs-csi-driver.controller.serviceAccount.name
         value: {{ .Values.awsEfsCsiDriver.serviceAccountName }}
@@ -23,11 +26,11 @@ spec:
     namespace: kube-system
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

@@ -13,5 +13,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: aws-efs-csi-driver
-  version: 2.2.3
+  version: 2.2.6
   repository: https://kubernetes-sigs.github.io/aws-efs-csi-driver/
