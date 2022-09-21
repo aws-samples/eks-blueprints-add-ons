@@ -79,6 +79,12 @@ gatekeeper:
 ingressNginx:
   enable: false
 
+# Grafana default Values
+grafana:
+  enable: false
+  serviceAccount:
+    create: false
+
 # Karpenter Values
 karpenter:
   enable: false

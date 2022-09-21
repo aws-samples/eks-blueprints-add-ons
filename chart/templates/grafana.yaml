@@ -1,4 +1,4 @@
-{{- if and (.Values.grafana) (.Values.grafana.enable) -}}
+{{- if (.Values.grafana).enable) }} 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repoUrl }}
+    repoURL: {{ required "repoUrl value is required" .Values.repoUrl }}
     path: add-ons/grafana
     targetRevision: {{ .Values.targetRevision }}
     helm:
