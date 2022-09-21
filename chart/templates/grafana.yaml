@@ -1,4 +1,4 @@
-{{- if (.Values.grafana).enable) }} 
+{{- if ((.Values.grafana).enable) }} 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
