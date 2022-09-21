@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        {{- toYaml .Values.grafana | nindent 10 }}
+        {{- toYaml .Values.grafana | nindent 8 }}
       parameters:
         - name: grafana.serviceAccount.name
           value: {{ .Values.grafana.serviceAccountName }}
