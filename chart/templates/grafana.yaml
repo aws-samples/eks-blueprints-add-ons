@@ -1,0 +1,33 @@
+{{- if ((.Values.grafana).enable) }} 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ required "repoUrl value is required" .Values.repoUrl }}
+    path: add-ons/grafana
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        {{- toYaml .Values.grafana | nindent 8 }}
+      parameters:
+        - name: grafana.serviceAccount.name
+          value: {{ .Values.grafana.serviceAccountName }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: grafana
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+  {{- end -}}
