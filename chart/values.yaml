@@ -188,3 +188,7 @@ cilium:
 # Reloader Values
 reloader:
   enable: false
+
+# NVIDIA Device Plugin Values
+nvidiaDevicePlugin:
+  enable: false
