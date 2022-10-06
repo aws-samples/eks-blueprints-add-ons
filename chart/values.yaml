@@ -192,3 +192,7 @@ reloader:
 # NVIDIA Device Plugin Values
 nvidiaDevicePlugin:
   enable: false
+
+# Consul Values
+consul:
+  enable: false
