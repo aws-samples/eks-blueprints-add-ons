@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
+    repoURL: {{ .Values.repoUrl }}
     path: add-ons/kube-state-metrics
     targetRevision: {{ .Values.targetRevision }}
     helm:
