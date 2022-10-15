@@ -1,10 +1,11 @@
-server:
-  retention: 1h
+prometheus:
+  server:
+    retention: 1h
 
-  resources:
-    requests:
-      cpu: 500m
-      memory: 512Mi
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
 
-  global:
-    scrape_interval: 15s
+    global:
+      scrape_interval: 15s

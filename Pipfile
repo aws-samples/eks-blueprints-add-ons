@@ -20,6 +20,7 @@ python_version = "3.9"
 
 [scripts]
 template = "python3 template.py"
+import = "python3 script.py"
 typecheck = "python3 -m mypy template.py"
 imports = "python3 -m isort --ignore-whitespace ."
 format = "python3 -m black ."

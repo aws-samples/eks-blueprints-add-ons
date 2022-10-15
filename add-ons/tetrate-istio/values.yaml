@@ -1,11 +1,12 @@
-global:
-  hub: containers.istio.tetratelabs.com
-  tag: 1.12.2-tetratefips-v0
+tetrate-istio:
+  global:
+    hub: containers.istio.tetratelabs.com
+    tag: 1.12.2-tetratefips-v0
 
-base: {}
+  base: {}
 
-cni: {}
+  cni: {}
 
-istiod:
-  istio_cni:
-    enabled: true
+  istiod:
+    istio_cni:
+      enabled: true

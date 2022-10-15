@@ -1,13 +1,14 @@
-serviceAccount:
-  create: false
+keda:
+  serviceAccount:
+    create: false
 
-resources:
-  limits:
-    cpu: 1
-    memory: 1000Mi
-  requests:
-    cpu: 100m
-    memory: 100Mi
+  resources:
+    limits:
+      cpu: 1
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
 
-nodeSelector:
-  kubernetes.io/os: linux
+  nodeSelector:
+    kubernetes.io/os: linux

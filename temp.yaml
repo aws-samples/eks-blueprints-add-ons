@@ -1,0 +1,20 @@
+addons:
+{% for addon in addons | sort(attribute='name') %}
+  - {{ addon.name }}:
+      chart:
+        description: {{ addon.chart.description }}
+        {% if addon.chart.version %}
+        version: {{ addon.chart.version }}
+        {% endif %}
+        {% if addon.chart.appVersion %}
+        appVersion: {{ addon.chart.appVersion }}
+        {% endif %}
+        {% if addon.chart.dependencies %}
+        dependencies:
+{{ addon.chart.dependencies | yaml_format(8) }}
+        {% endif %}
+      {% if addon._values %}
+      values:
+{{ addon._values | yaml_format(8) }}
+      {% endif %}
+{% endfor %}

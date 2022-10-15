@@ -69,7 +69,7 @@ def template() -> None:
         keep_trailing_newline=True,
     )
     # Add custom formatter
-    env.filters['pretty'] = pretty
+    env.filters['yaml_format'] = yaml_format
 
     addon_chart_template = env.get_template('add-ons/Chart.yaml')
     addon_values_template = env.get_template('add-ons/values.yaml')
