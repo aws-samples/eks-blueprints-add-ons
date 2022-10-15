@@ -1,0 +1,39 @@
+addons:
+  - agones:
+      chart:
+        description: A Helm chart for installing Agones
+        dependencies:
+          - name: agones
+            version: 1.23.0
+            repository: https://agones.dev/chart/stable
+      values:
+        ping:
+          http:
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-internal: "false"
+              service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+          udp:
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-internal: "false"
+              service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+        allocator:
+          http:
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-internal: "false"
+              service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+
+  - appmesh-controller:
+      chart:
+        description: A Helm chart for installing AWS AppMesh
+        dependencies:
+          - name: appmesh-controller
+            version: 1.15.0
+            repository: https://aws.github.io/eks-charts
+
+  - argo-rollouts:
+      chart:
+        description: A Helm chart for installing Argo Rollouts
+        dependencies:
+          - name: argo-rollouts
+            version: 2.16.0
+            repository: https://argoproj.github.io/argo-helm

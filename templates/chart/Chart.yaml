@@ -1,0 +1,6 @@
+apiVersion: v2
+name: add-ons
+description: App of Apps for Kubernetes Cluster add-ons
+type: application
+version: 0.1.0
+appVersion: 1.0.0

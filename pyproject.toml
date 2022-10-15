@@ -1,0 +1,29 @@
+[tool.black]
+line-length = 100
+target-version = ['py39']
+include = '\.pyi?$'
+skip-string-normalization = true
+verbose = true
+exclude = '''
+/(
+  \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | cdk.out
+  | dist
+  | \.serverless
+  | node_modules
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip = '.serverless,node_modules,.terraform'
+sections = 'FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER'
+known_third_party = 'yaml,jinja2'
+known_first_party = ''
+indent = '    '
