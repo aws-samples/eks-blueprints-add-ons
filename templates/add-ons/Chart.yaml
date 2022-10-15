@@ -3,9 +3,6 @@
 apiVersion: v2
 name: {{ name }}
 description: {{ description }}
-
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
 type: {{ type | default("application") }}
 
 # The chart version. This version number should be incremented each time you make changes
@@ -14,7 +11,7 @@ version: {{ version | default("0.1.0") }}
 
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: {{ "\"{}\"".format(appVersion | default("1.0.0")) }}
+appVersion: {{ "\"{}\"".format(appVersion | default("1.0")) }}
 
 {% if dependencies -%}
 dependencies:

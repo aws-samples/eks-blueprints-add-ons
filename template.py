@@ -1,3 +1,4 @@
+import os
 from enum import Enum
 
 import yaml
@@ -7,7 +8,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 class AddonFileType(Enum):
     """The two different add-on file types"""
 
-    Chart = 'chart'
+    Chart = 'Chart'
     Values = 'values'
 
 
@@ -39,13 +40,12 @@ def write_addon_file(template, name: str, values: dict, file_type: AddonFileType
     :return: None
     """
     if file_type is AddonFileType.Chart:
-        filename = 'Chart'
         values = {
             'name': name,
             **values.get('chart', {}),
         }
-    else:
-        filename = 'values'
+
+    if file_type is AddonFileType.Values:
         # Values are just splat out under the name unlike the `Chart.yaml` file
         values = {
             'name': name,
@@ -54,7 +54,7 @@ def write_addon_file(template, name: str, values: dict, file_type: AddonFileType
 
     content = template.render(values)
 
-    with open(f'add-ons/{name}/{filename}.yaml', mode='w', encoding='utf-8') as message:
+    with open(f'add-ons/{name}/{file_type.value}.yaml', mode='w', encoding='utf-8') as message:
         # Ensure only one trailing newline
         message.write(f'{content.rstrip()}\n')
 
@@ -79,6 +79,11 @@ def template() -> None:
 
         for addon in values['addons']:
             for chart_name, chart_values in addon.items():
+                # Create directory if it doesn't exist
+                file_directory = os.path.dirname(f'./add-ons/{chart_name}/')
+                if not os.path.exists(file_directory):
+                    os.makedirs(file_directory)
+
                 write_addon_file(
                     template=addon_chart_template,
                     name=chart_name,

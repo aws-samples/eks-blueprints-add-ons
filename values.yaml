@@ -3,10 +3,10 @@ addons:
       chart:
         description: A Helm chart for installing Agones
         dependencies:
-        - name: agones
-          repository: https://agones.dev/chart/stable
-          version: 1.23.0
-        
+          - name: agones
+            repository: https://agones.dev/chart/stable
+            version: 1.23.0
+
       values:
         allocator:
           http:
@@ -22,15 +22,15 @@ addons:
             annotations:
               service.beta.kubernetes.io/aws-load-balancer-internal: 'false'
               service.beta.kubernetes.io/aws-load-balancer-type: nlb
-        
+
   - appmesh-controller:
       chart:
         description: A Helm chart for installing AWS AppMesh
         dependencies:
-        - name: appmesh-controller
-          repository: https://aws.github.io/eks-charts
-          version: 1.15.0
-        
+          - name: appmesh-controller
+            repository: https://aws.github.io/eks-charts
+            version: 1.15.0
+
       values:
         serviceAccount:
           create: false
@@ -40,35 +40,35 @@ addons:
           enabled: false
           port: ''
           provider: ''
-        
+
   - argo-rollouts:
       chart:
         description: A Helm chart for Argo Rollouts
         dependencies:
-        - name: argo-rollouts
-          repository: https://argoproj.github.io/argo-helm
-          version: 2.16.0
-        
+          - name: argo-rollouts
+            repository: https://argoproj.github.io/argo-helm
+            version: 2.16.0
+
   - aws-cloudwatch-metrics:
       chart:
         description: A Helm chart for installing AWS CloudWatch metrics
         dependencies:
-        - name: aws-cloudwatch-metrics
-          repository: https://aws.github.io/eks-charts
-          version: 0.0.7
-        
+          - name: aws-cloudwatch-metrics
+            repository: https://aws.github.io/eks-charts
+            version: 0.0.7
+
       values:
         serviceAccount:
           create: false
-        
+
   - aws-efs-csi-driver:
       chart:
         description: A Helm chart for installing the AWS EFS CSI driver
         dependencies:
-        - name: aws-efs-csi-driver
-          repository: https://kubernetes-sigs.github.io/aws-efs-csi-driver/
-          version: 2.2.6
-        
+          - name: aws-efs-csi-driver
+            repository: https://kubernetes-sigs.github.io/aws-efs-csi-driver/
+            version: 2.2.6
+
       values:
         controller:
           serviceAccount:
@@ -76,98 +76,94 @@ addons:
         node:
           serviceAccount:
             create: false
-        
+
   - aws-for-fluent-bit:
       chart:
         description: A Helm chart for installing AWS for Fluent Bit
         dependencies:
-        - name: aws-for-fluent-bit
-          repository: https://aws.github.io/eks-charts
-          version: 0.1.17
-        
+          - name: aws-for-fluent-bit
+            repository: https://aws.github.io/eks-charts
+            version: 0.1.17
+
       values:
-        cloudWatch: null
-        elasticsearch: null
-        firehose: null
-        kinesis: null
         serviceAccount:
           create: false
-        
+
   - aws-load-balancer-controller:
       chart:
         description: A Helm chart for installing the AWS Load balancer controller
         version: 0.1.2
         dependencies:
-        - name: aws-load-balancer-controller
-          repository: https://aws.github.io/eks-charts
-          version: 1.4.4
-        
+          - name: aws-load-balancer-controller
+            repository: https://aws.github.io/eks-charts
+            version: 1.4.4
+
       values:
         serviceAccount:
           create: false
-        
+
   - calico:
       chart:
         description: A Helm chart for installing Calico
         dependencies:
-        - name: tigera-operator
-          repository: https://docs.projectcalico.org/charts
-          version: v3.24.1
-        
+          - name: tigera-operator
+            repository: https://docs.projectcalico.org/charts
+            version: v3.24.1
+
   - cert-manager:
       chart:
         description: A Helm chart for installing cert-manager
         dependencies:
-        - name: cert-manager
-          repository: https://charts.jetstack.io
-          version: v1.8.0
-        
+          - name: cert-manager
+            repository: https://charts.jetstack.io
+            version: v1.8.0
+
       values:
         extraArgs:
-        - --enable-certificate-owner-ref=true
+          - --enable-certificate-owner-ref=true
         installCRDs: true
         serviceAccount:
           create: false
-        
+
   - cert-manager-csi-driver:
       chart:
         description: A Helm chart for installing cert-manager
         dependencies:
-        - name: cert-manager-csi-driver
-          repository: https://charts.jetstack.io
-          version: v0.4.2
-        
+          - name: cert-manager-csi-driver
+            repository: https://charts.jetstack.io
+            version: v0.4.2
+
   - chaos-mesh:
       chart:
         description: A Helm chart for installing Chaos Mesh
         dependencies:
-        - name: chaos-mesh
-          repository: https://charts.chaos-mesh.org
-          version: 2.3.1
-        
+          - name: chaos-mesh
+            repository: https://charts.chaos-mesh.org
+            version: 2.3.1
+
   - cilium:
       chart:
         description: A Helm chart for Cilium
         version: 0.1.1
         dependencies:
-        - name: cilium
-          repository: https://helm.cilium.io/
-          version: 1.12.1
-        
+          - name: cilium
+            repository: https://helm.cilium.io/
+            version: 1.12.1
+
       values:
         cni:
           chainingMode: aws-cni
         enableIPv4Masquerade: false
         tunnel: disabled
-        
+
   - cluster-autoscaler:
       chart:
         description: A Helm chart for installing cluster-autoscaler
         dependencies:
-        - name: cluster-autoscaler
-          repository: https://kubernetes.github.io/autoscaler
-          version: 9.19.2
-        
+          - name: cluster-autoscaler
+            repository: https://kubernetes.github.io/autoscaler
+            version: 9.19.2
+
       values:
         extraArgs:
           aws-use-static-instance-list: true
@@ -181,58 +177,58 @@ addons:
           requests:
             cpu: 200m
             memory: 512Mi
-        
+
   - external-dns:
       chart:
         description: A Helm chart for External DNS
         dependencies:
-        - name: external-dns
-          repository: https://charts.bitnami.com/bitnami
-          version: 6.5.6
-        
+          - name: external-dns
+            repository: https://charts.bitnami.com/bitnami
+            version: 6.5.6
+
       values:
         provider: aws
         serviceAccount:
           create: false
           name: external-dns-sa
-        
+
   - external-secrets:
       chart:
         description: A Helm chart for the External Secrets operator
         dependencies:
-        - name: external-secrets
-          repository: https://charts.external-secrets.io/
-          version: 0.5.6
-        
+          - name: external-secrets
+            repository: https://charts.external-secrets.io/
+            version: 0.5.6
+
   - gatekeeper:
       chart:
         description: A Helm chart for GateKeeper OPA
         dependencies:
-        - name: gatekeeper
-          repository: https://open-policy-agent.github.io/gatekeeper/charts
-          version: 3.6.0
-        
+          - name: gatekeeper
+            repository: https://open-policy-agent.github.io/gatekeeper/charts
+            version: 3.6.0
+
   - grafana:
       chart:
         description: A Helm chart for Grafana
         dependencies:
-        - name: grafana
-          repository: https://grafana.github.io/helm-charts
-          version: 6.38.6
-        
+          - name: grafana
+            repository: https://grafana.github.io/helm-charts
+            version: 6.38.6
+
       values:
         serviceAccount:
           create: false
-        
+
   - ingress-nginx:
       chart:
         description: A Helm chart for Nginx Ingress Controller
         version: 0.1.1
         dependencies:
-        - name: ingress-nginx
-          repository: https://kubernetes.github.io/ingress-nginx
-          version: 4.1.4
-        
+          - name: ingress-nginx
+            repository: https://kubernetes.github.io/ingress-nginx
+            version: 4.1.4
+
       values:
         controller:
           service:
@@ -244,35 +240,30 @@ addons:
               service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
               service.beta.kubernetes.io/aws-load-balancer-type: nlb
             externalTrafficPolicy: Local
-        
+
   - karpenter:
       chart:
         description: A Helm chart for Karpenter Autoscaler
         version: 0.3.0
         dependencies:
-        - name: karpenter
-          repository: https://charts.karpenter.sh
-          version: 0.16.1
-        
+          - name: karpenter
+            repository: https://charts.karpenter.sh
+            version: 0.16.1
+
       values:
-        aws: null
-        nodeSelector:
-          kubernetes.io/os: linux
         serviceAccount:
           create: false
-        
+
   - keda:
       chart:
         description: A Helm chart for installing Keda
         version: 0.1.1
         dependencies:
-        - name: keda
-          repository: https://kedacore.github.io/charts
-          version: 2.7.2
-        
+          - name: keda
+            repository: https://kedacore.github.io/charts
+            version: 2.7.2
+
       values:
-        nodeSelector:
-          kubernetes.io/os: linux
         resources:
           limits:
             cpu: 1
@@ -282,28 +273,28 @@ addons:
             memory: 100Mi
         serviceAccount:
           create: false
-        
+
   - kube-state-metrics:
       chart:
         description: A Helm chart for Kube-State-Metrics
         dependencies:
-        - name: kube-state-metrics
-          repository: https://prometheus-community.github.io/helm-charts
-          version: 4.4.3
-        
+          - name: kube-state-metrics
+            repository: https://prometheus-community.github.io/helm-charts
+            version: 4.4.3
+
       values:
         serviceAccount:
           create: false
-        
+
   - kubecost:
       chart:
         description: A Helm chart for kubecost
         version: 0.1.1
         dependencies:
-        - name: cost-analyzer
-          repository: oci://public.ecr.aws/kubecost/cost-analyzer
-          version: 1.96.0
-        
+          - name: cost-analyzer
+            repository: oci://public.ecr.aws/kubecost/cost-analyzer
+            version: 1.96.0
+
       values:
         global:
           grafana:
@@ -329,64 +320,64 @@ addons:
               tag: v2.35.0
         reporting:
           productAnalytics: false
-        
+
   - kubernetes-dashboard:
       chart:
         description: A Helm chart for Kubernetes Dashboard
         dependencies:
-        - name: kubernetes-dashboard
-          repository: https://kubernetes.github.io/dashboard/
-          version: 5.7.0
-        
+          - name: kubernetes-dashboard
+            repository: https://kubernetes.github.io/dashboard/
+            version: 5.7.0
+
       values:
         serviceAccount:
           create: false
-        
+
   - kyverno:
       chart:
         description: A Helm chart for installing Kyverno
         dependencies:
-        - name: kyverno
-          repository: https://kyverno.github.io/kyverno
-          version: v1.6.2
-        
+          - name: kyverno
+            repository: https://kyverno.github.io/kyverno
+            version: v1.6.2
+
       values:
         dnsPolicy: ClusterFirstWithHostNet
-        
+
   - metrics-server:
       chart:
         description: A Helm chart for installing Metrics Server
         version: 0.1.1
         dependencies:
-        - name: metrics-server
-          repository: https://kubernetes-sigs.github.io/metrics-server
-          version: 3.8.2
-        
+          - name: metrics-server
+            repository: https://kubernetes-sigs.github.io/metrics-server
+            version: 3.8.2
+
       values:
         podDisruptionBudget:
           enabled: true
           maxUnavailable: 1
         replicas: 3
-        
+
   - nvidia-device-plugin:
       chart:
         description: A Helm chart for NVIDIA Device Plugin
         version: 0.1.1
         dependencies:
-        - name: nvidia-device-plugin
-          repository: https://nvidia.github.io/k8s-device-plugin
-          version: 0.12.3
-        
+          - name: nvidia-device-plugin
+            repository: https://nvidia.github.io/k8s-device-plugin
+            version: 0.12.3
+
   - ondat:
       chart:
         description: A Helm chart for Ondat
         version: 0.2.1
         appVersion: 2.8.0
         dependencies:
-        - name: ondat
-          repository: https://ondat.github.io/charts
-          version: 0.0.6
-        
+          - name: ondat
+            repository: https://ondat.github.io/charts
+            version: 0.0.6
+
       values:
         etcd-cluster-operator:
           cluster:
@@ -406,16 +397,16 @@ addons:
             nodeSelectorTerm:
               key: storageos-node
               value: '1'
-        
+
   - prometheus:
       chart:
         description: A Helm chart for Prometheus
         version: 0.1.1
         dependencies:
-        - name: prometheus
-          repository: https://prometheus-community.github.io/helm-charts
-          version: 15.10.1
-        
+          - name: prometheus
+            repository: https://prometheus-community.github.io/helm-charts
+            version: 15.10.1
+
       values:
         server:
           global:
@@ -425,58 +416,58 @@ addons:
               cpu: 500m
               memory: 512Mi
           retention: 1h
-        
+
   - promtail:
       chart:
         description: A Helm chart for Promtail
         version: 0.1.1
         dependencies:
-        - name: promtail
-          repository: https://grafana.github.io/helm-charts
-          version: 6.3.0
-        
+          - name: promtail
+            repository: https://grafana.github.io/helm-charts
+            version: 6.3.0
+
   - reloader:
       chart:
         description: A Helm chart for Reloader
         dependencies:
-        - name: reloader
-          repository: https://stakater.github.io/stakater-charts
-          version: v0.0.118
-        
+          - name: reloader
+            repository: https://stakater.github.io/stakater-charts
+            version: v0.0.118
+
   - smb-csi-driver:
       chart:
         description: A Helm chart for SMB CSI Driver
         version: 0.1.1
         dependencies:
-        - name: csi-driver-smb
-          repository: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
-          version: v1.9.0
-        
+          - name: csi-driver-smb
+            repository: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+            version: v1.9.0
+
   - spark-operator:
       chart:
         description: A Helm chart for Spark on Kubernetes operator
         version: 0.1.1
         dependencies:
-        - name: spark-operator
-          repository: https://googlecloudplatform.github.io/spark-on-k8s-operator
-          version: 1.1.25
-        
+          - name: spark-operator
+            repository: https://googlecloudplatform.github.io/spark-on-k8s-operator
+            version: 1.1.25
+
   - tetrate-istio:
       chart:
         description: A Helm chart for Tetrate Istio Distribution (TID)
         version: 0.0.1
         appVersion: 1.12.2
         dependencies:
-        - name: base
-          repository: https://istio-release.storage.googleapis.com/charts
-          version: 1.12.2
-        - name: cni
-          repository: https://istio-release.storage.googleapis.com/charts
-          version: 1.12.2
-        - name: istiod
-          repository: https://istio-release.storage.googleapis.com/charts
-          version: 1.12.2
-        
+          - name: base
+            repository: https://istio-release.storage.googleapis.com/charts
+            version: 1.12.2
+          - name: cni
+            repository: https://istio-release.storage.googleapis.com/charts
+            version: 1.12.2
+          - name: istiod
+            repository: https://istio-release.storage.googleapis.com/charts
+            version: 1.12.2
+
       values:
         base: {}
         cni: {}
@@ -486,48 +477,44 @@ addons:
         istiod:
           istio_cni:
             enabled: true
-        
+
   - traefik:
       chart:
         description: A Helm chart for Traefik
         version: 0.1.1
         dependencies:
-        - name: traefik
-          repository: https://helm.traefik.io/traefik
-          version: 10.20.1
-        
+          - name: traefik
+            repository: https://helm.traefik.io/traefik
+            version: 10.20.1
+
   - vpa:
       chart:
         description: A Helm chart for Vertical Pod Autoscaler
         version: 0.1.1
         dependencies:
-        - name: vpa
-          repository: https://charts.fairwinds.com/stable
-          version: 1.4.0
-        
+          - name: vpa
+            repository: https://charts.fairwinds.com/stable
+            version: 1.4.0
+
       values:
         recommender:
           image:
             repository: k8s.gcr.io/autoscaling/vpa-recommender
             tag: 0.9.2
-          nodeSelector:
-            kubernetes.io/os: linux
         updater:
           image:
             repository: k8s.gcr.io/autoscaling/vpa-updater
             tag: 0.9.2
-          nodeSelector:
-            kubernetes.io/os: linux
-        
+
   - yunikorn:
       chart:
         description: A Helm chart for YuniKorn
         version: 0.1.1
         dependencies:
-        - name: yunikorn
-          repository: https://apache.github.io/yunikorn-release
-          version: 1.0.0
-        
+          - name: yunikorn
+            repository: https://apache.github.io/yunikorn-release
+            version: 1.0.0
+
       values:
         embedAdmissionController: false
         operatorPlugins: general,spark-k8s-operator
@@ -535,4 +522,3 @@ addons:
           port: 9080
           port_web: 9889
           type: ClusterIP
-        
