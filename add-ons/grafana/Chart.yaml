@@ -1,0 +1,20 @@
+apiVersion: v2
+name: grafana
+description: A Helm chart for Grafana
+
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+type: application
+
+# The chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# Version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.0"
+
+dependencies:
+- name: grafana
+  version: 6.38.6
+  repository: "https://grafana.github.io/helm-charts"

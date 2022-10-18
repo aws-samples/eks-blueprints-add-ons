@@ -79,6 +79,12 @@ gatekeeper:
 ingressNginx:
   enable: false
 
+# Grafana default Values
+grafana:
+  enable: false
+  serviceAccount:
+    create: false
+
 # Karpenter Values
 karpenter:
   enable: false
@@ -191,4 +197,8 @@ policies:
   enable: false
 
 reporter:
+  enable: false
+  
+# NVIDIA Device Plugin Values
+nvidiaDevicePlugin:
   enable: false

@@ -1,8 +1,8 @@
-{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+{{- if and (.Values.nvidiaDevicePlugin) (.Values.nvidiaDevicePlugin.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: nvidia-device-plugin
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,15 +10,15 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/argo-rollouts
+    path: add-ons/nvidia-device-plugin
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        argo-rollouts:
-        {{- toYaml .Values.argoRollouts | nindent 10 }}
+        nvidia-device-plugin:
+        {{- toYaml .Values.nvidiaDevicePlugin | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-rollouts
+    namespace: nvidia-device-plugin
   syncPolicy:
     automated:
       prune: true
