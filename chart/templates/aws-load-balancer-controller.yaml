@@ -16,6 +16,7 @@ spec:
       values: |
         aws-load-balancer-controller:
           clusterName: {{ .Values.clusterName }}
+          region: {{ .Values.region }}
           serviceAccount:
             name: {{ .Values.awsLoadBalancerController.serviceAccountName }}
             create: false
