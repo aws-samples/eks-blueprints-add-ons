@@ -1,6 +1,6 @@
 apiVersion: v2
-name: kyverno
-description: A Helm chart for installing Kyverno
+name: grafana
+description: A Helm chart for Grafana
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
@@ -15,14 +15,6 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-- name: kyverno
-  version: "v2.5.3"
-  repository: "https://kyverno.github.io/kyverno"
-- name: policies
-  condition: policies.enable
-  version: "v2.5.5"
-  repository: "https://kyverno.github.io/kyverno/"
-- name: reporter
-  condition: reporter.enable
-  version: "2.12.1"
-  repository: "https://kyverno.github.io/policy-reporter"
+- name: grafana
+  version: 6.38.6
+  repository: "https://grafana.github.io/helm-charts"

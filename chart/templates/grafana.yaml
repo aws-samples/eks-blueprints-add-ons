@@ -1,24 +1,26 @@
-{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+{{- if ((.Values.grafana).enable) }} 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: grafana
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: {{ .Values.repoUrl }}
-    path: add-ons/argo-rollouts
+    repoURL: {{ required "repoUrl value is required" .Values.repoUrl }}
+    path: add-ons/grafana
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        argo-rollouts:
-        {{- toYaml .Values.argoRollouts | nindent 10 }}
+        {{- toYaml .Values.grafana | nindent 8 }}
+      parameters:
+        - name: grafana.serviceAccount.name
+          value: {{ .Values.grafana.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-rollouts
+    namespace: grafana
   syncPolicy:
     automated:
       prune: true
@@ -28,4 +30,4 @@ spec:
         duration: 5s
         factor: 2
         maxDuration: 1m
-{{- end -}}
+  {{- end -}}
