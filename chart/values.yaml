@@ -189,6 +189,10 @@ cilium:
 reloader:
   enable: false
 
+# Kube Prometheus Stack
+kubePrometheusStack:
+  enable: false
+
 # Kyverno Values
 kyverno:
   enable: false
