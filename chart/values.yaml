@@ -189,6 +189,16 @@ cilium:
 reloader:
   enable: false
 
+# Kyverno Values
+kyverno:
+  enable: false
+
+policies:
+  enable: false
+
+reporter:
+  enable: false
+  
 # NVIDIA Device Plugin Values
 nvidiaDevicePlugin:
   enable: false
