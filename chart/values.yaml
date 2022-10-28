@@ -59,6 +59,10 @@ certManagerCsiDriver:
 clusterAutoscaler:
   enable: false
   serviceAccountName:
+    
+# Datadog Operator
+datadogOperator:
+  enable: false
 
 # External DNS Values
 externalDns:
