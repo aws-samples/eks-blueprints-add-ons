@@ -3,3 +3,9 @@ cilium:
     chainingMode: aws-cni
   enableIPv4Masquerade: false
   tunnel: disabled
+  operator:
+    rollOutPods: true
+  relay:
+    rollOutPods: true
+  hubble:
+    rollOutPods: true

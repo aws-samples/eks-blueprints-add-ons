@@ -16,6 +16,11 @@ spec:
       values: |
         cilium:
         {{- toYaml .Values.cilium | nindent 10 }}
+          hubble:
+            ui:
+              enabled: {{ .Values.cilium.enableHubbleUi }}
+            relay:
+              enabled: {{ .Values.cilium.enableHubbleUi }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
