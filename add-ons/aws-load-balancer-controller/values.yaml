@@ -1,3 +1,6 @@
 aws-load-balancer-controller:
   serviceAccount:
     create: false
+  controllerConfig:
+    featureGates:
+      SubnetsClusterTagCheck: false
