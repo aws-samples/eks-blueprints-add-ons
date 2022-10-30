@@ -18,7 +18,7 @@ spec:
         {{- toYaml .Values.cilium | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: cilium
   syncPolicy:
     automated:
       prune: true
