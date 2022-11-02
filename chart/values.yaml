@@ -64,6 +64,10 @@ clusterAutoscaler:
 datadogOperator:
   enable: false
 
+# Strimzi Kafka Operator
+strimziKafkaOperator:
+  enabled: false
+
 # External DNS Values
 externalDns:
   enable: false
