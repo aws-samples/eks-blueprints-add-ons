@@ -1,0 +1,31 @@
+{{- if and (.Values.argoWorkflows) (.Values.argoWorkflows.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/argo-workflows
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        argo-workflows:
+        {{- toYaml .Values.argoWorkflows | nindent 10 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-workflows
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

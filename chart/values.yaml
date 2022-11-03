@@ -163,6 +163,10 @@ yunikorn:
 argoRollouts:
   enable: false
 
+# Argo Rollout Values
+argoWorkflows:
+  enable: false
+
 # Kube State Metrics Values
 kubeStateMetrics:
   enable: false
