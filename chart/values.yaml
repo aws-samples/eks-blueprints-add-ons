@@ -218,3 +218,6 @@ reporter:
 # NVIDIA Device Plugin Values
 nvidiaDevicePlugin:
   enable: false
+
+velero:
+  enable: false
