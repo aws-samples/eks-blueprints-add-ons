@@ -59,7 +59,7 @@ certManagerCsiDriver:
 clusterAutoscaler:
   enable: false
   serviceAccountName:
-    
+
 # Datadog Operator
 datadogOperator:
   enable: false
@@ -214,10 +214,13 @@ policies:
 
 reporter:
   enable: false
-  
+
 # NVIDIA Device Plugin Values
 nvidiaDevicePlugin:
   enable: false
 
 velero:
+  enable: false
+
+coredns:
   enable: false
