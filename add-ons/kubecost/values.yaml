@@ -19,6 +19,9 @@ prometheus:
     image:
       repository: public.ecr.aws/kubecost/prometheus
       tag: v2.35.0
+  nodeExporter:
+    tolerations:
+      - operator: 'Exists'
 
   configmapReload:
     prometheus:
@@ -28,6 +31,3 @@ prometheus:
 
 reporting:
   productAnalytics: false
-
-tolerations:
-  - operator: 'Exists'
