@@ -1,6 +1,6 @@
 aws-cloudwatch-metrics:
   serviceAccount:
     create: false
-    tolerations: 
-      - operator: "Exists"
-        effect: 'NoSchedule'
+  tolerations: 
+    - operator: "Exists"
+      effect: 'NoSchedule'
