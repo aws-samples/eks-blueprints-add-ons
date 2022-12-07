@@ -3,4 +3,3 @@ aws-cloudwatch-metrics:
     create: false
   tolerations: 
     - operator: "Exists"
-      effect: 'NoSchedule'
