@@ -1,0 +1,39 @@
+{{- if and (.Values.flinkKubernetesOperator) (.Values.flinkKubernetesOperator.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flink-kubernetes-operator
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/flink-kubernetes-operator
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        {{- toYaml .Values.flinkKubernetesOperator | nindent 8 }}
+      parameters:
+      - name: flink-kubernetes-operator.metrics.port
+        value: {{ .Values.flinkKubernetesOperator.metricsPort }}
+      - name: flink-kubernetes-operator.defaultConfiguration.log4j-operator.properties
+        value: {{ .Values.flinkKubernetesOperator.log4jOperatorProperties }}
+      - name: flink-kubernetes-operator.defaultConfiguration.log4j-console.properties
+        value: {{ .Values.flinkKubernetesOperator.log4jConsoleProperties }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: flink-operator
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}
+    

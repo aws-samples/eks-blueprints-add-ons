@@ -1,0 +1,10 @@
+# for details on all options
+# https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/operations/helm/
+
+metrics:
+  port: 
+
+defaultConfiguration:
+  log4j-operator.properties:
+
+  log4j-console.properties:

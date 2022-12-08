@@ -1,9 +1,14 @@
 # Global Values
-repoUrl: 'https://github.com/aws-samples/eks-blueprints-add-ons.git'
+repoUrl: 'https://github.com/claypotai/gitops-k8s-addons.git'
 targetRevision: HEAD
 region: ''
 account: ''
 clusterName: ''
+
+
+# Flink Operator
+flinkKubernetesOperator:
+  enable: false
 
 # Agones Values
 agones:
