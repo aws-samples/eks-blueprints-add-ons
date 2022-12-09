@@ -17,11 +17,11 @@ spec:
         {{- toYaml .Values.flinkKubernetesOperator | nindent 8 }}
       parameters:
       - name: flink-kubernetes-operator.metrics.port
-        value: {{ .Values.flinkKubernetesOperator.metricsPort }}
+        value: {{ .Values.flinkKubernetesOperator.metricsPort | quote}}
       - name: flink-kubernetes-operator.defaultConfiguration.log4j-operator.properties
-        value: {{ .Values.flinkKubernetesOperator.log4jOperatorProperties }}
+        value: {{ .Values.flinkKubernetesOperator.log4jOperatorProperties | quote }}
       - name: flink-kubernetes-operator.defaultConfiguration.log4j-console.properties
-        value: {{ .Values.flinkKubernetesOperator.log4jConsoleProperties }}
+        value: {{ .Values.flinkKubernetesOperator.log4jConsoleProperties | quote}}
 
   destination:
     server: https://kubernetes.default.svc
