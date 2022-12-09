@@ -1,10 +1,47 @@
 # for details on all options
-# https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/operations/helm/
+# https://github.com/apache/flink-kubernetes-operator/blob/main/helm/flink-kubernetes-operator/values.yaml
 
-metrics:
-  port: 
+flink-kubernetes-operator:
+  webhook:
+    create: true
+  
+  metrics:
+    port: 
 
-defaultConfiguration:
-  log4j-operator.properties:
+  defaultConfiguration:
+    # If set to true, creates ConfigMaps/VolumeMounts. If set to false, no configuration will be created.
+    # All below fields will be ignored if create is set to false.
+    create: true
+    # If set to true,
+    #      (1) loads the built-in default configuration
+    #      (2) appends the below flink-conf and logging configuration overrides
+    # If set to false, loads just the overrides as in (2).
+    # This option has not effect, if create is equal to false.
+    append: true
 
-  log4j-console.properties:
+    # for details of flink-conf.yaml
+    # https://github.com/apache/flink-kubernetes-operator/blob/main/helm/flink-kubernetes-operator/conf/flink-conf.yaml
+    flink-conf.yaml: |+
+      # Flink Config Overrides
+      taskmanager.numberOfTaskSlots: 1
+      parallelism.default: 1
+
+      kubernetes.operator.metrics.reporter.slf4j.factory.class: org.apache.flink.metrics.slf4j.Slf4jReporterFactory
+      kubernetes.operator.metrics.reporter.slf4j.interval: 5 MINUTE
+      kubernetes.operator.reconcile.interval: 15 s
+      kubernetes.operator.observer.progress-check.interval: 5 s
+      
+    log4j-operator.properties: |+
+      # Flink Operator Logging Overrides
+      rootLogger.level = DEBUG
+      
+    log4j-console.properties: |+
+      # Flink Deployment Logging Overrides
+      rootLogger.appenderRef.file.ref = LogFile
+      appender.file.name = LogFile
+      appender.file.type = File
+      appender.file.append = false
+      appender.file.fileName = ${sys:log.file}
+      appender.file.layout.type = PatternLayout
+      appender.file.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c %x - %m%n  
+      
