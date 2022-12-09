@@ -1,0 +1,3 @@
+aws-node-termination-handler:
+  serviceAccount:
+    create: false
