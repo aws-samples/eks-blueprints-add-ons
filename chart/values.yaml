@@ -101,6 +101,10 @@ grafana:
 # Vault default Values
 vault:
   enable: false
+  server:
+    readinessProbe:
+      enabled: false
+
 
 # Karpenter Values
 karpenter:
