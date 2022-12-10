@@ -1,5 +1,6 @@
 # for details on all options
 # https://github.com/hashicorp/vault-helm/blob/main/values.yaml
 
-readinessProbe:
-  enabled: false
+server:
+  readinessProbe:
+    enabled: false
