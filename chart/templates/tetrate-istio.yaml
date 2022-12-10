@@ -28,6 +28,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+    - CreateNamespace=true
     retry:
       limit: 1
       backoff:
