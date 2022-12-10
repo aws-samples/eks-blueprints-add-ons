@@ -15,9 +15,6 @@ spec:
     helm:
       values: |
         {{- toYaml .Values.vault | nindent 8 }}
-      parameters:
-        - name: grafana.serviceAccount.name
-          value: {{ .Values.grafana.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
