@@ -1,4 +1,5 @@
 # Default values for strimzi-kafka-operator.
+watchNamespaces: ["strimzi", "firewood", "kafka"]
 
 resources:
   limits:
