@@ -1,5 +1,5 @@
 apiVersion: v2
-name: ingress-nginx
+name: external-dns
 description: A Helm chart for External DNS
 
 # Application charts are a collection of templates that can be packaged into versioned archives
