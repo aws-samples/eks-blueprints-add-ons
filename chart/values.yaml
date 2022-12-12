@@ -152,6 +152,10 @@ tetrateIstio:
   istiod:
   global:
 
+# Thanos Values
+thanos:
+  enable: false
+
 # Traefik Values
 traefik:
   enable: false
