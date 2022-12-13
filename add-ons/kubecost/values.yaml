@@ -28,3 +28,6 @@ prometheus:
 
 reporting:
   productAnalytics: false
+
+service:
+  type: LoadBalancer
