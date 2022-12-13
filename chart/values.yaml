@@ -10,7 +10,7 @@ clusterName: ''
 flinkKubernetesOperator:
   enable: false
 
-loki:
+lokiStack:
   enable: false
 
 # Agones Values

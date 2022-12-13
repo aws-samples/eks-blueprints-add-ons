@@ -1,4 +1,7 @@
-loki:
+loki-stack:
+  loki:
+    enable: true
+    
   promtail:
     enabled: true
 
