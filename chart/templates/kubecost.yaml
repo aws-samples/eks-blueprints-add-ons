@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        kubecost:
+        cost-analyzer:
         {{- toYaml .Values.kubecost | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
