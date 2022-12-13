@@ -1,9 +1,0 @@
-loki-stack:
-  loki:
-    enable: true
-    
-  promtail:
-    enabled: true
-
-  fluent-bit:
-    enabled: false

@@ -1,8 +1,8 @@
-{{- if and (.Values.lokiStack) (.Values.lokiStack.enable) -}}
+{{- if and (.Values.loki) (.Values.loki.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki-stack
+  name: loki
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,15 +10,15 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/loki-stack
+    path: add-ons/loki
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        loki-stack:
+        loki:
         {{- toYaml .Values.promtail | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: loki-stack
+    namespace: loki
   syncPolicy:
     automated:
       prune: true

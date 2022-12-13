@@ -1,0 +1,31 @@
+loki:
+  loki:
+    enable: true
+    
+  promtail:
+    enabled: true
+
+  fluent-bit:
+    enabled: false
+
+  monitoring:
+    dashboard:
+      enabled: true
+      namespace: 
+    rules:
+      enabled: true
+      namespace: 
+      additionalGroups:
+        - name: loki-rules
+          rules:
+            - record: job:loki_request_duration_seconds_bucket:sum_rate
+              expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, job)
+            - record: job_route:loki_request_duration_seconds_bucket:sum_rate
+              expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, job, route)
+            - record: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate
+              expr: sum(rate(container_cpu_usage_seconds_total[1m])) by (node, namespace, pod, container)
+    selfMonitoring:
+      enabled: true
+      namespace:
+    serviceMoitor:
+      enabled: true
