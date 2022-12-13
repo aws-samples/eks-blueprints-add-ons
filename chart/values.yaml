@@ -12,6 +12,7 @@ flinkKubernetesOperator:
 
 loki:
   enable: false
+  namespace: loki
 
 # Agones Values
 agones:
@@ -195,7 +196,7 @@ promtail:
   enable: false
   namespace: promtail
 
-# kubecost Values
+# becost Values
 kubecost:
   enable: false
 
@@ -218,6 +219,7 @@ reloader:
 # Kube Prometheus Stack
 kubePrometheusStack:
   enable: false
+  namespace: kube-prometheus-stack
 
 # Kyverno Values
 kyverno:
