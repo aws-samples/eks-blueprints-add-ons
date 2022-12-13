@@ -15,7 +15,7 @@ spec:
     helm:
       values: |
         loki:
-        {{- toYaml .Values.promtail | nindent 10 }}
+        {{- toYaml .Values.loki | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
