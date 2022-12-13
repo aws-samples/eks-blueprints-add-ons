@@ -1,8 +1,8 @@
-{{- if and (.Values.velero) (.Values.velero.enable) -}}
+{{- if and (.Values.thanos) (.Values.thanos.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: velero
+  name: thanos
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,15 +10,15 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/velero
+    path: add-ons/thanos
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        velero:
-        {{- toYaml .Values.velero | nindent 10 }}
+        thanos:
+        {{- toYaml .Values.thanos | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: velero
+    namespace: thanos
   syncPolicy:
     automated:
       prune: true
