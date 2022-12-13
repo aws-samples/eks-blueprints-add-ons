@@ -98,6 +98,10 @@ grafana:
   serviceAccount:
     create: false
 
+# Vault default Values
+vault:
+  enable: false
+
 # Karpenter Values
 karpenter:
   enable: false
