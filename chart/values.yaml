@@ -1,6 +1,6 @@
 # Global Values
 repoUrl: 'https://github.com/claypotai/gitops-k8s-addons.git'
-targetRevision: HEAD
+targetRevision: release-firewood
 region: ''
 account: ''
 clusterName: ''
