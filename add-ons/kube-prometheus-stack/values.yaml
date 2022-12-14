@@ -36,7 +36,7 @@ kube-prometheus-stack:
       additionalScrapeConfigs:
       - job_name: flink-jobs
         scrape_interval: 5s
-        metrics_path: /metrics/
+        metrics_path: /metrics
         scheme: http
         kubernetes_sd_configs:
         - role: pod
@@ -44,14 +44,10 @@ kube-prometheus-stack:
             names:
             - flink-operator        
         relabel_configs:
-        - source_labels: [__meta_kubernetes_namespace]
-          separator: ;
-          regex: flink-operator
+        - source_labels: [__meta_kubernetes_pod_container_name]
+          regex: ^(flink-kubernetes-operator|flink-main-container|)$
           action: keep
-        - source_labels: [__meta_kubernetes_pod_container_port_number]
-          action: keep
-          regex: 92[4-6][0-9]
-
+        
   prometheusOperator:
     admissionWebhooks:
       failurePolicy: Ignore
