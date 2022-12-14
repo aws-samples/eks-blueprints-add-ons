@@ -32,6 +32,18 @@ kube-prometheus-stack:
             requests:
               storage: 50Gi
 
+      # scrape flink jobs
+      additionalScrapeConfigs:
+      - job_name: flink-jobs
+        scrape_interval: 5s
+        metrics_path: /metrics/
+        scheme: http
+        kubernetes_sd_configs:
+        - role: pod
+          namespaces:
+            names:
+            - flink-operator        
+        
   prometheusOperator:
     admissionWebhooks:
       failurePolicy: Ignore
