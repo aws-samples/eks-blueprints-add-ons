@@ -44,17 +44,13 @@ kube-prometheus-stack:
             names:
             - flink-operator        
         relabel_configs:
-        - source_labels: [__meta_kubernetes_pod_label_type]
+        - source_labels: [__meta_kubernetes_namespace]
           separator: ;
-          regex: flink-native-kubernetes
-          replacement: $1
+          regex: flink-operator
           action: keep
-        - source_labels: [__meta_kubernetes_pod_container_name]
+        - source_labels: [__meta_kubernetes_pod_container_port_number]
           action: keep
-          regex: basic-example.*
-        - source_labels: [__meta_kubernetes_pod_container_name]
-          action: keep
-          regex: flink.*
+          regex: 92[4-6][0-9]
 
   prometheusOperator:
     admissionWebhooks:
