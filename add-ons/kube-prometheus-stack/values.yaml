@@ -47,6 +47,10 @@ kube-prometheus-stack:
         - source_labels: [__meta_kubernetes_pod_container_name]
           regex: ^(flink-kubernetes-operator|flink-main-container|)$
           action: keep
+        - source_labels: [__meta_kubernetes_pod_ip]
+          regex: .* 
+          replacement: $1:9249
+          target_label: __address__       # change target
         
   prometheusOperator:
     admissionWebhooks:
