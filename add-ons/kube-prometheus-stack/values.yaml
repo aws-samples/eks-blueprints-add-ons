@@ -47,7 +47,7 @@ kube-prometheus-stack:
         - source_labels: [__meta_kubernetes_pod_container_name]
           regex: ^(flink-kubernetes-operator|flink-main-container|)$
           action: keep
-        - source_labels: [__address__]
+        - source_labels: [__meta_kubernetes_pod_ip]
           regex: ".*" 
           target_label: "instance"
           replacement: "$1:9249"
