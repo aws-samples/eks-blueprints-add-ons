@@ -6,7 +6,7 @@ flink-kubernetes-operator:
     create: true
   
   metrics:
-    port: 
+    port: 9999
 
   defaultConfiguration:
     # If set to true, creates ConfigMaps/VolumeMounts. If set to false, no configuration will be created.
@@ -31,7 +31,8 @@ flink-kubernetes-operator:
       kubernetes.operator.reconcile.interval: 15 s
       kubernetes.operator.observer.progress-check.interval: 5 s
 
-      kubernetes.operator.metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter 
+      kubernetes.operator.metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter
+      kubernetes.operator.metrics.reporter.prom.port: 9999    
       
     log4j-operator.properties: |+
       # Flink Operator Logging Overrides
