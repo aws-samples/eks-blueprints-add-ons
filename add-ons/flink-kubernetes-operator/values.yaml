@@ -31,8 +31,7 @@ flink-kubernetes-operator:
       kubernetes.operator.reconcile.interval: 15 s
       kubernetes.operator.observer.progress-check.interval: 5 s
 
-      kubernetes.operator.metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter
-      kubernetes.operator.metrics.reporter.prom.port: 9999    
+      kubernetes.operator.metrics.reporter.prom.class: org.apache.flink.metrics.prometheus.PrometheusReporter 
       
     log4j-operator.properties: |+
       # Flink Operator Logging Overrides
