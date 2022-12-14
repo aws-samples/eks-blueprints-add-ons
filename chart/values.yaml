@@ -219,7 +219,7 @@ reloader:
 # Kube Prometheus Stack
 kubePrometheusStack:
   enable: false
-  namespace: kube-prometheus-stack
+  namespace: prom-stack
 
 # Kyverno Values
 kyverno:
