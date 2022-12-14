@@ -49,6 +49,12 @@ kube-prometheus-stack:
           regex: flink-native-kubernetes
           replacement: $1
           action: keep
+        - source_labels: [__meta_kubernetes_pod_container_name]
+          action: keep
+          regex: basic-example.*
+        - source_labels: [__meta_kubernetes_pod_container_name]
+          action: keep
+          regex: flink.*
 
   prometheusOperator:
     admissionWebhooks:
