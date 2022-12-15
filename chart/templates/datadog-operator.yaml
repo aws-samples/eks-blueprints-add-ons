@@ -14,8 +14,8 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        datadog-operator:
-        {{- toYaml .Values.datadogOperator | nindent 10 }}
+        datadog_operator:
+        {{- toYaml .Values.datadog_operator | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: datadog-operator
