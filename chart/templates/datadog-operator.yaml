@@ -1,4 +1,4 @@
-{{- if and (.Values.datadog_operator) (.Values.datadog_operator.enable) -}}
+{{- if and (.Values.datadogOperator) (.Values.datadogOperator.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -10,15 +10,15 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/datadog_operator
+    path: add-ons/datadog-operator
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        datadog_operator:
-        {{- toYaml .Values.datadog_operator | nindent 10 }}
+        datadog-operator:
+        {{- toYaml .Values.datadogOperator | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: datadog_operator
+    namespace: datadog-operator
   syncPolicy:
     automated:
       prune: true
