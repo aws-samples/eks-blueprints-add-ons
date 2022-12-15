@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: datadog_operator
+  name: datadog-operator
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
