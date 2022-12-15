@@ -1,4 +1,4 @@
-{{- if and (.Values.datadogOperator) (.Values.datadogOperator.enable) -}}
+{{- if and (.Values.datadog_operator) (.Values.datadog_operator.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
