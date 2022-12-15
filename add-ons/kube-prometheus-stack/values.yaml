@@ -34,7 +34,7 @@ kube-prometheus-stack:
 
       # scrape flink jobs
       additionalScrapeConfigs:
-      - job_name: flink-jobs-9249
+      - job_name: flink-jobs
         scrape_interval: 5s
         metrics_path: /metrics
         scheme: http
@@ -42,58 +42,58 @@ kube-prometheus-stack:
         - targets:
             - localhost:9249
             - localhost:9250
-        kubernetes_sd_configs:
-        - role: pod
-          namespaces:
-            names:
-            - flink-operator            
-        relabel_configs:
-        - source_labels: [__meta_kubernetes_pod_container_name]
-          regex: ^(flink-kubernetes-operator|flink-main-container|)$
-          action: keep
-          target_label: pod_container_name
-        - source_labels: [__meta_kubernetes_pod_controller_name]
-          regex: .*
-          action: keep
-          target_label: pod_controller_name
-        - source_labels: [__meta_kubernetes_pod_ip]
-          regex: .* 
-          target_label: pod_ip
-        - source_labels: [__address__]
-          action: replace
-          regex: ([^:]+):.*
-          replacement: $1:9249
-          target_label: __address__
-      - job_name: flink-jobs-9250
-        scrape_interval: 5s
-        metrics_path: /metrics
-        scheme: http
-        static_configs:
-        - targets:
-            - localhost:9249
-            - localhost:9250
-        kubernetes_sd_configs:
-        - role: pod
-          namespaces:
-            names:
-            - flink-operator            
-        relabel_configs:
-        - source_labels: [__meta_kubernetes_pod_container_name]
-          regex: ^(flink-kubernetes-operator|flink-main-container|)$
-          action: keep
-          target_label: pod_container_name
-        - source_labels: [__meta_kubernetes_pod_controller_name]
-          regex: .*
-          action: keep
-          target_label: pod_controller_name
-        - source_labels: [__meta_kubernetes_pod_ip]
-          regex: .* 
-          target_label: pod_ip
-        - source_labels: [__address__]
-          action: replace
-          regex: ([^:]+):.*
-          replacement: $1:9250
-          target_label: __address__
+      #   kubernetes_sd_configs:
+      #   - role: pod
+      #     namespaces:
+      #       names:
+      #       - flink-operator            
+      #   relabel_configs:
+      #   - source_labels: [__meta_kubernetes_pod_container_name]
+      #     regex: ^(flink-kubernetes-operator|flink-main-container|)$
+      #     action: keep
+      #     target_label: pod_container_name
+      #   - source_labels: [__meta_kubernetes_pod_controller_name]
+      #     regex: .*
+      #     action: keep
+      #     target_label: pod_controller_name
+      #   - source_labels: [__meta_kubernetes_pod_ip]
+      #     regex: .* 
+      #     target_label: pod_ip
+      #   - source_labels: [__address__]
+      #     action: replace
+      #     regex: ([^:]+):.*
+      #     replacement: $1:9249
+      #     target_label: __address__
+      # - job_name: flink-jobs-9250
+      #   scrape_interval: 5s
+      #   metrics_path: /metrics
+      #   scheme: http
+      #   static_configs:
+      #   - targets:
+      #       - localhost:9249
+      #       - localhost:9250
+      #   kubernetes_sd_configs:
+      #   - role: pod
+      #     namespaces:
+      #       names:
+      #       - flink-operator            
+      #   relabel_configs:
+      #   - source_labels: [__meta_kubernetes_pod_container_name]
+      #     regex: ^(flink-kubernetes-operator|flink-main-container|)$
+      #     action: keep
+      #     target_label: pod_container_name
+      #   - source_labels: [__meta_kubernetes_pod_controller_name]
+      #     regex: .*
+      #     action: keep
+      #     target_label: pod_controller_name
+      #   - source_labels: [__meta_kubernetes_pod_ip]
+      #     regex: .* 
+      #     target_label: pod_ip
+      #   - source_labels: [__address__]
+      #     action: replace
+      #     regex: ([^:]+):.*
+      #     replacement: $1:9250
+      #     target_label: __address__
           
   prometheusOperator:
     admissionWebhooks:
