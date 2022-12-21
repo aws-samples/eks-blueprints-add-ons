@@ -3,12 +3,16 @@ aws-for-fluent-bit:
     create: false
 
   cloudWatch:
+    enabled: true
 
   firehose:
+    enabled: false
 
   kinesis:
+    enabled: false
 
   elasticsearch:
+    enabled: false
 
   tolerations:
     - operator: 'Exists'
