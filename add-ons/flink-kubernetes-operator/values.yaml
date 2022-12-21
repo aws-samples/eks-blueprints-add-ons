@@ -8,6 +8,12 @@ flink-kubernetes-operator:
   metrics:
     port: 9249
 
+  operatorVolumeMounts:
+    create: true
+
+  operatorVolumes:
+    create: true
+
   defaultConfiguration:
     # If set to true, creates ConfigMaps/VolumeMounts. If set to false, no configuration will be created.
     # All below fields will be ignored if create is set to false.
