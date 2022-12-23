@@ -106,6 +106,7 @@ grafana:
   enable: false
   serviceAccount:
     create: false
+  namespace: prom-stack
 
 # Karpenter Values
 karpenter:
