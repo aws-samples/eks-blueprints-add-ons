@@ -3,3 +3,6 @@
 
 serviceAccount:
   create: false
+
+persistence:
+  enabled: true
