@@ -1,8 +1,10 @@
 # for details on all options
 # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 
-serviceAccount:
-  create: false
+grafana: 
 
-persistence:
-  enabled: true
+  serviceAccount:
+    create: false
+
+  persistence:
+    enabled: true
