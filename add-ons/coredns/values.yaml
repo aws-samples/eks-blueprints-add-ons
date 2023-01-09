@@ -1,0 +1,22 @@
+coredns:
+  k8sAppLabelOverride: kube-dns
+  priorityClassName: system-cluster-critical
+  service:
+    name: kube-dns
+  serviceAccount:
+    create: false
+  replicaCount: 3
+  podDisruptionBudget:
+    maxUnavailable: 1
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: k8s-app
+              operator: In
+              values:
+              - coredns
+          topologyKey: "topology.kubernetes.io/zone"

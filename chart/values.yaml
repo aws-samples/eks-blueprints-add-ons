@@ -234,3 +234,6 @@ nvidiaDevicePlugin:
 
 velero:
   enable: false
+
+coredns:
+  enable: false
