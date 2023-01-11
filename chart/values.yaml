@@ -108,6 +108,7 @@ karpenter:
   serviceAccountName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
+  interruptionQueueName:
 
 # Keda Values
 keda:

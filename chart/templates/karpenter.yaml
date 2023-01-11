@@ -25,6 +25,8 @@ spec:
           value: {{ .Values.karpenter.controllerClusterEndpoint }}
         - name: karpenter.settings.aws.defaultInstanceProfile
           value: {{ .Values.karpenter.awsDefaultInstanceProfile }}
+        - name: karpenter.settings.aws.interruptionQueueName
+          value: {{ .Values.karpenter.awsinterruptionQueueName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: karpenter
