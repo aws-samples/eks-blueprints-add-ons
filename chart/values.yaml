@@ -71,7 +71,7 @@ datadogOperator:
 
 # Strimzi Kafka Operator
 strimziKafkaOperator:
-  enabled: false
+  enable: false
 
 # External DNS Values
 externalDns:
