@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        strimzi-kafka-operator:
+        strimzi-topic-operator:
         {{- toYaml .Values.strimziTopicOperator | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
