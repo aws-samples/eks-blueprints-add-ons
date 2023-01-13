@@ -1,6 +1,0 @@
-dependencies:
-- name: strimzi-topic-operator
-  repository: oci://ghcr.io/sebelino
-  version: 0.1.0
-digest: sha256:ddf56c5d56066e48ecb2bc727609e5172ab32e85cb86688c05cdda3d894ee6c1
-generated: "2023-01-13T12:05:17.301793469+01:00"
