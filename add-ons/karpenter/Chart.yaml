@@ -16,5 +16,5 @@ appVersion: '1.0'
 
 dependencies:
   - name: karpenter
-    version: v0.22.0
+    version: v0.22.1
     repository: oci://public.ecr.aws/karpenter
