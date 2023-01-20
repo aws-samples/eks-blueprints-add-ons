@@ -164,6 +164,10 @@ thanos:
 traefik:
   enable: false
 
+# Trino Values
+trino:
+  enable: false
+
 # VPA Values
 vpa:
   enable: false
