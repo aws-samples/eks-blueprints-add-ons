@@ -1,5 +1,3 @@
 prometheus-node-exporter:
-  # replicas: 3
-  # podDisruptionBudget:
-  #   enabled: true
-  #   maxUnavailable: 1
+  serviceAccount:
+    create: false
