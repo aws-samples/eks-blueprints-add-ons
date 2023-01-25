@@ -5,6 +5,10 @@ region: ''
 account: ''
 clusterName: ''
 
+# Timescale Values
+timescaledb-single:
+  enable: false
+
 # Agones Values
 agones:
   enable: false

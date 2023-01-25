@@ -1,0 +1,17 @@
+apiVersion: v2
+name: timescaledb-single
+description: A Helm chart for installing timescaledb-single
+type: application
+
+# The chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# Version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: "1.0"
+
+dependencies:
+- name: timescaledb-single
+  version: 0.32.0
+  repository: https://github.com/timescale/helm-charts
