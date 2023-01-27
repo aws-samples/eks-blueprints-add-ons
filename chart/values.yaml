@@ -239,3 +239,7 @@ nvidiaDevicePlugin:
 
 velero:
   enable: false
+
+otelCollectorArgocd:
+  enable: false
+  serviceAccountName:
