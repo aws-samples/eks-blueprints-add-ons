@@ -19,12 +19,14 @@ spec:
       parameters:
         - name: karpenter.serviceAccount.name
           value: {{ .Values.karpenter.serviceAccountName }}
-        - name: karpenter.clusterName
+        - name: karpenter.settings.aws.clusterName
           value: {{ .Values.clusterName }}
-        - name: karpenter.clusterEndpoint
+        - name: karpenter.settings.aws.clusterEndpoint
           value: {{ .Values.karpenter.controllerClusterEndpoint }}
-        - name: karpenter.aws.defaultInstanceProfile
+        - name: karpenter.settings.aws.defaultInstanceProfile
           value: {{ .Values.karpenter.awsDefaultInstanceProfile }}
+        - name: karpenter.settings.aws.interruptionQueueName
+          value: {{ .Values.karpenter.awsInterruptionQueueName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: karpenter
