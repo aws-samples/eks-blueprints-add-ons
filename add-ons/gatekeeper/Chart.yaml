@@ -16,5 +16,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: gatekeeper
-  version: 3.6.0
+  version: 3.11.0
   repository: https://open-policy-agent.github.io/gatekeeper/charts
