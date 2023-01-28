@@ -1,2 +1,5 @@
 opentelemetry-collector:
+  serviceAccount:
+    create: false
+    name: "otel-collector-argocd-sa"
   mode: "deployment"
