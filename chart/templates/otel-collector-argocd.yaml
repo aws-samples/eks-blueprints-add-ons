@@ -13,15 +13,6 @@ spec:
     path: add-ons/otel-collector-argocd
     targetRevision: {{ .Values.targetRevision }}
     helm:
-      # values: |
-      #     {{- toYaml .Values.otelCollectorArgocd| nindent 9 }}
-      #   otel-collector-argocd:
-      #   {{- toYaml .Values.otelCollectorArgocd| nindent 10 }}
-      # parameters:
-      # - name: otel-collector-argocd.aws.region
-      #   value: {{ .Values.region }}
-      # - name: otel-collector-argocd.serviceAccount.name
-      #   value: {{ .Values.otelCollectorArgocd.serviceAccountName }}
       valueFiles:
       - values.yaml
   destination:
