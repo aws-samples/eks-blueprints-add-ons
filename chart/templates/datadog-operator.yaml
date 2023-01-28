@@ -1,8 +1,8 @@
-{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+{{- if and (.Values.datadogOperator) (.Values.datadogOperator.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: datadog-operator
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,18 +10,20 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/argo-rollouts
+    path: add-ons/datadog-operator
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        argo-rollouts:
-        {{- toYaml .Values.argoRollouts | nindent 10 }}
+        datadog-operator:
+        {{- toYaml .Values.datadogOperator | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-rollouts
+    namespace: datadog-operator
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+    - CreateNamespace=true
     retry:
       limit: 1
       backoff:

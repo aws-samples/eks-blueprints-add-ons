@@ -1,6 +1,6 @@
 apiVersion: v2
-name: external-dns
-description: A Helm chart for External DNS
+name: otel-collector-argocd
+description: A Helm chart for OpenTelemetry Collector
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
@@ -14,7 +14,10 @@ version: 0.1.0
 # incremented each time you make changes to the application.
 appVersion: "1.0"
 
+      # chart       = "opentelemetry-collector"
+      # repository  = "https://open-telemetry.github.io/opentelemetry-helm-charts"
+      # version     = "0.47.0"
 dependencies:
-  - name: external-dns
-    version: 6.5.6
-    repository: https://charts.bitnami.com/bitnami
+  - name: opentelemetry-collector
+    version: 0.47.0
+    repository: https://open-telemetry.github.io/opentelemetry-helm-charts

@@ -1,8 +1,8 @@
-{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+{{- if and (.Values.prometheusNodeExporter) (.Values.prometheusNodeExporter.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: prometheus-node-exporter
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,18 +10,23 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/argo-rollouts
+    path: add-ons/prometheus-node-exporter
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        argo-rollouts:
-        {{- toYaml .Values.argoRollouts | nindent 10 }}
+        prometheus-node-exporter:
+        {{- toYaml .Values.promtheusNodeExporter | nindent 10 }}
+      parameters:
+      - name: prometheus-node-exporter.serviceAccount.name
+        value: {{ .Values.promtheusNodeExporter.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-rollouts
+    namespace: prometheus-node-exporter
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace=true
     retry:
       limit: 1
       backoff:

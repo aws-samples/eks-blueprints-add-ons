@@ -40,6 +40,11 @@ awsLoadBalancerController:
   podDisruptionBudget:
     maxUnavailable: 1
 
+# AWS Node Termination Handler Values
+awsNodeTerminationHandler:
+  enable: false
+  serviceAccountName:
+
 # AWS Otel Collector Values
 awsOtelCollector:
   enable: false
@@ -59,6 +64,14 @@ certManagerCsiDriver:
 clusterAutoscaler:
   enable: false
   serviceAccountName:
+
+# Datadog Operator
+datadogOperator:
+  enable: false
+
+# Strimzi Kafka Operator
+strimziKafkaOperator:
+  enable: false
 
 # External DNS Values
 externalDns:
@@ -85,12 +98,17 @@ grafana:
   serviceAccount:
     create: false
 
+# Vault default Values
+vault:
+  enable: false
+
 # Karpenter Values
 karpenter:
   enable: false
   serviceAccountName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
+  interruptionQueueName:
 
 # Keda Values
 keda:
@@ -139,6 +157,10 @@ tetrateIstio:
   istiod:
   global:
 
+# Thanos Values
+thanos:
+  enable: false
+
 # Traefik Values
 traefik:
   enable: false
@@ -155,11 +177,20 @@ yunikorn:
 argoRollouts:
   enable: false
 
+# Argo Rollout Values
+argoWorkflows:
+  enable: false
+
 # Kube State Metrics Values
 kubeStateMetrics:
   enable: false
   serviceAccountName:
 
+# Prometheus Node Exporter
+promtheusNodeExporter:
+  enable: false
+  serviceAccountName:
+  
 # Kubernetes Dashboard Values
 kubernetesDashboard:
   enable: false
@@ -189,6 +220,20 @@ cilium:
 reloader:
   enable: false
 
+# Kube Prometheus Stack
+kubePrometheusStack:
+  enable: false
+
+# Kyverno Values
+kyverno:
+  enable: false
+
+policies:
+  enable: false
+
+reporter:
+  enable: false
+
 # NVIDIA Device Plugin Values
 nvidiaDevicePlugin:
   enable: false
@@ -196,3 +241,10 @@ nvidiaDevicePlugin:
 # Consul Values
 consul:
   enable: false
+  
+velero:
+  enable: false
+
+otelCollectorArgocd:
+  enable: false
+  serviceAccountName:

@@ -1,8 +1,8 @@
-{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+{{- if and (.Values.argoWorkflows) (.Values.argoWorkflows.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: argo-workflows
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,15 +10,15 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/argo-rollouts
+    path: add-ons/argo-workflows
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        argo-rollouts:
-        {{- toYaml .Values.argoRollouts | nindent 10 }}
+        argo-workflows:
+        {{- toYaml .Values.argoWorkflows | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-rollouts
+    namespace: argo-workflows
   syncPolicy:
     automated:
       prune: true
