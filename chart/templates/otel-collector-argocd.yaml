@@ -14,13 +14,14 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        otel-collector-argocd:
-        {{- toYaml .Values.otelCollectorArgocd| nindent 10 }}
-      parameters:
-      - name: otel-collector-argocd.aws.region
-        value: {{ .Values.region }}
-      - name: otel-collector-argocd.serviceAccount.name
-        value: {{ .Values.otelCollectorArgocd.serviceAccountName }}
+        mode: "deployment"
+      #   otel-collector-argocd:
+      #   {{- toYaml .Values.otelCollectorArgocd| nindent 10 }}
+      # parameters:
+      # - name: otel-collector-argocd.aws.region
+      #   value: {{ .Values.region }}
+      # - name: otel-collector-argocd.serviceAccount.name
+      #   value: {{ .Values.otelCollectorArgocd.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: otel-collector-argocd
