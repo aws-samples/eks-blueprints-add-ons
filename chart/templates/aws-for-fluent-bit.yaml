@@ -37,6 +37,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.awsForFluentBit.createNamespace }}
     retry:
       limit: 1
       backoff:
