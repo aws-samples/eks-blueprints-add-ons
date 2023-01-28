@@ -1,0 +1,3 @@
+prometheus-node-exporter:
+  serviceAccount:
+    create: false
