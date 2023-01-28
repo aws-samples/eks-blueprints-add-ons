@@ -1,5 +1,6 @@
-otel-collector-argocd:
-  serviceAccount:
-    create: false
-    name: "otel-collector-argocd-sa"
-  provider: "aws"
+mode: "deployment"
+# otel-collector-argocd:
+#   serviceAccount:
+#     create: false
+#     name: "otel-collector-argocd-sa"
+#   provider: "aws"
