@@ -2,16 +2,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yunikorn 
+  name: yunikorn
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/yunikorn
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        yunikorn:
+        {{- toYaml .Values.yunikorn | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: yunikorn
@@ -23,7 +27,7 @@ spec:
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

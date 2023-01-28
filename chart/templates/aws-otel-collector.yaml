@@ -2,17 +2,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-otel-collector 
+  name: aws-otel-collector
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-otel-collector
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
+    helm:
+      values: |
+        aws-otel-collector:
+        {{- toYaml .Values.awsOtelCollector | nindent 10 }}
       parameters:
       - name: aws-otel-collector.region
         value: {{ .Values.region }}
@@ -31,7 +34,7 @@ spec:
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

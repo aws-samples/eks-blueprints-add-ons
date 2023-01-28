@@ -1,9 +1,9 @@
 # Global Values
-repoUrl: "https://github.com/aws-samples/eks-blueprints-add-ons.git"
+repoUrl: 'https://github.com/aws-samples/eks-blueprints-add-ons.git'
 targetRevision: HEAD
-region: ""
-account: ""
-clusterName: ""
+region: ''
+account: ''
+clusterName: ''
 
 # Agones Values
 agones: 
@@ -16,7 +16,7 @@ appMesh:
   createNamespace: true
 
 # Calico Values
-awsCalico:
+calico:
   enable: false
 
 # AWS CloudWatch Metrics Values
@@ -35,17 +35,27 @@ awsForFluentBit:
   enable: false
   createNamespace: true
   logGroupName:
+  serviceAccountName:
 
 # AWS Load Balancer Controller Values
 awsLoadBalancerController:
   enable: false
   createNamespace: true
   serviceAccountName:
+  podDisruptionBudget:
+    maxUnavailable: 1
+
+# AWS Node Termination Handler Values
+awsNodeTerminationHandler:
+  enable: false
+  serviceAccountName:
 
 # AWS Otel Collector Values
 awsOtelCollector:
   enable: false
   createNamespace: true
+  otlpEndpoint:
+  resourceAttributes:
 
 # Cert Manager Values
 certManager:
@@ -53,10 +63,22 @@ certManager:
   createNamespace: true
   serviceAccountName:
 
+# Cert Manager CSI Driver Values
+certManagerCsiDriver:
+  enable: false
+
 # Cluster Autoscaler Values
 clusterAutoscaler:
   enable: false
   serviceAccountName:
+
+# Datadog Operator
+datadogOperator:
+  enable: false
+
+# Strimzi Kafka Operator
+strimziKafkaOperator:
+  enable: false
 
 # External DNS Values
 externalDns:
@@ -65,26 +87,42 @@ externalDns:
   serviceAccountName:
   zoneIdFilter:
 
+# External Secrets Operator
+externalSecrets:
+  enable: false
+
 # Gatekeeper Values
-gatekeeper: 
+gatekeeper:
   enable: false
   createNamespace: true
+  clusterName:
 
 # Nginx Values
 ingressNginx:
   enable: false
   createNamespace: true
 
+# Grafana default Values
+grafana:
+  enable: false
+  serviceAccount:
+    create: false
+
+# Vault default Values
+vault:
+  enable: false
+
 # Karpenter Values
-karpenter: 
+karpenter:
   enable: false
   createNamespace: true
   serviceAccountName:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
+  interruptionQueueName:
 
 # Keda Values
-keda: 
+keda:
   enable: false
   createNamespace: true
   serviceAccountName:
@@ -97,6 +135,7 @@ metricsServer:
 ondat:
   enable: false
   createNamespace: true
+  etcdClusterCreate: false
   serviceAccountName:
   clusterSecretRefName:
   clusterAdminUsername:
@@ -106,13 +145,18 @@ ondat:
   clusterKvBackendTLSSecretNamespace:
   clusterNodeSelectorTermKey:
   clusterNodeSelectorTermValue:
+  etcdNodeSelectorTermKey:
+  etcdNodeSelectorTermValue:
+  etcdClusterReplicas:
+  etcdClusterStorageclass:
+  etcdClusterStorage:
 
 # Prometheus Values
 prometheus:
   enable: false
   createNamespace: true
   serviceAccountName:
-  roleArn: 
+  roleArn:
   ampWorkspaceUrl:
 
 # Metrics Server Values
@@ -124,6 +168,14 @@ sparkOperator:
 tetrateIstio:
   enable: false
   createNamespace: true
+  base:
+  cni:
+  istiod:
+  global:
+
+# Thanos Values
+thanos:
+  enable: false
 
 # Traefik Values
 traefik:
@@ -131,12 +183,12 @@ traefik:
   createNamespace: true
 
 # VPA Values
-vpa: 
+vpa:
   enable: false
   createNamespace: true
 
 # Yunikorn Values
-yunikorn: 
+yunikorn:
   enable: false
   createNamespace: true
 
@@ -145,13 +197,75 @@ argoRollouts:
   enable: false
   createNamespace: true
 
+# Argo Rollout Values
+argoWorkflows:
+  enable: false
+
 # Kube State Metrics Values
 kubeStateMetrics:
   enable: false
   createNamespace: true
   serviceAccountName:
 
+# Prometheus Node Exporter
+promtheusNodeExporter:
+  enable: false
+  serviceAccountName:
+  
 # Kubernetes Dashboard Values
 kubernetesDashboard:
+  enable: false
+  serviceAccountName:
+
+# promtail Values
+promtail:
+  enable: false
+
+# kubecost Values
+kubecost:
+  enable: false
+
+# SMB CSI Driver Values
+smbCsiDriver:
+  enable: false
+
+# Chaos Mesh Values
+chaosMesh:
+  enable: false
+
+# Cilium Mesh Values
+cilium:
+  enable: false
+
+# Reloader Values
+reloader:
+  enable: false
+
+# Kube Prometheus Stack
+kubePrometheusStack:
+  enable: false
+
+# Kyverno Values
+kyverno:
+  enable: false
+
+policies:
+  enable: false
+
+reporter:
+  enable: false
+
+# NVIDIA Device Plugin Values
+nvidiaDevicePlugin:
+  enable: false
+
+# Consul Values
+consul:
+  enable: false
+  
+velero:
+  enable: false
+
+otelCollectorArgocd:
   enable: false
   serviceAccountName:

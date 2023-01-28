@@ -1,0 +1,31 @@
+{{- if and (.Values.calico) (.Values.calico.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calico
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/calico
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        calico:
+        {{- toYaml .Values.calico | nindent 10 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

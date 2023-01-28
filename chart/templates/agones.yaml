@@ -2,16 +2,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: agones 
+  name: agones
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/agones
     targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        agones:
+        {{- toYaml .Values.agones | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: agones-system
@@ -23,7 +27,7 @@ spec:
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

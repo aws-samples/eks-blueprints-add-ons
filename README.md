@@ -4,7 +4,7 @@ Welcome to the EKS Blueprints Add-ons repository.
 
 This repository contains GitOps configuration which follows the ArgoCD App of Apps pattern. It demonstrates how EKS customers can leverage ArgoCD to easily bootstrap an EKS cluster with a wide variety of Kubernetes add-ons.
 
-## Usage 
+## Usage
 
 ### With the EKS Blueprints Framework
 
@@ -30,7 +30,7 @@ spec:
     repoURL: https://github.com/aws-samples/eks-blueprints-add-ons.git
     targetRevision: HEAD
     path: chart
-    helm: 
+    helm:
       release: add-ons
       values: |
         cluster-autoscaler:
@@ -46,15 +46,15 @@ Note that you specify which add-ons should be installed by supplying values in t
 
 #### Deploy the add-ons
 
-Apply the yaml to bootstrap the cluster. 
+Apply the yaml to bootstrap the cluster.
 
 ```
 kubectl apply -n argocd -f application.yaml
 ```
 
-## Repo Structure 
+## Repo Structure
 
-The structure of this repository follows the ArgoCD [App of Apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#app-of-apps) pattern. The configuration in this repository is organized into two directories: `chart` and `add-ons`. 
+The structure of this repository follows the ArgoCD [App of Apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#app-of-apps) pattern. The configuration in this repository is organized into two directories: `chart` and `add-ons`.
 
 ```
 ├── chart
@@ -63,14 +63,14 @@ The structure of this repository follows the ArgoCD [App of Apps](https://argo-c
 
 ### Chart
 
-The `chart` directory contains a Helm chart which represents the root Application for the ArgoCD App of Apps pattern. This Helm chart in turn deploys additional ArgoCD Application resources which represent additional add-on Helm charts. 
+The `chart` directory contains a Helm chart which represents the root Application for the ArgoCD App of Apps pattern. This Helm chart in turn deploys additional ArgoCD Application resources which represent additional add-on Helm charts.
 
 ```
 chart
 ├── templates
 │   └── agones.yaml
 │   └── appmesh-controller.yaml
-│   └── aws-calico.yaml
+│   └── calico.yaml
 │   └── aws-cloudwatch-metrics-calico.yaml
 │   └── aws-for-fluent-bit.yaml
 │   └── aws-load-balancer-controller.yaml
@@ -81,9 +81,9 @@ chart
 ├── values.yaml
 ```
 
-### Add-ons 
+### Add-ons
 
-The `add-ons` directory contains a dedicated Helm chart that deploys each individual add-on. 
+The `add-ons` directory contains a dedicated Helm chart that deploys each individual add-on.
 
 ```
 add-ons
@@ -93,9 +93,8 @@ add-ons
 ├── appmesh-controller
 │   └── Chart.yaml
 │   └── values.yaml
-├── aws-calico.yaml
+├── calico.yaml
 │   └── Chart.yaml
-│   └── values.yaml
 ├── aws-cloudwatch-metrics.yaml
 │   └── Chart.yaml
 │   └── values.yaml

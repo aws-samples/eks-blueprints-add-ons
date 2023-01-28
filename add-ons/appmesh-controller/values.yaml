@@ -1,8 +1,8 @@
 appmesh-controller:
-  serviceAccount: 
-    create: false 
+  serviceAccount:
+    create: false
     name: "app-mesh-controller-sa"
-  tracing: 
+  tracing:
     enabled: false
     provider: ""
     address: ""

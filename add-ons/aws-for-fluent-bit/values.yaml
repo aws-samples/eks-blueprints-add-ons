@@ -1,5 +1,5 @@
 aws-for-fluent-bit:
-  serviceAccount: 
+  serviceAccount:
     create: false
 
   cloudWatch:
@@ -9,3 +9,6 @@ aws-for-fluent-bit:
   kinesis:
 
   elasticsearch:
+
+  tolerations:
+    - operator: 'Exists'

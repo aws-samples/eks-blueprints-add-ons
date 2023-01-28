@@ -5,14 +5,17 @@ metadata:
   name: aws-for-fluent-bit
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-for-fluent-bit
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
+    helm:
+      values: |
+        aws-for-fluent-bit:
+        {{- toYaml .Values.awsForFluentBit | nindent 10 }}
       parameters:
       - name: aws-for-fluent-bit.cloudWatch.region
         value: {{ .Values.region }}
@@ -39,7 +42,7 @@ spec:
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m  
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
 {{- end -}}

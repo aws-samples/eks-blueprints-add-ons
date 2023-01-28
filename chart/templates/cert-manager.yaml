@@ -2,10 +2,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager 
+  name: cert-manager
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io    
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -13,6 +13,9 @@ spec:
     path: add-ons/cert-manager
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      values: |
+        cert-manager:
+        {{- toYaml .Values.certManager | nindent 10 }}
       parameters:
       - name: cert-manager.serviceAccount.name
         value: {{ .Values.certManager.serviceAccountName }}
@@ -27,7 +30,7 @@ spec:
     retry:
       limit: 1
       backoff:
-        duration: 5s 
-        factor: 2 
-        maxDuration: 1m 
-{{- end -}} 
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}

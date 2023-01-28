@@ -1,0 +1,31 @@
+{{- if and (.Values.chaosMesh) (.Values.chaosMesh.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chaos-mesh
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/chaos-mesh
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        chaos-mesh:
+        {{- toYaml .Values.chaosMesh | nindent 10 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chaos-testing
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}
