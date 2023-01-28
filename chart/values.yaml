@@ -240,6 +240,6 @@ nvidiaDevicePlugin:
 velero:
   enable: false
 
-otelCollectorArgocd:
+opentelemetryCollector:
   enable: false
   serviceAccountName:

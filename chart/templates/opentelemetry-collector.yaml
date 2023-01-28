@@ -1,8 +1,8 @@
-{{- if and (.Values.otelCollectorArgocd) (.Values.otelCollectorArgocd.enable) -}}
+{{- if and (.Values.opentelemetryCollector) (.Values.opentelemetryCollector.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: otel-collector-argocd
+  name: opentelemetry-collector
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,14 +10,14 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/otel-collector-argocd
+    path: add-ons/opentelemetry-collector
     targetRevision: {{ .Values.targetRevision }}
     helm:
       valueFiles:
       - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: otel-collector-argocd
+    namespace: opentelemetry-collector
   syncPolicy:
     automated:
       prune: true
