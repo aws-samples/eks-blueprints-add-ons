@@ -243,3 +243,4 @@ velero:
 otelCollectorArgocd:
   enable: false
   serviceAccountName:
+  mode: "deployment"
