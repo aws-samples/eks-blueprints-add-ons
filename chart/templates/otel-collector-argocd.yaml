@@ -13,6 +13,9 @@ spec:
     path: add-ons/otel-collector-argocd
     targetRevision: {{ .Values.targetRevision }}
     helm:
+      parameters:
+      - name: "opentelemetry-collector.mode"
+        value: "daemonset"
       valueFiles:
       - values.yaml
   destination:
