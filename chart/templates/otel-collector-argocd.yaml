@@ -13,8 +13,8 @@ spec:
     path: add-ons/otel-collector-argocd
     targetRevision: {{ .Values.targetRevision }}
     helm:
-      values: |
-          {{- toYaml .Values.otelCollectorArgocd| nindent 9 }}
+      # values: |
+      #     {{- toYaml .Values.otelCollectorArgocd| nindent 9 }}
       #   otel-collector-argocd:
       #   {{- toYaml .Values.otelCollectorArgocd| nindent 10 }}
       # parameters:
@@ -22,6 +22,8 @@ spec:
       #   value: {{ .Values.region }}
       # - name: otel-collector-argocd.serviceAccount.name
       #   value: {{ .Values.otelCollectorArgocd.serviceAccountName }}
+      valueFiles:
+      - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: otel-collector-argocd
