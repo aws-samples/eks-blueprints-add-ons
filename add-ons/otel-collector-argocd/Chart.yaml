@@ -1,6 +1,6 @@
 apiVersion: v2
-name: gatekeeper
-description: A Helm chart for GateKeeper OPA
+name: otel-collector-argocd
+description: A Helm chart for OpenTelemetry Collector
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
@@ -14,7 +14,10 @@ version: 0.1.0
 # incremented each time you make changes to the application.
 appVersion: "1.0"
 
+      # chart       = "opentelemetry-collector"
+      # repository  = "https://open-telemetry.github.io/opentelemetry-helm-charts"
+      # version     = "0.47.0"
 dependencies:
-- name: gatekeeper
-  version: 3.11.0
-  repository: https://open-policy-agent.github.io/gatekeeper/charts
+  - name: opentelemetry-collector
+    version: 0.47.0
+    repository: https://open-telemetry.github.io/opentelemetry-helm-charts

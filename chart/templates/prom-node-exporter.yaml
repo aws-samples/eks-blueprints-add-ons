@@ -1,8 +1,8 @@
-{{- if and (.Values.vpa) (.Values.vpa.enable) -}}
+{{- if and (.Values.prometheusNodeExporter) (.Values.prometheusNodeExporter.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vpa
+  name: prometheus-node-exporter
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,20 +10,23 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/vpa
+    path: add-ons/prometheus-node-exporter
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        vpa:
-        {{- toYaml .Values.vpa | nindent 10 }}
+        prometheus-node-exporter:
+        {{- toYaml .Values.promtheusNodeExporter | nindent 10 }}
+      parameters:
+      - name: prometheus-node-exporter.serviceAccount.name
+        value: {{ .Values.promtheusNodeExporter.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: vpa
+    namespace: prometheus-node-exporter
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace={{ .Values.vpa.createNamespace }}
+      - CreateNamespace=true
     retry:
       limit: 1
       backoff:

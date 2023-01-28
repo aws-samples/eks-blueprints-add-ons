@@ -9,3 +9,6 @@ aws-for-fluent-bit:
   kinesis:
 
   elasticsearch:
+
+  tolerations:
+    - operator: 'Exists'

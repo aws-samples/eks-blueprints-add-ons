@@ -1,6 +1,6 @@
 apiVersion: v2
-name: gatekeeper
-description: A Helm chart for GateKeeper OPA
+name: prometheus-node-exporter
+description: A Helm chart for installing Prometheus Node Exporter
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
@@ -15,6 +15,6 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-- name: gatekeeper
-  version: 3.11.0
-  repository: https://open-policy-agent.github.io/gatekeeper/charts
+- name: prometheus-node-exporter
+  version: 4.13.0
+  repository: https://prometheus-community.github.io/helm-charts

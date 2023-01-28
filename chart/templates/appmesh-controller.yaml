@@ -23,7 +23,7 @@ spec:
     automated:
       prune: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace={{ .Values.appMesh.createNamespace }}
     retry:
       limit: 1
       backoff:
