@@ -3,3 +3,38 @@ opentelemetry-collector:
     create: false
     name: "opentelemetry-collector-sa"
   mode: "deployment"
+  presets:
+  # Configures the collector to collect logs.
+  # Adds the filelog receiver to the logs pipeline
+  # and adds the necessary volumes and volume mounts.
+  # Best used with mode = daemonset.
+  logsCollection:
+    enabled: false
+    includeCollectorLogs: false
+    # Enabling this writes checkpoints in /var/lib/otelcol/ host directory.
+    # Note this changes collector's user to root, so that it can write to host directory.
+    storeCheckpoints: false
+  # Configures the collector to collect host metrics.
+  # Adds the hostmetrics receiver to the metrics pipeline
+  # and adds the necessary volumes and volume mounts.
+  # Best used with mode = daemonset.
+  hostMetrics:
+    enabled: true
+  # Configures the Kubernetes Processor to add Kubernetes metadata.
+  # Adds the k8sattributes processor to all the pipelines
+  # and adds the necessary rules to ClusteRole.
+  # Best used with mode = daemonset.
+  kubernetesAttributes:
+    enabled: true
+  # Configures the Kubernetes Cluster Receiver to collect cluster-level metrics.
+  # Adds the k8s_cluster receiver to the metrics pipeline
+  # and adds the necessary rules to ClusteRole.
+  # Best used with mode = deployment or statefulset.
+  clusterMetrics:
+    enabled: true
+  # Configures the collector to collect Kubelet metrics.
+  # Adds the kubeletstats receiver to the metrics pipeline
+  # and adds the necessary rules to ClusteRole.
+  # Best used with mode = daemonset.
+  kubeletMetrics:
+    enabled: true
