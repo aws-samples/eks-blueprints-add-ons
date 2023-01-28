@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        mode: "deployment"
+          {{- toYaml .Values.otelCollectorArgocd| nindent 9 }}
       #   otel-collector-argocd:
       #   {{- toYaml .Values.otelCollectorArgocd| nindent 10 }}
       # parameters:
