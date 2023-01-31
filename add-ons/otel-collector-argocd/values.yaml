@@ -1,5 +1,0 @@
-otel-collector-argocd:
-  serviceAccount:
-    create: false
-    name: "otel-collector-argocd-sa"
-  provider: "aws"
