@@ -212,12 +212,6 @@ promtheusNodeExporter:
   enable: false
   serviceAccountName:
   
-
-# Prometheus Node Exporter
-promtheusNodeExporter:
-  enable: false
-  serviceAccountName:
-  
 # Kubernetes Dashboard Values
 kubernetesDashboard:
   enable: false
