@@ -27,6 +27,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.awsLoadBalancerController.createNamespace }}
     retry:
       limit: 1
       backoff:

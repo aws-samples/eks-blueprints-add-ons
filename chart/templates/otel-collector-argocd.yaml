@@ -1,8 +1,8 @@
-{{- if and (.Values.kubeStateMetrics) (.Values.kubeStateMetrics.enable) -}}
+{{- if and (.Values.otelCollectorArgocd) (.Values.otelCollectorArgocd.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-state-metrics
+  name: otel-collector-argocd
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,23 +10,25 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/kube-state-metrics
+    path: add-ons/otel-collector-argocd
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        kube-state-metrics:
-        {{- toYaml .Values.kubeStateMetrics | nindent 10 }}
+        otel-collector-argocd:
+        {{- toYaml .Values.otelCollectorArgocd| nindent 10 }}
       parameters:
-      - name: kube-state-metrics.serviceAccount.name
-        value: {{ .Values.kubeStateMetrics.serviceAccountName }}
+      - name: otel-collector-argocd.aws.region
+        value: {{ .Values.region }}
+      - name: otel-collector-argocd.serviceAccount.name
+        value: {{ .Values.otelCollectorArgocd.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-state-metrics
+    namespace: otel-collector-argocd
   syncPolicy:
     automated:
       prune: true
     syncOptions:
-      - CreateNamespace={{ .Values.kubeStateMetrics.createNamespace }}
+    - CreateNamespace=true
     retry:
       limit: 1
       backoff:

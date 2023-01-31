@@ -37,6 +37,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.prometheus.createNamespace }}
     retry:
       limit: 1
       backoff:

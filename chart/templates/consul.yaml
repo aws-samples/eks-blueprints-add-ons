@@ -1,8 +1,8 @@
-{{- if and (.Values.vpa) (.Values.vpa.enable) -}}
+{{- if and (.Values.consul) (.Values.consul.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vpa
+  name: consul
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,20 +10,18 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/vpa
+    path: add-ons/consul
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        vpa:
-        {{- toYaml .Values.vpa | nindent 10 }}
+        consul:
+        {{- toYaml .Values.consul | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: vpa
+    namespace: consul
   syncPolicy:
     automated:
       prune: true
-    syncOptions:
-      - CreateNamespace={{ .Values.vpa.createNamespace }}
     retry:
       limit: 1
       backoff:
