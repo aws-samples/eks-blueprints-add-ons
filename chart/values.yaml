@@ -111,6 +111,9 @@ grafana:
 # Vault default Values
 vault:
   enable: false
+  server:
+    dataStorage:
+      enabled: true
 
 # Karpenter Values
 karpenter:

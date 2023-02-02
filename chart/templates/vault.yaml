@@ -14,7 +14,8 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        {{- toYaml .Values.vault | nindent 8 }}
+        vault:
+        {{- toYaml .Values.vault | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
