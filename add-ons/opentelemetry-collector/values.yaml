@@ -1,0 +1,5 @@
+opentelemetry-collector:
+  serviceAccount:
+    create: false
+    name: "opentelemetry-collector-sa"
+  mode: "deployment"
