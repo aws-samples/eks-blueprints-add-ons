@@ -4,6 +4,7 @@ targetRevision: HEAD
 region: ''
 account: ''
 clusterName: ''
+destinationServer: ''
 
 # Agones Values
 agones: 
