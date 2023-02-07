@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics-server
+  name: {{ .Values.clusterName }}-metrics-server
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
