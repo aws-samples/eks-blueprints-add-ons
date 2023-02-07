@@ -17,7 +17,7 @@ spec:
         kubecost:
         {{- toYaml .Values.kubecost | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: kubecost
   syncPolicy:
     automated:

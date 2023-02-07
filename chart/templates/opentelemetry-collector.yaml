@@ -16,7 +16,7 @@ spec:
       valueFiles:
       - values.yaml
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: opentelemetry-collector
   syncPolicy:
     automated:

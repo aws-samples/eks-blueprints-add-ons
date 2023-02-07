@@ -20,7 +20,7 @@ spec:
       - name: kubernetes-dashboard.serviceAccount.name
         value: {{ .Values.kubernetesDashboard.serviceAccountName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: kube-system
   syncPolicy:
     automated:

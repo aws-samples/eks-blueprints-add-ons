@@ -20,7 +20,7 @@ spec:
       - name: kube-state-metrics.serviceAccount.name
         value: {{ .Values.kubeStateMetrics.serviceAccountName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: kube-state-metrics
   syncPolicy:
     automated:

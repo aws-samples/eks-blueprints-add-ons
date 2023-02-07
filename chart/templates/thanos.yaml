@@ -17,7 +17,7 @@ spec:
         thanos:
         {{- toYaml .Values.thanos | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: thanos
   syncPolicy:
     automated:

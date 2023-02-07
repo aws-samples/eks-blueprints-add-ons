@@ -20,7 +20,7 @@ spec:
       - name: prometheus-node-exporter.serviceAccount.name
         value: {{ .Values.promtheusNodeExporter.serviceAccountName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: prometheus-node-exporter
   syncPolicy:
     automated:

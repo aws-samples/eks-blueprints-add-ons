@@ -32,7 +32,7 @@ spec:
       - name: aws-for-fluent-bit.elasticsearch.region
         value: {{ .Values.region }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: aws-for-fluent-bit
   syncPolicy:
     automated:

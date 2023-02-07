@@ -17,7 +17,7 @@ spec:
         cert-manager-csi-driver:
         {{- toYaml .Values.certManagerCsiDriver | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: cert-manager
   syncPolicy:
     automated:

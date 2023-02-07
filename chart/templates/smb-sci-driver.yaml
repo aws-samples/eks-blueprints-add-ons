@@ -17,7 +17,7 @@ spec:
         smb-csi-driver:
         {{- toYaml .Values.smbCsiDriver | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: kube-system
   syncPolicy:
     automated:

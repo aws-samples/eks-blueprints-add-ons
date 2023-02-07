@@ -17,7 +17,7 @@ spec:
         spark-operator:
         {{- toYaml .Values.sparkOperator | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: spark-operator
   syncPolicy:
     automated:

@@ -17,7 +17,7 @@ spec:
         chaos-mesh:
         {{- toYaml .Values.chaosMesh | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: chaos-testing
   syncPolicy:
     automated:

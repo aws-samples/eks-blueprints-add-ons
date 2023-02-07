@@ -16,7 +16,7 @@ spec:
       values: |
         {{- toYaml .Values.vault | nindent 8 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: vault
   syncPolicy:
     automated:

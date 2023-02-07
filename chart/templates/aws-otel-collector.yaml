@@ -24,7 +24,7 @@ spec:
       - name: aws-otel-collector.resourceAttributes
         value: {{ .Values.awsOtelCollector.resourceAttributes }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: aws-otel-eks
   syncPolicy:
     automated:

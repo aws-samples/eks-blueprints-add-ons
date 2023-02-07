@@ -17,7 +17,7 @@ spec:
         ingress-nginx:
         {{- toYaml .Values.ingressNginx | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: ingress-nginx
   syncPolicy:
     automated:

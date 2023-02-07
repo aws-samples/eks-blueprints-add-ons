@@ -20,7 +20,7 @@ spec:
       - name: keda.serviceAccount.name
         value: {{ .Values.keda.serviceAccountName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: keda
   syncPolicy:
     automated:

@@ -19,7 +19,7 @@ spec:
         - name: grafana.serviceAccount.name
           value: {{ .Values.grafana.serviceAccountName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: grafana
   syncPolicy:
     automated:

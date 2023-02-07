@@ -38,7 +38,7 @@ spec:
         metrics-server:
           enable: true
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: argocd
 ```
 

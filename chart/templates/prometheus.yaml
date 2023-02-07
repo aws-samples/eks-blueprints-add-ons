@@ -32,7 +32,7 @@ spec:
         value: {{ .Values.region }}
       {{ end }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: prometheus
   syncPolicy:
     automated:

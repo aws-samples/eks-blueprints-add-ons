@@ -28,7 +28,7 @@ spec:
         - name: karpenter.settings.aws.interruptionQueueName
           value: {{ .Values.karpenter.awsInterruptionQueueName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: karpenter
   syncPolicy:
     automated:

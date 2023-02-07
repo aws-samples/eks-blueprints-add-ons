@@ -74,7 +74,7 @@ spec:
           value: {{ .Values.ondat.etcdNodeSelectorTermValue }}
         {{- end }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: ondat
   syncPolicy:
     automated:

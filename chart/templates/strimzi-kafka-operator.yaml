@@ -17,7 +17,7 @@ spec:
         strimzi-kafka-operator:
         {{- toYaml .Values.strimziKafkaOperator | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: strimzi
   syncPolicy:
     automated:
