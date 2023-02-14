@@ -45,6 +45,12 @@ awsLoadBalancerController:
   serviceAccountName:
   podDisruptionBudget:
     maxUnavailable: 1
+  respectIgnoreDifferences: true
+  ignoreDifferences:
+  - group: ""
+    kind: "Secret"
+    jsonPointers:
+    - /data
 
 # AWS Node Termination Handler Values
 awsNodeTerminationHandler:
