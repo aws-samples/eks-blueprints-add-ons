@@ -4,7 +4,7 @@ cost-analyzer:
       enabled: false
       proxy: false
 
-  imageVersion: prod-1.96.0
+  imageVersion: prod-1.100.2
   kubecostFrontend:
     image: public.ecr.aws/kubecost/frontend
 
