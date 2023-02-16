@@ -11,7 +11,7 @@ agones:
   createNamespace: true
 
 # App Mesh Values
-appMesh: 
+appmeshController: 
   enable: false 
   createNamespace: true
 
@@ -129,6 +129,10 @@ keda:
 
 # Metrics Server Values
 metricsServer:
+  enable: false
+
+# Nginx ingress Values
+nginxIngress:
   enable: false
 
 # Ondat Values
