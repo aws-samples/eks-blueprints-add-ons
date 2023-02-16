@@ -16,5 +16,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: appmesh-controller
-  version: 1.15.0
+  version: 1.10.0
   repository: https://aws.github.io/eks-charts
