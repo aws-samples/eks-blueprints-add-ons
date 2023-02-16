@@ -15,10 +15,10 @@ spec:
     helm:
       values: |
         prometheus-node-exporter:
-        {{- toYaml .Values.promtheusNodeExporter | nindent 10 }}
+        {{- toYaml .Values.prometheusNodeExporter | nindent 10 }}
       parameters:
       - name: prometheus-node-exporter.serviceAccount.name
-        value: {{ .Values.promtheusNodeExporter.serviceAccountName }}
+        value: {{ .Values.prometheusNodeExporter.serviceAccountName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus-node-exporter

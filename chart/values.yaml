@@ -163,6 +163,10 @@ prometheus:
   roleArn:
   ampWorkspaceUrl:
 
+# Prometheus Node Exporter Values
+prometheusNodeExporter:
+  enable: false
+
 # Metrics Server Values
 sparkOperator:
   enable: false
