@@ -1,4 +1,4 @@
-{{- if and (.Values.calico) (.Values.calico.enable) -}}
+{{- if and (.Values.calicoOperator) (.Values.calicoOperator.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -14,8 +14,8 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        calico:
-        {{- toYaml .Values.calico | nindent 10 }}
+        tigera-operator:
+        {{- toYaml .Values.calicoOperator | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

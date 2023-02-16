@@ -15,8 +15,8 @@ appmeshController:
   enable: false 
   createNamespace: true
 
-# Calico Values
-calico:
+# Calico Operator Values
+calicoOperator:
   enable: false
 
 # AWS CloudWatch Metrics Values
