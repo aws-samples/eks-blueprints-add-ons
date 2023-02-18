@@ -7,7 +7,7 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
     path: add-ons/kube-prometheus-stack
