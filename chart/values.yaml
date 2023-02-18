@@ -5,6 +5,7 @@ region: ''
 account: ''
 clusterName: ''
 destinationServer: ''
+argoNamespace: ''
 
 # Agones Values
 agones: 
