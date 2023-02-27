@@ -1,0 +1,5 @@
+# for details on all options
+# https://github.com/grafana/helm-charts/blob/main/charts/loki-distributed/values.yaml
+
+serviceAccount:
+  create: false

@@ -101,6 +101,10 @@ strimziKafkaOperator:
 strimziTopicOperator:
   enable: false
 
+# Grafana Loki
+grafanaLoki:
+  enable: false
+
 # External DNS Values
 externalDns:
   enable: false
