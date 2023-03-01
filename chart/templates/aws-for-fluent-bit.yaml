@@ -25,6 +25,8 @@ spec:
         value: {{ .Values.awsForFluentBit.serviceAccountName }}
       - name: aws-for-fluent-bit.cloudWatch.logGroupName
         value: {{ .Values.awsForFluentBit.logGroupName }}
+      - name: aws-for-fluent-bit.additionalOutputs
+        value: {{ .Values.awsForFluentBit.additionalOutputs }}
   destination:
     server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: aws-for-fluent-bit
