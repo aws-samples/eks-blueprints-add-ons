@@ -3,11 +3,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus
-  namespace: argocd
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/prometheus
@@ -32,7 +32,7 @@ spec:
         value: {{ .Values.region }}
       {{ end }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: prometheus
   syncPolicy:
     automated:

@@ -3,11 +3,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: thanos
-  namespace: argocd
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/thanos
@@ -17,7 +17,7 @@ spec:
         thanos:
         {{- toYaml .Values.thanos | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: thanos
   syncPolicy:
     automated:

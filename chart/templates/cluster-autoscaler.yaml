@@ -3,11 +3,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cluster-autoscaler
-  namespace: argocd
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/cluster-autoscaler
@@ -24,7 +24,7 @@ spec:
       - name: cluster-autoscaler.autoDiscovery.clusterName
         value: {{ .Values.clusterName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: kube-system
   syncPolicy:
     automated:

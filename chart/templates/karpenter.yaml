@@ -3,11 +3,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: karpenter
-  namespace: argocd
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/karpenter
@@ -28,7 +28,7 @@ spec:
         - name: karpenter.settings.aws.interruptionQueueName
           value: {{ .Values.karpenter.awsInterruptionQueueName }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: karpenter
   syncPolicy:
     automated:

@@ -3,11 +3,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: aws-load-balancer-controller
-  namespace: argocd
+  namespace: {{ .Values.argoNamespace | default "argocd" }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.argoProject | default "default" }}
   source:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/aws-load-balancer-controller
@@ -22,17 +22,22 @@ spec:
             create: false
         {{- toYaml .Values.awsLoadBalancerController | nindent 10 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: kube-system
   syncPolicy:
     automated:
       prune: true
     syncOptions:
       - CreateNamespace={{ .Values.awsLoadBalancerController.createNamespace }}
+      - RespectIgnoreDifferences={{ .Values.awsLoadBalancerController.respectIgnoreDifferences }}
     retry:
       limit: 1
       backoff:
         duration: 5s
         factor: 2
         maxDuration: 1m
+  {{- with .Values.awsLoadBalancerController.ignoreDifferences }}
+  ignoreDifferences:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 {{- end -}}
