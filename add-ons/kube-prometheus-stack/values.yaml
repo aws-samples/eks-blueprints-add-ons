@@ -24,129 +24,13 @@ kube-prometheus-stack:
       ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
       ##
       storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: gp2
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 50Gi
-
-      # scrape flink jobs
-      additionalScrapeConfigs:
-      - job_name: flink-jobs-port_9249
-        scrape_interval: 5s
-        metrics_path: /metrics
-        scheme: http
-        kubernetes_sd_configs:
-        - role: pod
-          namespaces:
-            names:
-            - flink-operator            
-        relabel_configs:
-        - source_labels: [__meta_kubernetes_pod_container_name]
-          regex: ^(flink-kubernetes-operator|flink-main-container|)$
-          action: keep
-          target_label: pod_container_name
-        - source_labels: [__meta_kubernetes_pod_controller_name]
-          regex: .*
-          action: keep
-          target_label: pod_controller_name
-        - source_labels: [__meta_kubernetes_pod_ip]
-          regex: .* 
-          target_label: pod_ip
-        - source_labels: [__address__]
-          action: replace
-          regex: ([^:]+):.*
-          replacement: $1:9249
-          target_label: __address__
-
-      - job_name: kubernetes-cadvisor
-        honor_labels: true
-        scrape_interval: 10s
-        scrape_timeout: 10s
-        metrics_path: /metrics/cadvisor
-        scheme: https
-        kubernetes_sd_configs:
-        - role: node
-          namespaces:
-            names: []
-        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-        tls_config:
-          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-          insecure_skip_verify: true
-        relabel_configs:
-        - separator: ;
-          regex: __meta_kubernetes_node_label_(.+)
-          replacement: $1
-          action: labelmap
-        - separator: ;
-          regex: (.*)
-          target_label: __address__
-          replacement: kubernetes.default.svc:443
-          action: replace
-        - source_labels: [__meta_kubernetes_node_name]
-          separator: ;
-          regex: (.+)
-          target_label: __metrics_path__
-          replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
-          action: replace
-        - source_labels: [__meta_kubernetes_node_name]
-          separator: ;
-          regex: (.*)
-          target_label: node_name
-          replacement: $1
-          action: replace
-        - source_labels: [__meta_kubernetes_node_address_InternalIP]
-          separator: ;
-          regex: (.*)
-          target_label: node_ip
-          replacement: $1
-          action: replace
-        metric_relabel_configs:
-        - source_labels: [container, __name__]
-          separator: ;
-          regex: POD;container_(network).*
-          target_label: container
-          replacement: $1
-          action: replace
-        - source_labels: [container]
-          separator: ;
-          regex: POD
-          replacement: $1
-          action: drop
-        - source_labels: [container]
-          separator: ;
-          regex: ^$
-          replacement: $1
-          action: drop
-        - source_labels: [__name__]
-          separator: ;
-          regex: container_(network_tcp_usage_total|tasks_state|memory_failures_total|network_udp_usage_total)
-          replacement: $1
-          action: drop
-
-      - job_name: kubernetes-nodes-kubelet
-        scrape_interval: 10s
-        scrape_timeout: 10s
-        scheme: https
-        kubernetes_sd_configs:
-        - role: node
-          namespaces:
-            names: []
-        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-        tls_config:
-          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-          insecure_skip_verify: true
-        relabel_configs:
-        - action: labelmap
-          regex: __meta_kubernetes_node_label_(.+)
-        - target_label: __address__
-          replacement: kubernetes.default.svc:443
-        - source_labels: [__meta_kubernetes_node_name]
-          regex: (.+)
-          target_label: __metrics_path__
-          replacement: /api/v1/nodes/${1}/proxy/metrics
+        volumeClaimTemplate:
+          spec:
+            storageClassName: gp2
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 50Gi
           
   prometheusOperator:
     admissionWebhooks:

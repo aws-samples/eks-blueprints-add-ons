@@ -5,11 +5,6 @@ region: ''
 account: ''
 clusterName: ''
 
-
-# Flink Operator
-flinkKubernetesOperator:
-  enable: false
-
 loki:
   enable: false
   namespace: loki
