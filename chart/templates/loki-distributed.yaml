@@ -12,7 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/loki-distributed
     targetRevision: {{ .Values.targetRevision }}
-
+    helm:
+      values: |
+        loki-distributed:
+        {{- toYaml .Values.lokiDistributed | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
