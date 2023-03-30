@@ -101,9 +101,15 @@ strimziKafkaOperator:
 strimziTopicOperator:
   enable: false
 
-# Grafana Loki
-grafanaLoki:
+# Loki distributed
+lokiDistributed:
   enable: false
+  serviceAccount:
+    create: false
+  gateway:
+    enabled: false
+  ingress:
+    enabled: false
 
 # External DNS Values
 externalDns:

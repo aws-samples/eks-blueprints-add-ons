@@ -1,5 +1,10 @@
 # for details on all options
 # https://github.com/grafana/helm-charts/blob/main/charts/loki-distributed/values.yaml
 
-serviceAccount:
-  create: false
+loki-distributed: 
+  serviceAccount:
+    create: false
+  gateway:
+    enabled: false
+  ingress:
+    enabled: false
