@@ -164,6 +164,11 @@ karpenter:
   controllerClusterEndpoint:
   awsDefaultInstanceProfile:
   interruptionQueueName:
+  ignoreDifferences:
+  - group: ""
+    kind: "Secret"
+    jsonPointers:
+    - /data
 
 # Keda Values
 keda:
