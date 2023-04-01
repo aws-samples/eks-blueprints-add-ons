@@ -16,6 +16,10 @@ spec:
       values: |
         cert-manager:
         {{- toYaml .Values.certManager | nindent 10 }}
+        cert-manager-ca:
+        {{- toYaml .Values.certManager.certManagerCa | nindent 10 }}
+        cert-manager-letsencrypt:
+        {{- toYaml .Values.certManager.certManagerLetsencrypt | nindent 10 }}
       parameters:
       - name: cert-manager.serviceAccount.name
         value: {{ .Values.certManager.serviceAccountName }}

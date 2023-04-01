@@ -15,3 +15,9 @@ dependencies:
 - name: cert-manager
   version: v1.8.0
   repository: https://charts.jetstack.io
+- name: cert-manager-ca
+  version: 0.2.0
+  condition: cert-manager-ca.enabled
+- name: cert-manager-letsencrypt
+  version: 0.1.0
+  condition: cert-manager-letsencrypt.enabled

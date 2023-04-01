@@ -4,3 +4,11 @@ cert-manager:
   installCRDs: true
   serviceAccount:
     create: false
+
+cert-manager-ca:
+  enabled: true
+
+cert-manager-letsencrypt:
+  enabled: false
+  email:
+  dnsZones:
