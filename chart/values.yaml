@@ -106,23 +106,10 @@ lokiDistributed:
   enable: false
   serviceAccount:
     create: false
-  gateway:
-    enabled: false
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    annotations: {}
-    paths:
-      distributor:
-      - /loki/api/v1/push
-      querier:
-      - /loki/api/v1/tail
-      query-frontend:
-      - /loki/api
-      ruler:
-      - /loki/api/v1/rules
-    hosts:
-    - ""
+  storageS3:
+    enable: false
+    region: "us-east-1" # default
+    bucketName:
 
 # External DNS Values
 externalDns:

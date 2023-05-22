@@ -15,7 +15,50 @@ spec:
     helm:
       values: |
         loki-distributed:
-        {{- toYaml .Values.lokiDistributed | nindent 10 }}
+          serviceAccount:
+            create: {{ .Values.lokiDistributed.serviceAccount.create }}
+          gateway:
+            enabled: false
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            annotations: {}
+            paths:
+              distributor:
+              - /loki/api/v1/push
+              querier:
+              - /loki/api/v1/tail
+              query-frontend:
+              - /loki/api
+              ruler:
+              - /loki/api/v1/rules
+            hosts:
+            - ""
+          {{- if and (.Values.lokiDistributed.storageS3) (.Values.lokiDistributed.storageS3.enable) }}
+          loki:
+            ingester:
+              # Disable chunk transfer which is not possible with statefulsets
+              # and unnecessary for boltdb-shipper
+              max_transfer_retries: 0
+              chunk_idle_period: 1h
+              chunk_target_size: 1536000
+              max_chunk_age: 1h
+            storageConfig:
+              aws:
+                s3: s3://{{ .Values.lokiDistributed.storageS3.region }}
+                bucketnames: {{ .Values.lokiDistributed.storageS3.bucketName }}
+              boltdb_shipper:
+                shared_store: s3
+            schemaConfig:
+              configs:
+                - from: 2020-07-01
+                  store: boltdb-shipper
+                  object_store: s3
+                  schema: v11
+                  index:
+                    prefix: loki_index_
+                    period: 24h
+          {{- end }}
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
