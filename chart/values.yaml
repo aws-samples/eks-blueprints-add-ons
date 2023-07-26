@@ -79,6 +79,12 @@ certManager:
   enable: false
   createNamespace: true
   serviceAccountName:
+  certManagerCa:
+    enabled: true
+  certManagerLetsencrypt:
+    enabled: false
+    email:
+    dnsZones:
 
 # Cert Manager CSI Driver Values
 certManagerCsiDriver:
