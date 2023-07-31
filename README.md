@@ -33,9 +33,9 @@ spec:
     helm:
       release: add-ons
       values: |
-        cluster-autoscaler:
+        clusterAutoscaler:
           enable: true
-        metrics-server:
+        metrics:
           enable: true
   destination:
     server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
