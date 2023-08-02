@@ -50,7 +50,6 @@ spec:
       sources:
       - repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
         targetRevision: gitops-bridge-v2
-        path: argocd
         ref: values
       - chart: '{{values.addonChartRepositoryNamespace}}/{{values.addonChart}}'
         repoURL: '{{values.addonChartRepository}}'
@@ -59,9 +58,9 @@ spec:
           releaseName: '{{values.addonChartReleaseName}}'
           ignoreMissingValueFiles: true
           valueFiles:
-          - $values/charts/addons/{{values.addonChart}}/values.yaml
-          - $values/environments/{{metadata.labels.environment}}/addons/{{values.addonChartReleaseName}}/values.yaml
-          - $values/clusters/{{name}}/addons/{{values.addonChartReleaseName}}/values.yaml
+          - $values/argocd/charts/addons/{{values.addonChart}}/values.yaml
+          - $values/argocd/environments/{{metadata.labels.environment}}/addons/{{values.addonChartReleaseName}}/values.yaml
+          - $values/argocd/clusters/{{name}}/addons/{{values.addonChartReleaseName}}/values.yaml
           values: |
             awsRegion: {{metadata.annotations.metadata_aws_region}}
             awsAccountId: {{metadata.annotations.metadata_aws_account_id}}
