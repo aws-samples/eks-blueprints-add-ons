@@ -1,0 +1,62 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: addons-aws-crossplane
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+    - clusters:
+        values:
+          addonChart: crossplane
+          addonChartNamespace: crossplane-system
+        selector:
+          matchExpressions:
+          - key: akuity.io/argo-cd-cluster-name
+            operator: NotIn
+            values:
+              - in-cluster
+          - key: enable_aws_crossplane
+            operator: In
+            values:
+              - 'true'
+  template:
+    metadata:
+      name: 'addon-{{name}}-{{values.addonChart}}-aws'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
+        targetRevision: gitops-bridge-v2
+        path: charts/addons/{{values.addonChart}}/resources
+        helm:
+          ignoreMissingValueFiles: true
+          valueFiles:
+          - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
+          - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
+          - ../../../../charts/addons/{{values.addonChart}}/resources/values.yaml
+          values: |
+            global:
+              iam_role_arn_aws: {{metadata.annotations.metadata_aws_crossplane_iam_role_arn}}
+
+              iam_role_arn_aws_upbound: {{metadata.annotations.metadata_aws_upbound_crossplane_iam_role_arn}}
+          #fileParameters:
+          #  - name:
+          #    path:
+          #parameters
+          #values
+          #valuesObject
+      destination:
+        namespace: '{{values.addonChartNamespace}}'
+        name: '{{name}}'
+      syncPolicy:
+        retry:
+          backoff:
+            duration: 2m
+            factor: 2
+            maxDuration: 60m
+          limit: 100
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true  # Big CRDs.

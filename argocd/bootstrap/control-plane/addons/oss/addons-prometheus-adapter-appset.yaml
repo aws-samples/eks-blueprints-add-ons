@@ -1,0 +1,73 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: addons-prometheus-adapter
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+    - merge:
+        mergeKeys:
+          - server
+        generators:
+          - clusters:
+              values:
+                addonChart: prometheus-adapter
+                # anything not staging or prod use this version
+                addonChartVersion: '4.2.0'
+                addonChartRepository: https://prometheus-community.github.io/helm-charts
+              selector:
+                matchExpressions:
+                - key: akuity.io/argo-cd-cluster-name
+                  operator: NotIn
+                  values:
+                    - in-cluster
+                - key: enable_prometheus_adapter
+                  operator: In
+                  values:
+                    - 'true'
+          - clusters:
+              selector:
+                matchLabels:
+                  environment: staging
+              values:
+                addonChartVersion: '4.2.0'
+          - clusters:
+              selector:
+                matchLabels:
+                  environment: prod
+              values:
+                addonChartVersion: '4.2.0'
+  template:
+    metadata:
+      name: 'addon-{{name}}-{{values.addonChart}}'
+    spec:
+      project: default
+      sources:
+      - repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
+        targetRevision: gitops-bridge-v2
+        path: argocd
+        ref: values
+      - chart: '{{values.addonChart}}'
+        repoURL: '{{values.addonChartRepository}}'
+        targetRevision: '{{values.addonChartVersion}}'
+        helm:
+          releaseName: '{{values.addonChart}}'
+          ignoreMissingValueFiles: true
+          valueFiles:
+          - $values/charts/addons/{{values.addonChart}}/values.yaml
+          - $values/environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
+          - $values/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+          values: |
+            replicas: 2
+            podDisruptionBudget:
+              enabled: true
+      destination:
+        namespace: '{{values.addonChart}}'
+        name: '{{name}}'
+      syncPolicy:
+        automated:
+          prune: false
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true  # Big CRDs.

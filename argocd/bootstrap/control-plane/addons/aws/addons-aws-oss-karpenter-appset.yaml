@@ -1,0 +1,81 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: addons-aws-karpenter
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+    - merge:
+        mergeKeys:
+          - server
+        generators:
+          - clusters:
+              values:
+                addonChart: karpenter
+                # anything not staging or prod use this version
+                addonChartVersion: 'v0.27.2'
+                # using oci repostory already configure in argocd
+                # argocd repo add public.ecr.aws --type helm --name aws-public-ecr --enable-oci
+                addonChartRepository: public.ecr.aws
+              selector:
+                matchExpressions:
+                - key: akuity.io/argo-cd-cluster-name
+                  operator: NotIn
+                  values:
+                    - in-cluster
+                - key: enable_aws_karpenter
+                  operator: In
+                  values:
+                    - 'true'
+          - clusters:
+              selector:
+                matchLabels:
+                  environment: staging
+              values:
+                addonChartVersion: 'v0.27.2'
+          - clusters:
+              selector:
+                matchLabels:
+                  environment: prod
+              values:
+                addonChartVersion: 'v0.27.2'
+  template:
+    metadata:
+      name: 'addon-{{name}}-{{values.addonChart}}'
+    spec:
+      project: default
+      sources:
+      - repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
+        targetRevision: gitops-bridge-v2
+        path: argocd
+        ref: values
+      - chart: '{{values.addonChart}}/karpenter'
+        repoURL: '{{values.addonChartRepository}}'
+        targetRevision: '{{values.addonChartVersion}}'
+        helm:
+          releaseName: '{{values.addonChart}}'
+          ignoreMissingValueFiles: true
+          valueFiles:
+          - $values/charts/addons/{{values.addonChart}}/values.yaml
+          - $values/environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
+          - $values/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+          values: |
+            settings:
+              aws:
+                clusterName: {{metadata.annotations.cluster_name}}
+                clusterEndpoint: {{metadata.annotations.metadata_aws_karpenter_cluster_endpoint}}
+                defaultInstanceProfile: {{metadata.annotations.metadata_aws_karpenter_node_instance_profile_name}}
+                interruptionQueueName: {{metadata.annotations.metadata_aws_karpenter_sqs_queue_name}}
+            serviceAccount:
+              name: {{metadata.annotations.metadata_aws_karpenter_service_account}}
+              annotations:
+                eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_karpenter_iam_role_arn}}
+      destination:
+        namespace: '{{metadata.annotations.metadata_aws_karpenter_namespace}}'
+        name: '{{name}}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true  # Big CRDs.

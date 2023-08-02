@@ -1,6 +1,6 @@
 # Global Values
 repoUrl: 'https://github.com/aws-samples/eks-blueprints-add-ons.git'
-targetRevision: HEAD
+targetRevision: gitops-bridge-v2
 region: ''
 account: ''
 clusterName: ''
@@ -9,13 +9,13 @@ argoNamespace: ''
 argoProject: ''
 
 # Agones Values
-agones: 
-  enable: false 
+agones:
+  enable: false
   createNamespace: true
 
 # App Mesh Values
-appMesh: 
-  enable: false 
+appMesh:
+  enable: false
   createNamespace: true
 
 # Calico Values
@@ -228,7 +228,7 @@ kubeStateMetrics:
 promtheusNodeExporter:
   enable: false
   serviceAccountName:
-  
+
 # Kubernetes Dashboard Values
 kubernetesDashboard:
   enable: false
@@ -279,7 +279,7 @@ nvidiaDevicePlugin:
 # Consul Values
 consul:
   enable: false
-  
+
 velero:
   enable: false
 
