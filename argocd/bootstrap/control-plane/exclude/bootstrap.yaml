@@ -11,7 +11,7 @@ spec:
   source:
     path: argocd/bootstrap/control-plane
     repoURL: https://github.com/csantanapr/eks-blueprints-add-ons
-    targetRevision: gitops-bridge-v2
+    targetRevision: HEAD
     directory:
       recurse: true
       exclude: exclude/*

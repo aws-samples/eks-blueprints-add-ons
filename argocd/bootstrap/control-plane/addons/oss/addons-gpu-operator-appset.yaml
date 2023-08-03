@@ -50,8 +50,8 @@ spec:
           - /metadata/annotations
       project: default
       sources:
-      - repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
-        targetRevision: gitops-bridge-v2
+      - repoURL: https://github.com/csantanapr/eks-blueprints-add-ons
+        targetRevision: HEAD
         ref: values
       - chart: '{{values.addonChart}}'
         repoURL: '{{values.addonChartRepository}}'

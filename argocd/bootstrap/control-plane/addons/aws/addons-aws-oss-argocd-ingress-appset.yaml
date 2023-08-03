@@ -45,7 +45,7 @@ spec:
       project: default
       sources:
       - repoURL: 'https://github.com/csantanapr/gitops-bridge-argocd-control-plane-template'
-        targetRevision: demo
+        targetRevision: HEAD
         ref: values
       - chart: '{{values.addonChart}}'
         repoURL: '{{values.addonChartRepository}}'

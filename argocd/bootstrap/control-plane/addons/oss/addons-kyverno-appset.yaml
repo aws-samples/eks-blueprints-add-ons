@@ -44,8 +44,8 @@ spec:
     spec:
       project: default
       sources:
-      - repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
-        targetRevision: gitops-bridge-v2
+      - repoURL: https://github.com/csantanapr/eks-blueprints-add-ons
+        targetRevision: HEAD
         ref: values
       - chart: '{{values.addonChart}}'
         repoURL: '{{values.addonChartRepository}}'
@@ -63,8 +63,8 @@ spec:
           #    path:
           #parameters
           #valuesObject
-      - repoURL: 'https://github.com/csantanapr/eks-blueprints-add-ons'
-        targetRevision: gitops-bridge-v2
+      - repoURL: https://github.com/csantanapr/eks-blueprints-add-ons
+        targetRevision: HEAD
         path: charts/addons/{{values.addonChart}}/resources
         helm:
           ignoreMissingValueFiles: true
