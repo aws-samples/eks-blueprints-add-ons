@@ -44,7 +44,7 @@ spec:
     spec:
       project: default
       sources:
-      - repoURL: https://github.com/csantanapr/eks-blueprints-add-ons
+      - repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
         targetRevision: HEAD
         ref: values
       - chart: '{{values.addonChart}}'

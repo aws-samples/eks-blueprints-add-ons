@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: argocd/bootstrap/control-plane
-    repoURL: https://github.com/csantanapr/eks-blueprints-add-ons
+    repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
     targetRevision: HEAD
     directory:
       recurse: true
