@@ -21,16 +21,14 @@ GIT_BASEDIRL=${GIT_BASEDIR:-argocd}
 REPLACE_GIT_REPO_FULL=${REPLACE_GIT_REPO_FULL:-"repoURL: https://github.com/aws-samples/eks-blueprints-add-ons"}
 REPLACE_GIT_BRANCH=${REPLACE_GIT_BRANCH:-"targetRevision: HEAD"}
 
-
-echo "Configuring git to use ${GIT_BASEURL}/${GIT_ORG}/${GIT_REPO} on branch ${GIT_BRANCH}"
-
+echo "Configuring gitops to use ${GIT_BASEURL}/${GIT_ORG}/${GIT_REPO} on branch ${GIT_BRANCH}"
 
 find ${SCRIPTDIR}/../${GIT_BASEDIRL} -name '*.yaml' -print0 |
   while IFS= read -r -d '' File; do
     if grep -q "kind: Application\|kind: AppProject" "$File"; then
       #echo "$File"
-      sed -i'.bak' -e "s#\${REPLACE_GIT_REPO_FULL}#repoURL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_REPO}#" $File
-      sed -i'.bak' -e "s#\${REPLACE_GIT_BRANCH}#targetRevision: ${GIT_BRANCH}#" $File
+      sed -i'.bak' -e "s#${REPLACE_GIT_REPO_FULL}#repoURL: ${GIT_BASEURL}/${GIT_ORG}/${GIT_REPO}#" $File
+      sed -i'.bak' -e "s#${REPLACE_GIT_BRANCH}#targetRevision: ${GIT_BRANCH}#" $File
       rm "${File}.bak"
     fi
   done
