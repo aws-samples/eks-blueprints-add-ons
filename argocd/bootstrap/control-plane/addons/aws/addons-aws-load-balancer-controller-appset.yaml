@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: aws-load-balancer-controller
                 # anything not staging or prod use this version
-                addonChartVersion: '1.4.8'
+                addonChartVersion: '1.6.0'
                 addonChartRepository: https://aws.github.io/eks-charts
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '1.4.8'
+                addonChartVersion: '1.6.0'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '1.4.8'
+                addonChartVersion: '1.6.0'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -58,16 +58,33 @@ spec:
           - $values/argocd/environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
           - $values/argocd/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
           values: |
-            clusterName: {{metadata.annotations.cluster_name}}
+            clusterName: {{metadata.annotations.aws_cluster_name}}
             serviceAccount:
-              name: {{metadata.annotations.metadata_aws_load_balancer_controller_service_account}}
+              name: {{metadata.annotations.aws_load_balancer_controller_service_account}}
               annotations:
-                eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_load_balancer_controller_iam_role_arn}}
+                eks.amazonaws.com/role-arn: {{metadata.annotations.aws_load_balancer_controller_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_load_balancer_controller_namespace}}'
+        namespace: '{{metadata.annotations.aws_load_balancer_controller_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.
+      ignoreDifferences:
+      - kind: Secret
+        name: aws-load-balancer-tls
+        jsonPointers:
+          - /data
+      - group: admissionregistration.k8s.io
+        kind: MutatingWebhookConfiguration
+        name: aws-load-balancer-webhook
+        jsonPointers:
+        - /webhooks/0/clientConfig/caBundle
+        - /webhooks/1/clientConfig/caBundle
+      - group: admissionregistration.k8s.io
+        kind: ValidatingWebhookConfiguration
+        name: aws-load-balancer-webhook
+        jsonPointers:
+        - /webhooks/0/clientConfig/caBundle
+        - /webhooks/1/clientConfig/caBundle

@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: argo-cd
                 # anything not staging or prod use this version
-                addonChartVersion: '5.38.0'
+                addonChartVersion: '5.43.3'
                 addonChartRepository: https://argoproj.github.io/argo-helm
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '5.38.0'
+                addonChartVersion: '5.43.3'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '5.38.0'
+                addonChartVersion: '5.43.3'
   template:
     metadata:
       name: 'addon-{{name}}-aws-{{values.addonChart}}'
@@ -61,13 +61,13 @@ spec:
             controller:
               serviceAccount:
                 annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_argocd_iam_role_arn}}
+                  eks.amazonaws.com/role-arn: {{metadata.annotations.argocd_iam_role_arn}}
             server:
               serviceAccount:
                 annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_argocd_iam_role_arn}}
+                  eks.amazonaws.com/role-arn: {{metadata.annotations.argocd_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_argocd_namespace}}'
+        namespace: '{{metadata.annotations.argocd_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

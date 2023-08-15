@@ -7,7 +7,7 @@ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
 if [ -z ${GIT_ORG} ]; then
- echo "Please set GIT_ORG when running script, optional GIT_BASEURL, GIT_REPO, or GIT_BRANCH to formed the git url GIT_BASEURL/GIT_ORG/GIT_REPO"
+ echo "Please set GIT_ORG when running script, optional GIT_BASEURL(https://github.com), GIT_ORG, GIT_REPO, or GIT_BRANCH to formed the git url GIT_BASEURL/GIT_ORG/GIT_REPO"
  exit 1
 fi
 

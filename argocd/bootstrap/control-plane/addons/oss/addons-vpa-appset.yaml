@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: vpa
                 # anything not staging or prod use this version
-                addonChartVersion: '1.7.5'
+                addonChartVersion: '2.3.0'
                 addonChartRepository: https://charts.fairwinds.com/stable
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '1.7.5'
+                addonChartVersion: '2.3.0'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '1.7.5'
+                addonChartVersion: '2.3.0'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'

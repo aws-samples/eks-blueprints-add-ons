@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: aws-fsx-csi-driver
                 # anything not staging or prod use this version
-                addonChartVersion: '1.6.1'
+                addonChartVersion: '1.7.0'
                 addonChartRepository: https://kubernetes-sigs.github.io/aws-fsx-csi-driver
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '1.6.1'
+                addonChartVersion: '1.7.0'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '1.6.1'
+                addonChartVersion: '1.7.0'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -60,16 +60,16 @@ spec:
           values: |
             controller:
               serviceAccount:
-                name: {{metadata.annotations.metadata_aws_fsx_csi_driver_controller_service_account}}
+                name: {{metadata.annotations.aws_fsx_csi_driver_controller_service_account}}
                 annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_fsx_csi_driver_iam_role_arn}}
+                  eks.amazonaws.com/role-arn: {{metadata.annotations.aws_fsx_csi_driver_iam_role_arn}}
             node:
               serviceAccount:
-                name: {{metadata.annotations.metadata_aws_fsx_csi_driver_node_service_account}}
+                name: {{metadata.annotations.aws_fsx_csi_driver_node_service_account}}
                 annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_fsx_csi_driver_iam_role_arn}}
+                  eks.amazonaws.com/role-arn: {{metadata.annotations.aws_fsx_csi_driver_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_fsx_csi_driver_namespace}}'
+        namespace: '{{metadata.annotations.aws_fsx_csi_driver_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

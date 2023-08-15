@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: karpenter
                 # anything not staging or prod use this version
-                addonChartVersion: 'v0.27.2'
+                addonChartVersion: 'v0.29.2'
                 # using oci repostory already configure in argocd
                 # argocd repo add public.ecr.aws --type helm --name aws-public-ecr --enable-oci
                 addonChartRepository: public.ecr.aws
@@ -24,7 +24,7 @@ spec:
                   operator: NotIn
                   values:
                     - in-cluster
-                - key: enable_aws_karpenter
+                - key: enable_karpenter
                   operator: In
                   values:
                     - 'true'
@@ -33,13 +33,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 'v0.27.2'
+                addonChartVersion: 'v0.29.2'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 'v0.27.2'
+                addonChartVersion: 'v0.29.2'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -49,7 +49,7 @@ spec:
       - repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
         targetRevision: HEAD
         ref: values
-      - chart: '{{values.addonChart}}/karpenter'
+      - chart: '{{values.addonChart}}/{{values.addonChart}}'
         repoURL: '{{values.addonChartRepository}}'
         targetRevision: '{{values.addonChartVersion}}'
         helm:
@@ -62,16 +62,16 @@ spec:
           values: |
             settings:
               aws:
-                clusterName: {{metadata.annotations.cluster_name}}
-                clusterEndpoint: {{metadata.annotations.metadata_aws_karpenter_cluster_endpoint}}
-                defaultInstanceProfile: {{metadata.annotations.metadata_aws_karpenter_node_instance_profile_name}}
-                interruptionQueueName: {{metadata.annotations.metadata_aws_karpenter_sqs_queue_name}}
+                clusterName: {{metadata.annotations.aws_cluster_name}}
+                clusterEndpoint: {{metadata.annotations.karpenter_cluster_endpoint}}
+                defaultInstanceProfile: {{metadata.annotations.karpenter_node_instance_profile_name}}
+                interruptionQueueName: {{metadata.annotations.karpenter_sqs_queue_name}}
             serviceAccount:
-              name: {{metadata.annotations.metadata_aws_karpenter_service_account}}
+              name: {{metadata.annotations.karpenter_service_account}}
               annotations:
-                eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_karpenter_iam_role_arn}}
+                eks.amazonaws.com/role-arn: {{metadata.annotations.karpenter_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_karpenter_namespace}}'
+        namespace: '{{metadata.annotations.karpenter_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

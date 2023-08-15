@@ -33,7 +33,6 @@ spec:
           valueFiles:
           - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
           - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
-          - ../../../../charts/addons/{{values.addonChart}}/resources/values.yaml
           #values:
           #fileParameters:
           #  - name:

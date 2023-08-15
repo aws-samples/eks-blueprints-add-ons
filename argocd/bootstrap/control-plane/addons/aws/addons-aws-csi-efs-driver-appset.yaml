@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: aws-efs-csi-driver
                 # anything not staging or prod use this version
-                addonChartVersion: '2.4.6'
+                addonChartVersion: '2.4.8'
                 addonChartRepository: https://kubernetes-sigs.github.io/aws-efs-csi-driver
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '2.4.6'
+                addonChartVersion: '2.4.8'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '2.4.6'
+                addonChartVersion: '2.4.8'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -60,16 +60,16 @@ spec:
           values: |
             controller:
               serviceAccount:
-                name: {{metadata.annotations.metadata_aws_efs_csi_driver_controller_service_account}}
+                name: {{metadata.annotations.aws_efs_csi_driver_controller_service_account}}
                 annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_efs_csi_driver_iam_role_arn}}
+                  eks.amazonaws.com/role-arn: {{metadata.annotations.aws_efs_csi_driver_iam_role_arn}}
             node:
               serviceAccount:
-                name: {{metadata.annotations.metadata_aws_efs_csi_driver_node_service_account}}
+                name: {{metadata.annotations.aws_efs_csi_driver_node_service_account}}
                 annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_efs_csi_driver_iam_role_arn}}
+                  eks.amazonaws.com/role-arn: {{metadata.annotations.aws_efs_csi_driver_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_efs_csi_driver_namespace}}'
+        namespace: '{{metadata.annotations.aws_efs_csi_driver_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

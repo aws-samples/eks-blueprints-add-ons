@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: kyverno
                 # anything not staging or prod use this version
-                addonChartVersion: '3.0.2'
+                addonChartVersion: '3.0.5'
                 addonChartRepository: https://kyverno.github.io/kyverno
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '3.0.2'
+                addonChartVersion: '3.0.5'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '3.0.2'
+                addonChartVersion: '3.0.5'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -71,7 +71,6 @@ spec:
           valueFiles:
           - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
           - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
-          - ../../../../charts/addons/{{values.addonChart}}/resources/values.yaml
           #values:
           #fileParameters:
           #  - name:

@@ -59,11 +59,11 @@ spec:
           - $values/argocd/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
           values: |
             serviceAccount:
-              name: {{metadata.annotations.metadata_aws_privateca_issuer_service_account}}
+              name: {{metadata.annotations.aws_privateca_issuer_service_account}}
               annotations:
-                eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_privateca_issuer_iam_role_arn}}
+                eks.amazonaws.com/role-arn: {{metadata.annotations.aws_privateca_issuer_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_privateca_issuer_namespace}}'
+        namespace: '{{metadata.annotations.aws_privateca_issuer_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

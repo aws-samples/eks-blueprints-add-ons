@@ -16,7 +16,7 @@ spec:
                 addonChartReleaseName: aws-gateway-api-controller
                 addonChartRepositoryNamespace: aws-application-networking-k8s
                 # anything not staging or prod use this version
-                addonChartVersion: 'v0.0.12'
+                addonChartVersion: 'v0.0.15'
                 # using oci repostory already configure in argocd
                 # argocd repo add public.ecr.aws --type helm --name aws-public-ecr --enable-oci
                 addonChartRepository: public.ecr.aws
@@ -35,13 +35,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 'v0.0.12'
+                addonChartVersion: 'v0.0.15'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 'v0.0.12'
+                addonChartVersion: 'v0.0.15'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChartReleaseName}}'
@@ -62,15 +62,15 @@ spec:
           - $values/argocd/environments/{{metadata.labels.environment}}/addons/{{values.addonChartReleaseName}}/values.yaml
           - $values/argocd/clusters/{{name}}/addons/{{values.addonChartReleaseName}}/values.yaml
           values: |
-            awsRegion: {{metadata.annotations.metadata_aws_region}}
-            awsAccountId: {{metadata.annotations.metadata_aws_account_id}}
-            clusterVpcId: {{metadata.annotations.metadata_aws_vpc_id}}
+            awsRegion: {{metadata.annotations.aws_region}}
+            awsAccountId: {{metadata.annotations.aws_account_id}}
+            clusterVpcId: {{metadata.annotations.aws_vpc_id}}
             serviceAccount:
-              name: {{metadata.annotations.metadata_aws_gateway_api_controller_service_account}}
+              name: {{metadata.annotations.aws_gateway_api_controller_service_account}}
               annotations:
-                eks.amazonaws.com/role-arn: {{metadata.annotations.metadata_aws_gateway_api_controller_iam_role_arn}}
+                eks.amazonaws.com/role-arn: {{metadata.annotations.aws_gateway_api_controller_iam_role_arn}}
       destination:
-        namespace: '{{metadata.annotations.metadata_aws_gateway_api_controller_namespace}}'
+        namespace: '{{metadata.annotations.aws_gateway_api_controller_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

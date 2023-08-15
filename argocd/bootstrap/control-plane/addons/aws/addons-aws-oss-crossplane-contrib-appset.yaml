@@ -34,12 +34,11 @@ spec:
           valueFiles:
           - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
           - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
-          - ../../../../charts/addons/{{values.addonChart}}/resources/values.yaml
           values: |
             global:
-              iam_role_arn_aws: {{metadata.annotations.metadata_aws_crossplane_iam_role_arn}}
+              iam_role_arn_aws: {{metadata.annotations.aws_crossplane_iam_role_arn}}
 
-              iam_role_arn_aws_upbound: {{metadata.annotations.metadata_aws_upbound_crossplane_iam_role_arn}}
+              iam_role_arn_aws_upbound: {{metadata.annotations.aws_upbound_crossplane_iam_role_arn}}
           #fileParameters:
           #  - name:
           #    path:
