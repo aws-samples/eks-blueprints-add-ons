@@ -44,17 +44,13 @@ def check_newer_version(repo_url, chart_name, current_version):
     # hide output to not spam the console
     subprocess.run(['helm', 'repo', 'update'],
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    # subprocess.run(['helm', 'repo', 'update'])
     # Fetch the latest version of the chart
+    # print(f"Fetching latest version for {chart_name} from {repo_url}")
     latest_version_output = subprocess.getoutput(
-        f'helm show chart temp_repo/{chart_name}')
-    # Extract the version from the output
-    latest_version = None
-    for line in latest_version_output.splitlines():
-        if line.startswith('version: '):
-            latest_version = line.split('version: ')[1]
-            break
-    # Compare the versions
+         f'helm search repo temp_repo/{chart_name} -o yaml')
+    parsed_output = yaml.safe_load(latest_version_output)
+    latest_version = parsed_output[0]['version']
+    # print(f"Current version for {chart_name}: {current_version}")
 
     update_version = compare_versions(
         current_version, latest_version, chart_name)
@@ -116,8 +112,10 @@ for yaml_file in yaml_files:
         if addon_chart == "karpenter":
             update_version(yaml_file, addon_chart_version, check_newer_version_from_github(
                 "aws", "karpenter", addon_chart_version))
+            continue
         if addon_chart == "aws-gateway-controller-chart":
             update_version(yaml_file, addon_chart_version, check_newer_version_from_github(
                 "aws", "aws-application-networking-k8s", addon_chart_version))
+            continue
         update_version(yaml_file, addon_chart_version, check_newer_version(
             addon_chart_repository, addon_chart, addon_chart_version))

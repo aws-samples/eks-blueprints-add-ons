@@ -38,6 +38,60 @@ spec:
                   environment: prod
               values:
                 addonChartVersion: '9.29.1'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.28'
+              values:
+                clusterAutoScalerImageTag: 'v1.28.0'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.27'
+              values:
+                clusterAutoScalerImageTag: 'v1.27.3'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.26'
+              values:
+                clusterAutoScalerImageTag: 'v1.26.4'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.25'
+              values:
+                clusterAutoScalerImageTag: 'v1.25.3'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.24'
+              values:
+                clusterAutoScalerImageTag: 'v1.24.3'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.23'
+              values:
+                clusterAutoScalerImageTag: 'v1.23.1'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.22'
+              values:
+                clusterAutoScalerImageTag: 'v1.22.3'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.21'
+              values:
+                clusterAutoScalerImageTag: 'v1.21.3'
+          - clusters:
+              selector:
+                matchLabels:
+                  kubernetes_version: '1.20'
+              values:
+                clusterAutoScalerImageTag: 'v1.20.3'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -59,7 +113,7 @@ spec:
           - $values/argocd/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
           values: |
             image:
-              tag: {{metadata.annotations.cluster_autoscaler_image_tag}}
+              tag: {{values.clusterAutoScalerImageTag}}
             awsRegion: {{metadata.annotations.aws_region}}
             autoDiscovery:
               clusterName: {{metadata.annotations.aws_cluster_name}}

@@ -15,8 +15,8 @@ set -u
 
 GIT_BRANCH=${GIT_BRANCH:-HEAD}
 GIT_BASEURL=${GIT_BASEURL:-https://github.com}
-GIT_REPO=${GIT_REPO:-eks-blueprints-add-ons}
-GIT_BASEDIRL=${GIT_BASEDIR:-argocd}
+GIT_REPO=${GIT_REPO:-gitops-bridge-argocd-control-plane-template}
+GIT_BASEDIRL=${GIT_BASEDIR:-bootstrap}
 
 REPLACE_GIT_REPO_FULL=${REPLACE_GIT_REPO_FULL:-"repoURL: https://github.com/aws-samples/eks-blueprints-add-ons"}
 REPLACE_GIT_BRANCH=${REPLACE_GIT_BRANCH:-"targetRevision: HEAD"}

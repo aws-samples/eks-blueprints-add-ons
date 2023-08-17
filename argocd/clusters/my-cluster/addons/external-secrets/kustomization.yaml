@@ -1,4 +1,0 @@
-
-resources:
-  - ../../../../environments/control-plane/addons/external-secrets
-  - secret-storage.yaml

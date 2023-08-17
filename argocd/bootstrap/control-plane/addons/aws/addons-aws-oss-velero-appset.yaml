@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: velero
                 # anything not staging or prod use this version
-                addonChartVersion: '4.4.1'
+                addonChartVersion: '5.0.0'
                 addonChartRepository: https://vmware-tanzu.github.io/helm-charts
               selector:
                 matchExpressions:
@@ -31,13 +31,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: '4.4.1'
+                addonChartVersion: '5.0.0'
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: '4.4.1'
+                addonChartVersion: '5.0.0'
   template:
     metadata:
       name: 'addon-{{name}}-{{values.addonChart}}'
@@ -68,6 +68,7 @@ spec:
                   region: {{metadata.annotations.aws_region}}
               volumeSnapshotLocation:
               - name: default
+                provider: aws
                 config:
                   region: {{metadata.annotations.aws_region}}
             serviceAccount:

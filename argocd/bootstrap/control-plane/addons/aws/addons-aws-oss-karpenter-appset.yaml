@@ -63,7 +63,6 @@ spec:
             settings:
               aws:
                 clusterName: {{metadata.annotations.aws_cluster_name}}
-                clusterEndpoint: {{metadata.annotations.karpenter_cluster_endpoint}}
                 defaultInstanceProfile: {{metadata.annotations.karpenter_node_instance_profile_name}}
                 interruptionQueueName: {{metadata.annotations.karpenter_sqs_queue_name}}
             serviceAccount:
