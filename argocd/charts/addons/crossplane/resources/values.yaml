@@ -1,5 +1,5 @@
 global:
-  enabled_aws: true
+  enabled_aws: false
   iam_role_arn_aws: null
   enabled_aws_upbound: true
   iam_role_arn_aws_upbound: null

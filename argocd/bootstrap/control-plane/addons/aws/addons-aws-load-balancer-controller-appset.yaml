@@ -78,13 +78,9 @@ spec:
           - /data
       - group: admissionregistration.k8s.io
         kind: MutatingWebhookConfiguration
-        name: aws-load-balancer-webhook
-        jsonPointers:
-        - /webhooks/0/clientConfig/caBundle
-        - /webhooks/1/clientConfig/caBundle
+        jqPathExpressions:
+        - .webhooks[].clientConfig.caBundle
       - group: admissionregistration.k8s.io
         kind: ValidatingWebhookConfiguration
-        name: aws-load-balancer-webhook
-        jsonPointers:
-        - /webhooks/0/clientConfig/caBundle
-        - /webhooks/1/clientConfig/caBundle
+        jqPathExpressions:
+        - .webhooks[].clientConfig.caBundle

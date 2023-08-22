@@ -1,5 +1,3 @@
-
-
 controller:
   replicas: 1 # Additional replicas will cause sharding of managed clusters across number of replicas.
   metrics:
@@ -210,6 +208,9 @@ extraObjects:
     annotations:
       source: gitops-brige
   spec:
+    clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
     sourceRepos:
       - '*'
     destinations:

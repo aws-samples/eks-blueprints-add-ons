@@ -29,6 +29,7 @@ spec:
         targetRevision: HEAD
         path: charts/addons/{{values.addonChart}}/resources
         helm:
+          releaseName: '{{values.addonChart}}'
           ignoreMissingValueFiles: true
           valueFiles:
           - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml

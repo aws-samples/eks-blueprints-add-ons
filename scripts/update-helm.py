@@ -13,8 +13,8 @@ def compare_versions(current_version, latest_version, chart_name):
         print(
             f"Newer version available for {chart_name}: {latest_version} (current: {current_version})")
         return latest_version
-    # else:
-    #    print(f"No newer version available for {chart_name} (current: {current_version})")
+    else:
+      print(f"No newer version available for {chart_name} (current: {current_version})")
     return None
 
 
@@ -101,11 +101,69 @@ if len(sys.argv) < 2:
     print("Please provide the directory path as an argument.")
     sys.exit(1)
 
+
+def extract_provider_values(yaml_file):
+    with open(yaml_file, 'r') as file:
+        content = yaml.safe_load(file)
+        try:
+            provider_name = content['provider']['metadata']['name']
+            provider_version = content['provider']['package']['version']
+            provider_registry = content['provider']['package']['registry']
+            return provider_name, provider_version, provider_registry
+        except (KeyError, TypeError):
+            #print(f"Unable to extract values from {yaml_file}")
+            try:
+                provider_name = content['global']['aws_upbound_registry']
+                provider_version = content['global']['aws_upbound_version']
+                provider_registry = content['global']['aws_upbound_registry']
+                return provider_name, provider_version, f'{provider_registry}/provider-family-aws'
+            except (KeyError, TypeError):
+                #print(f"Unable to extract values from {yaml_file}")
+                return None, None, None
+
+
+def check_newer_version_from_oci(provider_name, provider_registry, provider_version):
+    # Execute the command and get the output
+    result = subprocess.getoutput(f'crane ls {provider_registry}')
+
+    # Split the output by lines and parse the versions
+    versions = [version.parse(v) for v in result.strip().split('\n') if '-rc.' not in v]
+
+    # Find the latest version
+    latest_version = max(versions)
+
+    update_version = compare_versions(
+        provider_version, f'v{str(latest_version)}', provider_name)
+
+    return update_version
+
+
+directory_path = sys.argv[1]
+yaml_files = glob.glob(os.path.join(
+    directory_path, '**/crossplane/**/values.yaml'), recursive=True)
+
+for yaml_file in yaml_files:
+    #print(f'processing file {yaml_file}')
+    provider_name, provider_version, provider_registry = extract_provider_values(
+        yaml_file)
+    if provider_name is not None:
+        update_version(yaml_file, provider_version, check_newer_version_from_oci(provider_name, provider_registry, provider_version))
+
+
 directory_path = sys.argv[1]
 yaml_files = glob.glob(os.path.join(
     directory_path, '**/*.yaml'), recursive=True)
 
 for yaml_file in yaml_files:
+    # continue if the yaml_file doesn't contain the line kind: ApplicationSet
+    with open(yaml_file, 'r') as file:
+        try:
+            content = yaml.safe_load(file)
+            if content['kind'] != 'ApplicationSet':
+                continue
+        except (KeyError, TypeError, yaml.YAMLError):
+            # print(f"Unable to extract values from {yaml_file}")
+            continue
     addon_chart, addon_chart_version, addon_chart_repository = extract_values(
         yaml_file)
     if addon_chart is not None:
