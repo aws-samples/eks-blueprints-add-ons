@@ -20,6 +20,8 @@ spec:
     server: {{ .Values.destinationServer | default "https://kubernetes.default.svc" }}
     namespace: nvidia-device-plugin
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true
     retry:
