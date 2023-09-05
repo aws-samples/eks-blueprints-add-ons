@@ -68,8 +68,8 @@ spec:
               txtOwnerId: {{.metadata.annotations.aws_cluster_name}}
               policy: {{upsert-only "" .metadata.annotations.external_dns_policy}}
       destination:
-        namespace: '{{default "external-dns" .metadata.annotations.external_dns_namespace}}'
-        name: '{{name}}'
+        namespace: '{{.metadata.annotations.external_dns_namespace}}'
+        name: '{{.name}}'
       syncPolicy:
         automated: {}
         syncOptions:
