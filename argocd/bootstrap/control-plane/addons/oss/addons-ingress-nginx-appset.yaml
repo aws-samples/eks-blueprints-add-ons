@@ -59,7 +59,7 @@ spec:
               - $values{{.metadata.annotations.addons_repo_basepath}}/clusters/{{.name}}/addons/{{.values.addonChart}}/values.yaml
             values: |
               controller:
-                service
+                service:
                   type: {{default "LoadBalancer" .metadata.annotations.ingress_nginx_service_type}}
       destination:
         namespace: '{{.values.addonChart}}'
