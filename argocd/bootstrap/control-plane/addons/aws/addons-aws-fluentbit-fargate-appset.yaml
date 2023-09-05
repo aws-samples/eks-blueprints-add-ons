@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -11,41 +12,39 @@ spec:
           addonChart: fargate-fluentbit
         selector:
           matchExpressions:
-          - key: akuity.io/argo-cd-cluster-name
-            operator: NotIn
-            values:
-              - in-cluster
-          - key: enable_fargate_fluentbit
-            operator: In
-            values:
-              - 'true'
+            - key: akuity.io/argo-cd-cluster-name
+              operator: NotIn
+              values: [in-cluster]
+            - key: enable_fargate_fluentbit
+              operator: In
+              values: ['true']
   template:
     metadata:
-      name: 'addon-{{name}}-{{values.addonChart}}-resources'
+      name: addon-{{name}}-{{values.addonChart}}-resources
     spec:
       project: default
       source:
-        repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
-        targetRevision: HEAD
+        repoURL: '{{metadata.annotations.addons_repo_url}}'
+        targetRevision: '{{metadata.annotations.addons_repo_revision}}'
         path: charts/addons/{{values.addonChart}}/resources
         helm:
           releaseName: '{{values.addonChart}}'
           ignoreMissingValueFiles: true
           valueFiles:
-          - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
-          - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
+            - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
+            - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
           values: |
             region: {{metadata.annotations.aws_region}}
             log_group_name: {{metadata.annotations.fargate_fluentbit_log_group_name}}
             log_stream_prefix: {{metadata.annotations.fargate_fluentbit_log_stream_prefix}}
-          #fileParameters:
+          # fileParameters:
           #  - name:
           #    path:
-          #parameters
-          #values
-          #valuesObject
+          # parameters
+          # values
+          # valuesObject
       destination:
-        #namespace: '{{values.addonChart}}'
+        # namespace: '{{values.addonChart}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}

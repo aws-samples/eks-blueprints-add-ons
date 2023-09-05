@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -12,45 +13,41 @@ spec:
           addonChartNamespace: crossplane-system
         selector:
           matchExpressions:
-          - key: akuity.io/argo-cd-cluster-name
-            operator: NotIn
-            values:
-              - in-cluster
-          - key: enable_aws_crossplane
-            operator: In
-            values:
-              - 'true'
+            - key: akuity.io/argo-cd-cluster-name
+              operator: NotIn
+              values: [in-cluster]
+            - key: enable_aws_crossplane
+              operator: In
+              values: ['true']
   template:
     metadata:
-      name: 'addon-{{name}}-{{values.addonChart}}-aws'
+      name: addon-{{name}}-{{values.addonChart}}-aws
     spec:
       project: default
       source:
-        repoURL: https://github.com/aws-samples/eks-blueprints-add-ons
-        targetRevision: HEAD
+        repoURL: '{{metadata.annotations.addons_repo_url}}'
+        targetRevision: '{{metadata.annotations.addons_repo_revision}}'
         path: charts/addons/{{values.addonChart}}/resources
         helm:
           releaseName: '{{values.addonChart}}-aws'
           ignoreMissingValueFiles: true
           valueFiles:
-          - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
-          - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
+            - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
+            - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
           values: |
             global:
               enabled_aws: {{metadata.labels.enable_aws_crossplane_provider}}
               iam_role_arn_aws: {{metadata.annotations.aws_crossplane_iam_role_arn}}
-
               enabled_aws_upbound: {{metadata.labels.enable_aws_crossplane_upbound_provider}}
               iam_role_arn_aws_upbound: {{metadata.annotations.aws_upbound_crossplane_iam_role_arn}}
-
               enabled_kubernetes: {{metadata.labels.enable_crossplane_kubernetes_provider}}
               enabled_helm: {{metadata.labels.enable_crossplane_helm_provider}}
-          #fileParameters:
+          # fileParameters:
           #  - name:
           #    path:
-          #parameters
-          #values
-          #valuesObject
+          # parameters
+          # values
+          # valuesObject
       destination:
         namespace: '{{values.addonChartNamespace}}'
         name: '{{name}}'

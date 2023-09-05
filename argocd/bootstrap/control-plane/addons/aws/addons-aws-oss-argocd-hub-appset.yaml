@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-aws-argocd-ingress
+  name: addons-aws-argocd-hub
 spec:
   goTemplate: true
   syncPolicy:
@@ -22,7 +22,7 @@ spec:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_aws_argocd_ingress
+                  - key: enable_aws_argocd
                     operator: In
                     values: ['true']
           - clusters:
@@ -65,26 +65,6 @@ spec:
                 serviceAccount:
                   annotations:
                     eks.amazonaws.com/role-arn: '{{.metadata.annotations.argocd_iam_role_arn}}'
-                service:
-                  type: "ClusterIP"
-                ingress:
-                  enabled: true
-                  annotations:
-                    alb.ingress.kubernetes.io/scheme: "internet-facing"
-                    alb.ingress.kubernetes.io/target-type: "ip"
-                    alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
-                    alb.ingress.kubernetes.io/listen-ports: "[{\"HTTPS\":443}]"
-                    alb.ingress.kubernetes.io/tags: "Environment=hub,GitOps=true"
-                  ingressClassName: "alb"
-                  hosts: {{.metadata.annotations.argocd_hosts}}
-                  tls:
-                  - hosts: {{.metadata.annotations.argocd_hosts}}
-                ingressGrpc:
-                  enabled: true
-                  isAWSALB: true
-                  awsALB:
-                    serviceType: "ClusterIP"  # Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
-                    backendProtocolVersion: "GRPC"  # This tells AWS to send traffic from the ALB using HTTP2. Can use gRPC as well if you want to leverage gRPC specific features
       destination:
         namespace: '{{default "argocd" .metadata.annotations.argocd_namespace}}'
         name: '{{.name}}'

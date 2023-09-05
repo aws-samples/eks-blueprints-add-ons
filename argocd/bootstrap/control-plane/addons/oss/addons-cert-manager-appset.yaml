@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-kube-prometheus-stack
+  name: addons-cert-manager
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -12,30 +12,32 @@ spec:
         generators:
           - clusters:
               values:
-                addonChart: kube-prometheus-stack
+                addonChart: cert-manager
                 # anything not staging or prod use this version
-                addonChartVersion: 50.0.0
-                addonChartRepository: https://prometheus-community.github.io/helm-charts
+                addonChartVersion: v1.12.4
+                addonChartRepository: https://charts.jetstack.io
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_kube_prometheus_stack
+                  - key: enable_cert_manager
                     operator: In
                     values: ['true']
+                  - key: aws_cluster_name
+                    operator: DoesNotExist
           - clusters:
               selector:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 50.0.0
+                addonChartVersion: v1.12.4
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 50.0.0
+                addonChartVersion: v1.12.4
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}
@@ -55,12 +57,19 @@ spec:
               - $values{{metadata.annotations.addons_repo_basepath}}/charts/addons/{{values.addonChart}}/values.yaml
               - $values{{metadata.annotations.addons_repo_basepath}}/environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values{{metadata.annotations.addons_repo_basepath}}/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+            values: |
+              installCRDs: true
+          # fileParameters:
+          #  - name:
+          #    path:
+          # parameters
+          # values
+          # valuesObject
       destination:
-        namespace: '{{values.addonChart}}'
+        namespace: '{{metadata.annotations.cert_manager_namespace}}'
         name: '{{name}}'
       syncPolicy:
         automated: {}
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.
-          - ApplyOutOfSyncOnly=true
