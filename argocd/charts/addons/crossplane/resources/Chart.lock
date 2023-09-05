@@ -1,0 +1,15 @@
+dependencies:
+- name: aws
+  repository: file://aws
+  version: 1.0.0
+- name: kubernetes
+  repository: file://kubernetes
+  version: 1.0.0
+- name: helm
+  repository: file://helm
+  version: 1.0.0
+- name: aws-upbound
+  repository: file://aws-upbound
+  version: 1.0.0
+digest: sha256:8b338bfb2209ee7a4788950768c03dfada1db9c54dc71d48fa220bb213fb0440
+generated: "2023-07-23T16:50:33.817899-04:00"
