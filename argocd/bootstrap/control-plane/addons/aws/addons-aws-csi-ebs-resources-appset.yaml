@@ -30,7 +30,6 @@ spec:
         helm:
           releaseName: '{{values.addonChart}}'
           ignoreMissingValueFiles: true
-          releaseName: aws-ebs-csi-resources
           valueFiles:
             - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
             - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
@@ -48,4 +47,4 @@ spec:
         automated: {}
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply=true  # Big CRDs.
+          - ServerSideApply=true # Big CRDs.
