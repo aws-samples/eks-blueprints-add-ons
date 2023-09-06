@@ -52,9 +52,9 @@ spec:
             releaseName: '{{values.addonChart}}'
             ignoreMissingValueFiles: true
             valueFiles:
-              - $values{{metadata.annotations.addons_repo_basepath}}/charts/addons/{{values.addonChart}}/values.yaml
-              - $values{{metadata.annotations.addons_repo_basepath}}/environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
-              - $values{{metadata.annotations.addons_repo_basepath}}/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}charts/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
             values: |
               awsRegion: {{metadata.annotations.aws_region}}
               queueURL: {{metadata.annotations.aws_node_termination_handler_sqs_queue_url}}
