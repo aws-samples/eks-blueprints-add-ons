@@ -56,9 +56,9 @@ spec:
             releaseName: '{{values.addonChartReleaseName}}'
             ignoreMissingValueFiles: true
             valueFiles:
-              - $values{{metadata.annotations.addons_repo_basepath}}/charts/addons/{{values.addonChart}}/values.yaml
-              - $values{{metadata.annotations.addons_repo_basepath}}/environments/{{metadata.labels.environment}}/addons/{{values.addonChartReleaseName}}/values.yaml
-              - $values{{metadata.annotations.addons_repo_basepath}}/clusters/{{name}}/addons/{{values.addonChartReleaseName}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}charts/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChartReleaseName}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChartReleaseName}}/values.yaml
             values: |
               awsRegion: {{metadata.annotations.aws_region}}
               awsAccountId: '"{{metadata.annotations.aws_account_id}}"'  # Issue https://github.com/aws/aws-application-networking-k8s/issues/324
