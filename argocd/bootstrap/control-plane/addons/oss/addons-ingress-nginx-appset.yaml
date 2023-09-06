@@ -5,7 +5,6 @@ metadata:
   name: addons-ingress-nginx
 spec:
   goTemplate: true
-  goTemplateOptions: ['missingkey=error']
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
