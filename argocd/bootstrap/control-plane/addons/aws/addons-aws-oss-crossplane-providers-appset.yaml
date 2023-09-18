@@ -32,8 +32,8 @@ spec:
           releaseName: '{{values.addonChart}}-aws'
           ignoreMissingValueFiles: true
           valueFiles:
-            - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
-            - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
+            - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
+            - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
           values: |
             global:
               enabled_aws: {{metadata.labels.enable_aws_crossplane_provider}}
@@ -61,4 +61,4 @@ spec:
         automated: {}
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply=true  # Big CRDs.
+          - ServerSideApply=true # Big CRDs.
