@@ -16,6 +16,242 @@ spec:
       values: |
         aws-for-fluent-bit:
         {{- toYaml .Values.awsForFluentBit | nindent 10 }}
+          service:
+            parsersFiles:
+              - /fluent-bit/parsers/parsers.conf
+            extraParsers: |
+              [PARSER]
+                  Name   logfmt
+                  Format logfmt
+
+              [PARSER]
+                  Name                logfmt_strict
+                  Format              logfmt
+                  Logfmt_No_Bare_Keys true
+
+              [PARSER]
+                  Name   obs_aggr
+                  Format regex
+                  Regex  (?:\s*(?<hospital_id>hospital_\d+)|(?:action='(?<action>[A-Z]+)')\s*)+
+
+              [PARSER]
+                  Name   ebs_csi
+                  Format regex
+                  Regex  (?<log_level_code>[IWE]{1}\d{4})\s(?<t>[^ ]+)(?:\s{2,})(?<msg>.*)
+
+              [PARSER]
+                  Name   brckt
+                  Format regex
+                  Regex  (\[(?<t>[^\]]+)\])(\s*\[\s*(?<level>[^\]]+)\])(\s*\[\s*(?<component>[^\]]+)\])\s*(?<msg>.*)
+
+              [PARSER]
+                  Name   aws_cloudwatch
+                  Format regex
+                  Regex  (?<t>[^\s]+)\s(?<log_level_code>\w!)\s(\[(?<component>.*)\])?(?<msg>.*)
+
+              [PARSER]
+                  Name   strimzi
+                  Format regex
+                  Regex  ((?<date>\d{4}-\d{2}-\d{2})\s(?<t>[\d:]+))\s(?<level>[^\s]+)\s*(?<component>[^\s]+)(?<msg>.*)
+
+              [PARSER]
+                  Name   karpenter
+                  Format regex
+                  Regex  (?<t>.*.\d{3}Z)\t(?<level>\w+)\t(?<component>[^\t]+)\t(?<msg>.*)
+
+              [PARSER]
+                  Name   argo
+                  Format regex
+                  Regex  ^(\[(?<level>.*)])\s*(?<msg>\(\d+\).*)
+
+              [PARSER]
+                  Name   nginx_escaped
+                  Format regex
+                  Regex  ^(?<remote>[^ ]*) (?<host>[^ ]*) (?<user>[^ ]*) \[(?<t>[^\]]*)\] (?:[^"]")(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)((?:\s[^"]"))(?<referer>[^\\"])(?:[^\w]*)(?<agent>[^\\"]*)(?:[^\w\s]*)(?<more_info>.*)
+
+          input:
+            enabled:          true
+            tag:              "kube.*"
+            path:             "/var/log/containers/dummy-app-postgres-ping*.log,/var/log/containers/fhir-data-generator*.log,/var/log/containers/fhir-ingestor-wrangler-svc*.log,/var/log/containers/fhir-push-ingestor-svc*.log,/var/log/containers/navoy-sepsis-predictor-svc*.log,/var/log/containers/node-debugger*.log,/var/log/containers/observation-aggregation-svc*.log,/var/log/containers/patient-info-svc*.log,/var/log/containers/raw-data-s3-writer-svc*.log,/var/log/containers/sample-app*.log,/var/log/containers/sepsis-prediction-runner-svc*.log"
+            db:               "/var/log/flb_kube.db"
+            parser:           docker
+            dockerMode:       "On"
+            memBufLimit:      20MB
+            skipLongLines:    "On"
+            refreshInterval:  10
+
+          additionalInputs: |
+            [INPUT]
+                Name                tail
+                Tag                 kube.support*
+                path                /var/log/containers/*.log
+                exclude_path        /var/log/containers/dummy-app-postgres-ping*.log,/var/log/containers/fhir-data-generator*.log,/var/log/containers/fhir-ingestor-wrangler-svc*.log,/var/log/containers/fhir-push-ingestor-svc*.log,/var/log/containers/navoy-sepsis-predictor-svc*.log,/var/log/containers/node-debugger*.log,/var/log/containers/observation-aggregation-svc*.log,/var/log/containers/patient-info-svc*.log,/var/log/containers/raw-data-s3-writer-svc*.log,/var/log/containers/sample-app*.log,/var/log/containers/sepsis-prediction-runner-svc*.log
+                db                  /var/log/flb_kube_support.db
+                parser              docker
+                docker_mode         On
+                mem_buf_limit       20MB
+                skip_long_lines     On
+                refresh_interval    10
+
+        
+          filter:
+            enabled:            true
+            match:              "kube.*"
+            kubeURL:            "https://kubernetes.default.svc.cluster.local:443"
+            mergeLog:           "On"
+            mergeLogKey:        "data"
+            keepLog:            "On"
+            k8sLoggingParser:   "On"
+            k8sLoggingExclude:  "On"
+            bufferSize:         "32k"
+
+          additionalFilters: |       
+            [FILTER]
+                Name                kubernetes
+                Match               kube.support*
+                Kube_URL            https://kubernetes.default.svc.cluster.local:443
+                Merge_Log           On
+                Merge_Log_Key       data
+                Keep_Log            On
+                K8S-Logging.Parser  On
+                K8S-Logging.Exclude On
+                Kube_Tag_Prefix     kube.support.var.log.containers.
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      log
+                Parser        json
+                Parser        cri
+                Parser        argo
+                Parser        nginx_escaped
+                Parser        nginx
+                Reserve_Data  On
+
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      message
+                Parser        json
+                Parser        aws_cloudwatch
+                Reserve_Data  On
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      log
+                Parser        aws_cloudwatch
+                Parser        obs_aggr
+                Parser        brckt
+                Reserve_Data  On
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      message
+                Parser        aws_cloudwatch
+                Parser        obs_aggr
+                Parser        brckt
+                Parser        argo
+                Parser        nginx_escaped
+                Parser        nginx
+                Reserve_Data  On
+
+
+            [FILTER]
+                Name      modify
+                Match     *
+                Condition Key_value_matches log =
+                Condition Key_value_matches log level
+                Condition Key_value_does_not_match log \u0020\u0020\u0020\u0020\u0020\u0020\u0020
+                Rename    log to_format
+
+            [FILTER]
+                Name      modify
+                Match     *
+                Condition Key_value_matches message =
+                Condition Key_value_matches message level
+                Condition Key_value_does_not_match message \u0020\u0020\u0020\u0020\u0020\u0020\u0020
+                Rename    message to_format
+
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      to_format
+                Parser        logfmt_strict
+                Reserve_Data  On
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      message
+                Parser        ebs_csi
+                Reserve_Data  On
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      log
+                Parser        ebs_csi
+                Reserve_Data  On
+
+
+            [FILTER]
+                Name      modify
+                Match     *
+                Condition Key_value_matches log_level_code I
+                Add       level info
+                Remove    log_level_code
+
+
+            [FILTER]
+                Name      modify
+                Match     *
+                Condition Key_value_matches log_level_code W
+                Add       level warning
+                Remove    log_level_code
+
+
+            [FILTER]
+                Name      modify
+                Match     *
+                Condition Key_value_matches log_level_code E
+                Add       level error
+                Remove    log_level_code
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      log
+                Parser        strimzi
+                Parser        karpenter
+                Reserve_Data  On
+
+            [FILTER]
+                Name          parser
+                Match         *
+                Key_Name      message
+                Parser        strimzi
+                Parser        karpenter
+                Reserve_Data  On
+
+            [FILTER]
+                Name      modify
+                Match     *
+                Condition Key_exists log
+                Rename    log log_data
+
+            [FILTER]
+                name      grep
+                match     kube.support.*
+                Exclude   level (?i)^((?!error|alert).)*$
+
+            [FILTER]
+                name      grep
+                match     kube.support.*
+                Exclude   $data['level'] (?i)^((?!error|alert).)*$
           additionalOutputs: |
             [OUTPUT]
                 name                      loki
@@ -23,6 +259,14 @@ spec:
                 host                      loki-distributed-distributor.grafana.svc.cluster.local
                 labels                    job=fluentbit,$stream,$kubernetes['pod_name'],$kubernetes['namespace_name'],$kubernetes['container_name'],$kubernetes['host']
                 auto_kubernetes_labels    off
+
+          resources:
+            limits:
+              cpu: 500m
+              memory: 250M
+            requests:
+              cpu: 20m
+              memory: 100M
       parameters:
       - name: aws-for-fluent-bit.cloudWatch.region
         value: {{ .Values.region }}
