@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: argo-cd
                 # anything not staging or prod use this version
-                addonChartVersion: 5.45.0
+                addonChartVersion: 5.46.4
                 addonChartRepositoryNamespace: argocd
                 addonChartRepository: https://argoproj.github.io/argo-helm
               selector:
@@ -30,13 +30,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 5.45.0
+                addonChartVersion: 5.46.4
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 5.45.0
+                addonChartVersion: 5.46.4
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}

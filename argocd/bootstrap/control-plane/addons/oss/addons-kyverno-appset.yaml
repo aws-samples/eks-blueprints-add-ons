@@ -67,8 +67,8 @@ spec:
           helm:
             ignoreMissingValueFiles: true
             valueFiles:
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
+              - ../../../../environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/resources/values.yaml
+              - ../../../../clusters/{{name}}/addons/{{values.addonChart}}/resources/values.yaml
           # values:
           # fileParameters:
           #  - name:

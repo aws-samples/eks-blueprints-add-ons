@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: prometheus-adapter
                 # anything not staging or prod use this version
-                addonChartVersion: 4.4.1
+                addonChartVersion: 4.5.0
                 addonChartRepository: https://prometheus-community.github.io/helm-charts
               selector:
                 matchExpressions:
@@ -29,13 +29,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 4.4.1
+                addonChartVersion: 4.5.0
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 4.4.1
+                addonChartVersion: 4.5.0
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}

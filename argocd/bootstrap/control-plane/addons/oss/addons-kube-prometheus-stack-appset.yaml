@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: kube-prometheus-stack
                 # anything not staging or prod use this version
-                addonChartVersion: 50.0.0
+                addonChartVersion: 51.0.3
                 addonChartRepository: https://prometheus-community.github.io/helm-charts
               selector:
                 matchExpressions:
@@ -29,13 +29,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 50.0.0
+                addonChartVersion: 51.0.3
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 50.0.0
+                addonChartVersion: 51.0.3
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}
