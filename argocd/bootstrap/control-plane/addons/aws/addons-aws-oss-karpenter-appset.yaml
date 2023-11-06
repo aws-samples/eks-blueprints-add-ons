@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: karpenter
                 # anything not staging or prod use this version
-                addonChartVersion: v0.30.0
+                addonChartVersion: v0.32.0
                 # using oci repostory already configure in argocd
                 # argocd repo add public.ecr.aws --type helm --name aws-public-ecr --enable-oci
                 addonChartRepository: public.ecr.aws
@@ -74,4 +74,4 @@ spec:
         automated: {}
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply=true  # Big CRDs.
+          - ServerSideApply=true # Big CRDs.
