@@ -61,7 +61,7 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChartReleaseName}}/values.yaml
             values: |
               awsRegion: {{metadata.annotations.aws_region}}
-              awsAccountId: '"{{metadata.annotations.aws_account_id}}"'  # Issue https://github.com/aws/aws-application-networking-k8s/issues/324
+              awsAccountId: {{metadata.annotations.aws_account_id}}
               clusterVpcId: {{metadata.annotations.aws_vpc_id}}
               serviceAccount:
                 name: {{metadata.annotations.aws_gateway_api_controller_service_account}}
