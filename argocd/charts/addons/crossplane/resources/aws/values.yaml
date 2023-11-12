@@ -23,7 +23,7 @@ provider:
     labels: {}
   package:
     registry: xpkg.upbound.io/crossplane-contrib/provider-aws
-    version: "v0.42.0"
+    version: "v0.43.1"
 
 providerConfig:
   enabled: true
