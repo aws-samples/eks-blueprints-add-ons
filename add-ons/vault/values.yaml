@@ -1,2 +1,7 @@
 # for details on all options
 # https://github.com/hashicorp/vault-helm/blob/main/values.yaml
+vault:
+  global:
+    # enabled is the master enabled switch. Setting this to true or false
+    # will enable or disable all the components within this chart by default.
+    enabled: true
