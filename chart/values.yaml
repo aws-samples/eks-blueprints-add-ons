@@ -225,7 +225,7 @@ kubeStateMetrics:
   serviceAccountName:
 
 # Prometheus Node Exporter
-promtheusNodeExporter:
+prometheusNodeExporter:
   enable: false
   serviceAccountName:
 
